@@ -1,0 +1,2523 @@
+fileFormatVersion: 2
+guid: 1a7b3de8cfef9f84b8b9be05bdbda158
+ModelImporter:
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: magma_chest
+  - first:
+      1: 100002
+    second: //RootNode
+  - first:
+      1: 100004
+    second: magma_elemental:magma_mesh
+  - first:
+      1: 100006
+    second: magma_head
+  - first:
+      1: 100008
+    second: magma_head_base
+  - first:
+      1: 100010
+    second: magma_jaw
+  - first:
+      1: 100012
+    second: magma_left_ankle
+  - first:
+      1: 100014
+    second: magma_left_clavicle
+  - first:
+      1: 100016
+    second: magma_left_elbow
+  - first:
+      1: 100018
+    second: magma_left_fingers1
+  - first:
+      1: 100020
+    second: magma_left_fingers1b
+  - first:
+      1: 100022
+    second: magma_left_fingers1c
+  - first:
+      1: 100024
+    second: magma_left_fingers2
+  - first:
+      1: 100026
+    second: magma_left_fingers2b
+  - first:
+      1: 100028
+    second: magma_left_fingers2c
+  - first:
+      1: 100030
+    second: magma_left_foot
+  - first:
+      1: 100032
+    second: magma_left_hip
+  - first:
+      1: 100034
+    second: magma_left_knee
+  - first:
+      1: 100036
+    second: magma_left_neck
+  - first:
+      1: 100038
+    second: magma_left_shoulder
+  - first:
+      1: 100040
+    second: magma_left_thumb1
+  - first:
+      1: 100042
+    second: magma_left_thumb2
+  - first:
+      1: 100044
+    second: magma_left_toes1a
+  - first:
+      1: 100046
+    second: magma_left_toes1b
+  - first:
+      1: 100048
+    second: magma_left_toes2a
+  - first:
+      1: 100050
+    second: magma_left_toes2b
+  - first:
+      1: 100052
+    second: magma_left_wrist
+  - first:
+      1: 100054
+    second: magma_lower_waist
+  - first:
+      1: 100056
+    second: magma_pelvis
+  - first:
+      1: 100058
+    second: magma_right_ankle
+  - first:
+      1: 100060
+    second: magma_right_clavicle
+  - first:
+      1: 100062
+    second: magma_right_elbow
+  - first:
+      1: 100064
+    second: magma_right_fingers1
+  - first:
+      1: 100066
+    second: magma_right_fingers1b
+  - first:
+      1: 100068
+    second: magma_right_fingers1c
+  - first:
+      1: 100070
+    second: magma_right_fingers2
+  - first:
+      1: 100072
+    second: magma_right_fingers2b
+  - first:
+      1: 100074
+    second: magma_right_fingers2c
+  - first:
+      1: 100076
+    second: magma_right_foot
+  - first:
+      1: 100078
+    second: magma_right_hip
+  - first:
+      1: 100080
+    second: magma_right_knee
+  - first:
+      1: 100082
+    second: magma_right_shoulder
+  - first:
+      1: 100084
+    second: magma_right_thumb1
+  - first:
+      1: 100086
+    second: magma_right_thumb2
+  - first:
+      1: 100088
+    second: magma_right_toes1a
+  - first:
+      1: 100090
+    second: magma_right_toes1b
+  - first:
+      1: 100092
+    second: magma_right_toes2a
+  - first:
+      1: 100094
+    second: magma_right_toes2b
+  - first:
+      1: 100096
+    second: magma_right_wrist
+  - first:
+      1: 100098
+    second: magma_root
+  - first:
+      4: 400000
+    second: magma_chest
+  - first:
+      4: 400002
+    second: //RootNode
+  - first:
+      4: 400004
+    second: magma_elemental:magma_mesh
+  - first:
+      4: 400006
+    second: magma_head
+  - first:
+      4: 400008
+    second: magma_head_base
+  - first:
+      4: 400010
+    second: magma_jaw
+  - first:
+      4: 400012
+    second: magma_left_ankle
+  - first:
+      4: 400014
+    second: magma_left_clavicle
+  - first:
+      4: 400016
+    second: magma_left_elbow
+  - first:
+      4: 400018
+    second: magma_left_fingers1
+  - first:
+      4: 400020
+    second: magma_left_fingers1b
+  - first:
+      4: 400022
+    second: magma_left_fingers1c
+  - first:
+      4: 400024
+    second: magma_left_fingers2
+  - first:
+      4: 400026
+    second: magma_left_fingers2b
+  - first:
+      4: 400028
+    second: magma_left_fingers2c
+  - first:
+      4: 400030
+    second: magma_left_foot
+  - first:
+      4: 400032
+    second: magma_left_hip
+  - first:
+      4: 400034
+    second: magma_left_knee
+  - first:
+      4: 400036
+    second: magma_left_neck
+  - first:
+      4: 400038
+    second: magma_left_shoulder
+  - first:
+      4: 400040
+    second: magma_left_thumb1
+  - first:
+      4: 400042
+    second: magma_left_thumb2
+  - first:
+      4: 400044
+    second: magma_left_toes1a
+  - first:
+      4: 400046
+    second: magma_left_toes1b
+  - first:
+      4: 400048
+    second: magma_left_toes2a
+  - first:
+      4: 400050
+    second: magma_left_toes2b
+  - first:
+      4: 400052
+    second: magma_left_wrist
+  - first:
+      4: 400054
+    second: magma_lower_waist
+  - first:
+      4: 400056
+    second: magma_pelvis
+  - first:
+      4: 400058
+    second: magma_right_ankle
+  - first:
+      4: 400060
+    second: magma_right_clavicle
+  - first:
+      4: 400062
+    second: magma_right_elbow
+  - first:
+      4: 400064
+    second: magma_right_fingers1
+  - first:
+      4: 400066
+    second: magma_right_fingers1b
+  - first:
+      4: 400068
+    second: magma_right_fingers1c
+  - first:
+      4: 400070
+    second: magma_right_fingers2
+  - first:
+      4: 400072
+    second: magma_right_fingers2b
+  - first:
+      4: 400074
+    second: magma_right_fingers2c
+  - first:
+      4: 400076
+    second: magma_right_foot
+  - first:
+      4: 400078
+    second: magma_right_hip
+  - first:
+      4: 400080
+    second: magma_right_knee
+  - first:
+      4: 400082
+    second: magma_right_shoulder
+  - first:
+      4: 400084
+    second: magma_right_thumb1
+  - first:
+      4: 400086
+    second: magma_right_thumb2
+  - first:
+      4: 400088
+    second: magma_right_toes1a
+  - first:
+      4: 400090
+    second: magma_right_toes1b
+  - first:
+      4: 400092
+    second: magma_right_toes2a
+  - first:
+      4: 400094
+    second: magma_right_toes2b
+  - first:
+      4: 400096
+    second: magma_right_wrist
+  - first:
+      4: 400098
+    second: magma_root
+  - first:
+      43: 4300000
+    second: magma_elemental:magma_mesh
+  - first:
+      74: 7400000
+    second: Magma_AllAnims
+  - first:
+      74: 7400002
+    second: Magma_Idle
+  - first:
+      74: 7400004
+    second: Magma_Walk
+  - first:
+      74: 7400006
+    second: Magma_Attack01
+  - first:
+      74: 7400008
+    second: Magma_GetHit
+  - first:
+      74: 7400010
+    second: Magma_Attack02
+  - first:
+      74: 7400012
+    second: Magma_Roar
+  - first:
+      74: 7400014
+    second: Magma_Strafe Right
+  - first:
+      74: 7400016
+    second: Magma_Strafe Left
+  - first:
+      74: 7400018
+    second: Magma_Summon
+  - first:
+      74: 7400020
+    second: Magma_Attack03
+  - first:
+      74: 7400022
+    second: Magma_Smash
+  - first:
+      74: 7400024
+    second: Magma_Jump
+  - first:
+      74: 7400026
+    second: Magma_JumpPose
+  - first:
+      74: 7400028
+    second: Magma_JumpLand
+  - first:
+      74: 7400030
+    second: Magma_Death
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: magma_elemental:magma_mesh
+  externalObjects: {}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Magma_AllAnims
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 1
+      lastFrame: 1500
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: magma_elemental:magma_mesh
+        weight: 1
+      - path: magma_root
+        weight: 1
+      - path: magma_root/magma_lower_waist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base/magma_head
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base/magma_head/magma_jaw
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1/magma_left_fingers1b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1/magma_left_fingers1b/magma_left_fingers1c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2/magma_left_fingers2b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2/magma_left_fingers2b/magma_left_fingers2c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_thumb1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_thumb1/magma_left_thumb2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1/magma_right_fingers1b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1/magma_right_fingers1b/magma_right_fingers1c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2/magma_right_fingers2b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2/magma_right_fingers2b/magma_right_fingers2c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_thumb1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_thumb1/magma_right_thumb2
+        weight: 1
+      - path: magma_root/magma_pelvis
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes1a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes1a/magma_left_toes1b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes2a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes2a/magma_left_toes2b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes1a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes1a/magma_right_toes1b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes2a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes2a/magma_right_toes2b
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Magma_Idle
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 10
+      lastFrame: 80
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: magma_elemental:magma_mesh
+        weight: 1
+      - path: magma_root
+        weight: 1
+      - path: magma_root/magma_lower_waist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base/magma_head
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base/magma_head/magma_jaw
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1/magma_left_fingers1b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1/magma_left_fingers1b/magma_left_fingers1c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2/magma_left_fingers2b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2/magma_left_fingers2b/magma_left_fingers2c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_thumb1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_thumb1/magma_left_thumb2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1/magma_right_fingers1b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1/magma_right_fingers1b/magma_right_fingers1c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2/magma_right_fingers2b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2/magma_right_fingers2b/magma_right_fingers2c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_thumb1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_thumb1/magma_right_thumb2
+        weight: 1
+      - path: magma_root/magma_pelvis
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes1a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes1a/magma_left_toes1b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes2a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes2a/magma_left_toes2b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes1a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes1a/magma_right_toes1b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes2a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes2a/magma_right_toes2b
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Magma_Walk
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 100
+      lastFrame: 180
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: magma_elemental:magma_mesh
+        weight: 1
+      - path: magma_root
+        weight: 1
+      - path: magma_root/magma_lower_waist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base/magma_head
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base/magma_head/magma_jaw
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1/magma_left_fingers1b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1/magma_left_fingers1b/magma_left_fingers1c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2/magma_left_fingers2b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2/magma_left_fingers2b/magma_left_fingers2c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_thumb1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_thumb1/magma_left_thumb2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1/magma_right_fingers1b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1/magma_right_fingers1b/magma_right_fingers1c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2/magma_right_fingers2b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2/magma_right_fingers2b/magma_right_fingers2c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_thumb1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_thumb1/magma_right_thumb2
+        weight: 1
+      - path: magma_root/magma_pelvis
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes1a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes1a/magma_left_toes1b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes2a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes2a/magma_left_toes2b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes1a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes1a/magma_right_toes1b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes2a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes2a/magma_right_toes2b
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Magma_Attack01
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 200
+      lastFrame: 370
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: magma_elemental:magma_mesh
+        weight: 1
+      - path: magma_root
+        weight: 1
+      - path: magma_root/magma_lower_waist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base/magma_head
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base/magma_head/magma_jaw
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1/magma_left_fingers1b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1/magma_left_fingers1b/magma_left_fingers1c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2/magma_left_fingers2b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2/magma_left_fingers2b/magma_left_fingers2c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_thumb1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_thumb1/magma_left_thumb2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1/magma_right_fingers1b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1/magma_right_fingers1b/magma_right_fingers1c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2/magma_right_fingers2b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2/magma_right_fingers2b/magma_right_fingers2c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_thumb1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_thumb1/magma_right_thumb2
+        weight: 1
+      - path: magma_root/magma_pelvis
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes1a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes1a/magma_left_toes1b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes2a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes2a/magma_left_toes2b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes1a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes1a/magma_right_toes1b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes2a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes2a/magma_right_toes2b
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Magma_GetHit
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 390
+      lastFrame: 420
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: magma_elemental:magma_mesh
+        weight: 1
+      - path: magma_root
+        weight: 1
+      - path: magma_root/magma_lower_waist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base/magma_head
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base/magma_head/magma_jaw
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1/magma_left_fingers1b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1/magma_left_fingers1b/magma_left_fingers1c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2/magma_left_fingers2b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2/magma_left_fingers2b/magma_left_fingers2c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_thumb1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_thumb1/magma_left_thumb2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1/magma_right_fingers1b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1/magma_right_fingers1b/magma_right_fingers1c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2/magma_right_fingers2b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2/magma_right_fingers2b/magma_right_fingers2c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_thumb1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_thumb1/magma_right_thumb2
+        weight: 1
+      - path: magma_root/magma_pelvis
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes1a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes1a/magma_left_toes1b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes2a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes2a/magma_left_toes2b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes1a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes1a/magma_right_toes1b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes2a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes2a/magma_right_toes2b
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Magma_Attack02
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 430
+      lastFrame: 490
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: magma_elemental:magma_mesh
+        weight: 1
+      - path: magma_root
+        weight: 1
+      - path: magma_root/magma_lower_waist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base/magma_head
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base/magma_head/magma_jaw
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1/magma_left_fingers1b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1/magma_left_fingers1b/magma_left_fingers1c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2/magma_left_fingers2b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2/magma_left_fingers2b/magma_left_fingers2c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_thumb1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_thumb1/magma_left_thumb2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1/magma_right_fingers1b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1/magma_right_fingers1b/magma_right_fingers1c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2/magma_right_fingers2b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2/magma_right_fingers2b/magma_right_fingers2c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_thumb1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_thumb1/magma_right_thumb2
+        weight: 1
+      - path: magma_root/magma_pelvis
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes1a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes1a/magma_left_toes1b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes2a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes2a/magma_left_toes2b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes1a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes1a/magma_right_toes1b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes2a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes2a/magma_right_toes2b
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Magma_Roar
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 510
+      lastFrame: 580
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: magma_elemental:magma_mesh
+        weight: 1
+      - path: magma_root
+        weight: 1
+      - path: magma_root/magma_lower_waist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base/magma_head
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base/magma_head/magma_jaw
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1/magma_left_fingers1b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1/magma_left_fingers1b/magma_left_fingers1c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2/magma_left_fingers2b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2/magma_left_fingers2b/magma_left_fingers2c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_thumb1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_thumb1/magma_left_thumb2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1/magma_right_fingers1b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1/magma_right_fingers1b/magma_right_fingers1c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2/magma_right_fingers2b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2/magma_right_fingers2b/magma_right_fingers2c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_thumb1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_thumb1/magma_right_thumb2
+        weight: 1
+      - path: magma_root/magma_pelvis
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes1a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes1a/magma_left_toes1b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes2a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes2a/magma_left_toes2b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes1a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes1a/magma_right_toes1b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes2a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes2a/magma_right_toes2b
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Magma_Strafe Right
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 600
+      lastFrame: 650
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: magma_elemental:magma_mesh
+        weight: 1
+      - path: magma_root
+        weight: 1
+      - path: magma_root/magma_lower_waist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base/magma_head
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base/magma_head/magma_jaw
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1/magma_left_fingers1b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1/magma_left_fingers1b/magma_left_fingers1c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2/magma_left_fingers2b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2/magma_left_fingers2b/magma_left_fingers2c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_thumb1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_thumb1/magma_left_thumb2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1/magma_right_fingers1b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1/magma_right_fingers1b/magma_right_fingers1c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2/magma_right_fingers2b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2/magma_right_fingers2b/magma_right_fingers2c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_thumb1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_thumb1/magma_right_thumb2
+        weight: 1
+      - path: magma_root/magma_pelvis
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes1a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes1a/magma_left_toes1b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes2a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes2a/magma_left_toes2b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes1a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes1a/magma_right_toes1b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes2a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes2a/magma_right_toes2b
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Magma_Strafe Left
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 670
+      lastFrame: 720
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: magma_elemental:magma_mesh
+        weight: 1
+      - path: magma_root
+        weight: 1
+      - path: magma_root/magma_lower_waist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base/magma_head
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base/magma_head/magma_jaw
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1/magma_left_fingers1b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1/magma_left_fingers1b/magma_left_fingers1c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2/magma_left_fingers2b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2/magma_left_fingers2b/magma_left_fingers2c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_thumb1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_thumb1/magma_left_thumb2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1/magma_right_fingers1b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1/magma_right_fingers1b/magma_right_fingers1c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2/magma_right_fingers2b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2/magma_right_fingers2b/magma_right_fingers2c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_thumb1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_thumb1/magma_right_thumb2
+        weight: 1
+      - path: magma_root/magma_pelvis
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes1a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes1a/magma_left_toes1b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes2a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes2a/magma_left_toes2b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes1a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes1a/magma_right_toes1b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes2a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes2a/magma_right_toes2b
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Magma_Summon
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 750
+      lastFrame: 900
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: magma_elemental:magma_mesh
+        weight: 1
+      - path: magma_root
+        weight: 1
+      - path: magma_root/magma_lower_waist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base/magma_head
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base/magma_head/magma_jaw
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1/magma_left_fingers1b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1/magma_left_fingers1b/magma_left_fingers1c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2/magma_left_fingers2b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2/magma_left_fingers2b/magma_left_fingers2c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_thumb1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_thumb1/magma_left_thumb2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1/magma_right_fingers1b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1/magma_right_fingers1b/magma_right_fingers1c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2/magma_right_fingers2b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2/magma_right_fingers2b/magma_right_fingers2c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_thumb1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_thumb1/magma_right_thumb2
+        weight: 1
+      - path: magma_root/magma_pelvis
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes1a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes1a/magma_left_toes1b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes2a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes2a/magma_left_toes2b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes1a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes1a/magma_right_toes1b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes2a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes2a/magma_right_toes2b
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Magma_Attack03
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 960
+      lastFrame: 1060
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: magma_elemental:magma_mesh
+        weight: 1
+      - path: magma_root
+        weight: 1
+      - path: magma_root/magma_lower_waist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base/magma_head
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base/magma_head/magma_jaw
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1/magma_left_fingers1b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1/magma_left_fingers1b/magma_left_fingers1c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2/magma_left_fingers2b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2/magma_left_fingers2b/magma_left_fingers2c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_thumb1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_thumb1/magma_left_thumb2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1/magma_right_fingers1b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1/magma_right_fingers1b/magma_right_fingers1c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2/magma_right_fingers2b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2/magma_right_fingers2b/magma_right_fingers2c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_thumb1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_thumb1/magma_right_thumb2
+        weight: 1
+      - path: magma_root/magma_pelvis
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes1a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes1a/magma_left_toes1b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes2a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes2a/magma_left_toes2b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes1a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes1a/magma_right_toes1b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes2a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes2a/magma_right_toes2b
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Magma_Smash
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 1090
+      lastFrame: 1230
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: magma_elemental:magma_mesh
+        weight: 1
+      - path: magma_root
+        weight: 1
+      - path: magma_root/magma_lower_waist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base/magma_head
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base/magma_head/magma_jaw
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1/magma_left_fingers1b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1/magma_left_fingers1b/magma_left_fingers1c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2/magma_left_fingers2b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2/magma_left_fingers2b/magma_left_fingers2c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_thumb1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_thumb1/magma_left_thumb2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1/magma_right_fingers1b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1/magma_right_fingers1b/magma_right_fingers1c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2/magma_right_fingers2b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2/magma_right_fingers2b/magma_right_fingers2c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_thumb1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_thumb1/magma_right_thumb2
+        weight: 1
+      - path: magma_root/magma_pelvis
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes1a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes1a/magma_left_toes1b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes2a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes2a/magma_left_toes2b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes1a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes1a/magma_right_toes1b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes2a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes2a/magma_right_toes2b
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Magma_Jump
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 1250
+      lastFrame: 1290
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: magma_elemental:magma_mesh
+        weight: 1
+      - path: magma_root
+        weight: 1
+      - path: magma_root/magma_lower_waist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base/magma_head
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base/magma_head/magma_jaw
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1/magma_left_fingers1b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1/magma_left_fingers1b/magma_left_fingers1c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2/magma_left_fingers2b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2/magma_left_fingers2b/magma_left_fingers2c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_thumb1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_thumb1/magma_left_thumb2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1/magma_right_fingers1b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1/magma_right_fingers1b/magma_right_fingers1c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2/magma_right_fingers2b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2/magma_right_fingers2b/magma_right_fingers2c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_thumb1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_thumb1/magma_right_thumb2
+        weight: 1
+      - path: magma_root/magma_pelvis
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes1a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes1a/magma_left_toes1b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes2a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes2a/magma_left_toes2b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes1a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes1a/magma_right_toes1b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes2a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes2a/magma_right_toes2b
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Magma_JumpPose
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 1290
+      lastFrame: 1291
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: magma_elemental:magma_mesh
+        weight: 1
+      - path: magma_root
+        weight: 1
+      - path: magma_root/magma_lower_waist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base/magma_head
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base/magma_head/magma_jaw
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1/magma_left_fingers1b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1/magma_left_fingers1b/magma_left_fingers1c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2/magma_left_fingers2b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2/magma_left_fingers2b/magma_left_fingers2c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_thumb1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_thumb1/magma_left_thumb2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1/magma_right_fingers1b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1/magma_right_fingers1b/magma_right_fingers1c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2/magma_right_fingers2b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2/magma_right_fingers2b/magma_right_fingers2c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_thumb1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_thumb1/magma_right_thumb2
+        weight: 1
+      - path: magma_root/magma_pelvis
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes1a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes1a/magma_left_toes1b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes2a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes2a/magma_left_toes2b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes1a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes1a/magma_right_toes1b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes2a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes2a/magma_right_toes2b
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Magma_JumpLand
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 1300
+      lastFrame: 1330
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: magma_elemental:magma_mesh
+        weight: 1
+      - path: magma_root
+        weight: 1
+      - path: magma_root/magma_lower_waist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base/magma_head
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base/magma_head/magma_jaw
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1/magma_left_fingers1b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1/magma_left_fingers1b/magma_left_fingers1c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2/magma_left_fingers2b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2/magma_left_fingers2b/magma_left_fingers2c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_thumb1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_thumb1/magma_left_thumb2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1/magma_right_fingers1b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1/magma_right_fingers1b/magma_right_fingers1c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2/magma_right_fingers2b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2/magma_right_fingers2b/magma_right_fingers2c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_thumb1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_thumb1/magma_right_thumb2
+        weight: 1
+      - path: magma_root/magma_pelvis
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes1a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes1a/magma_left_toes1b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes2a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes2a/magma_left_toes2b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes1a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes1a/magma_right_toes1b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes2a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes2a/magma_right_toes2b
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Magma_Death
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 1400
+      lastFrame: 1500
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: magma_elemental:magma_mesh
+        weight: 1
+      - path: magma_root
+        weight: 1
+      - path: magma_root/magma_lower_waist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base/magma_head
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_head_base/magma_head/magma_jaw
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1/magma_left_fingers1b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers1/magma_left_fingers1b/magma_left_fingers1c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2/magma_left_fingers2b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_fingers2/magma_left_fingers2b/magma_left_fingers2c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_thumb1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_left_clavicle/magma_left_shoulder/magma_left_elbow/magma_left_wrist/magma_left_thumb1/magma_left_thumb2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1/magma_right_fingers1b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers1/magma_right_fingers1b/magma_right_fingers1c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2/magma_right_fingers2b
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_fingers2/magma_right_fingers2b/magma_right_fingers2c
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_thumb1
+        weight: 1
+      - path: magma_root/magma_lower_waist/magma_chest/magma_left_neck/magma_right_clavicle/magma_right_shoulder/magma_right_elbow/magma_right_wrist/magma_right_thumb1/magma_right_thumb2
+        weight: 1
+      - path: magma_root/magma_pelvis
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes1a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes1a/magma_left_toes1b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes2a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_left_hip/magma_left_knee/magma_left_ankle/magma_left_foot/magma_left_toes2a/magma_left_toes2b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes1a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes1a/magma_right_toes1b
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes2a
+        weight: 1
+      - path: magma_root/magma_pelvis/magma_right_hip/magma_right_knee/magma_right_ankle/magma_right_foot/magma_right_toes2a/magma_right_toes2b
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  additionalBone: 0
+  userData: ClipVersion=1,
+  assetBundleName: 
+  assetBundleVariant: 
