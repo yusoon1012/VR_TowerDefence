@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Unit_Blade : MonoBehaviour
+/// <summary>
+/// 설치/공격형 유닛: 졸개의 접근이 확인되면 칼날 회전
+/// </summary>
+public class UnitAttack_Blade : MonoBehaviour
 {
     // 칼날
     private GameObject blade = default;
@@ -11,6 +14,7 @@ public class Unit_Blade : MonoBehaviour
 
     private void Awake()
     {
+        UnitBuildSystem.units.Add(transform.gameObject);
         blade = transform.GetChild(0).gameObject;
     }
 
@@ -46,6 +50,10 @@ public class Unit_Blade : MonoBehaviour
             float rotateValue = 500f; // 칼날 회전값
             blade.transform.RotateAround(transform.position, Vector3.up, rotateValue * Time.deltaTime); // 회전
         }
-        else blade.transform.rotation = blade.transform.rotation; // 정지
+        else
+        {
+            Quaternion stopRotate = blade.transform.rotation;
+            blade.transform.rotation = stopRotate; // 정지
+        }
     }
 }

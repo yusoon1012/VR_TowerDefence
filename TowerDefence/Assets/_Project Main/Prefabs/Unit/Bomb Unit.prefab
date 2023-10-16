@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2693693221311185699}
   - component: {fileID: 7380881839248084154}
   - component: {fileID: 7701501167837562960}
+  - component: {fileID: -3116404235481167396}
   m_Layer: 0
   m_Name: Bomb Unit
   m_TagString: Untagged
@@ -110,3 +111,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50d23d85bb0fbb44f8c6432d465684d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-3116404235481167396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6455379305710860578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7c3c3143ba9e345b07ba75acbfa9ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  power: 0
+  speed: 0
+  recognition_Range: 0
+  attack_Range: 0

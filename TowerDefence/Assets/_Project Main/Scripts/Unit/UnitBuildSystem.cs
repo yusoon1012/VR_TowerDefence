@@ -4,21 +4,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitSystem : MonoBehaviour
+/// <summary>
+/// 유닛 설치 클래스
+/// </summary>
+public class UnitBuildSystem : MonoBehaviour
 {
     #region 게임 오브젝트 변수
+    // 전체 유닛 리스트
+    public static List<GameObject> units = new List<GameObject>();
     // 타워 프리팹
-    [SerializeField] private GameObject bombUnitPrefab;
-    [SerializeField] private GameObject bladeUnitPrefab;
+    [SerializeField] private GameObject bombUnitPrefab, bladeUnitPrefab = default;
     // 타워 오브젝트
-    private GameObject bombUnit;
-    private GameObject bladeUnit;
+    private GameObject bombUnit, bladeUnit = default;
     // 선택 시의 유닛 프리팹
-    [SerializeField] private GameObject selectBombPrefab;
-    [SerializeField] private GameObject selectBladePrefab;
+    [SerializeField] private GameObject selectBombPrefab, selectBladePrefab = default;
     // 선택 시의 유닛 오브젝트 
-    private GameObject selectBombUnit;
-    private GameObject selectBladeUnit;
+    private GameObject selectBombUnit, selectBladeUnit = default;
     // 그리드
     [SerializeField] private Grid grid;
     // 플레이어

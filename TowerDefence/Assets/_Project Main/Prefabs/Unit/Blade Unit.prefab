@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5127981517049731679}
   - component: {fileID: 4465976122055333211}
   - component: {fileID: 5114527750854576085}
+  - component: {fileID: 2515997242849679860}
   m_Layer: 0
   m_Name: Blade Unit
   m_TagString: Untagged
@@ -112,6 +113,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cb9f65390093064bbc9d25ae35d2497, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2515997242849679860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6080985172929707440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7c3c3143ba9e345b07ba75acbfa9ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  power: 0
+  speed: 0
+  recognition_Range: 0
+  attack_Range: 0
 --- !u!1 &8609507955339924067
 GameObject:
   m_ObjectHideFlags: 0

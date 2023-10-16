@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
-public class Unit_Bomb : MonoBehaviour
+/// <summary>
+/// 설치/공격형 유닛: 졸개 접근 시 폭발
+/// </summary>
+public class UnitAttack_Bomb : MonoBehaviour
 {
+    private void Awake()
+    {
+        UnitBuildSystem.units.Add(transform.gameObject);
+    }
+
     /// <summary>
     /// 졸개를 감지하는 메서드
     /// </summary>
-   private Collider[] EnemyGotcha
+    private Collider[] EnemyGotcha
    {
         get
         {
