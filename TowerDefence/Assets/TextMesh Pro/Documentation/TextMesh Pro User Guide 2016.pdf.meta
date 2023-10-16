@@ -1,10 +1,18 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 <<<<<<<< HEAD:TowerDefence/Assets/TextMesh Pro/Documentation/TextMesh Pro User Guide 2016.pdf.meta
 guid: 1b8d251f9af63b746bf2f7ffe00ebb9b
 ========
 guid: 2239c0c33d67823489a5c1a9433abbea
 folderAsset: yes
 >>>>>>>> origin/Solbin:TowerDefence/Assets/Desert_Drift_Race_Track_Mobile_Optimized.meta
+=======
+<<<<<<<< HEAD:TowerDefence/Assets/Fantasy Skybox FREE/Scenes/Demo with terrain.unity.meta
+guid: 594da9eac4a488a479b252ff922516d9
+========
+guid: 1b8d251f9af63b746bf2f7ffe00ebb9b
+>>>>>>>> origin/Junoh:TowerDefence/Assets/TextMesh Pro/Documentation/TextMesh Pro User Guide 2016.pdf.meta
+>>>>>>> origin/Junoh
 DefaultImporter:
   externalObjects: {}
   userData: 

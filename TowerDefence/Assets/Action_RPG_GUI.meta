@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:TowerDefence/Assets/Action_RPG_GUI.meta
 guid: 3b901f908b481a84ea0f583ea0700100
 folderAsset: yes
+========
+guid: 5601957686f1b554aaca79e356c5d57c
+>>>>>>>> origin/Junoh:TowerDefence/Assets/SpecialSkillsEffectsPack/GuidePaper/AssetGuidePaper.pdf.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
