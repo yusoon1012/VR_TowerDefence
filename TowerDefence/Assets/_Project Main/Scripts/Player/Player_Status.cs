@@ -39,7 +39,7 @@ public class Player_Status : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        damageStat.text=string.Format("player damage {0}",Player_Status.Instance.playerDamage);
+        //damageStat.text=string.Format("player damage {0}",Player_Status.Instance.playerDamage);
     }
 
 
