@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Player_Shop : MonoBehaviour
 {
     private LineRenderer lineRenderer;
+    public bool isShopOpen = false;
     public bool isShopIn = false;
     // Start is called before the first frame update
     void Start()
@@ -40,6 +41,18 @@ public class Player_Shop : MonoBehaviour
             lineRenderer.enabled = false;
             isShopIn = false;
 
+        }
+
+        if(ARAVRInput.GetDown(ARAVRInput.Button.One,ARAVRInput.Controller.LTouch))
+        {
+            if(isShopOpen==false)
+            {
+                isShopOpen = true;
+            }
+            else
+            {
+                isShopOpen = false;
+            }
         }
     }
 }
