@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 0fb9325a9d9a81f438c3fb22018935d1
+=======
+guid: a5aab4966c85c944288b1a72c37a83e4
+>>>>>>> origin/Solbin
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 11400000

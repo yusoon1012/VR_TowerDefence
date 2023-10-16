@@ -1,0 +1,4 @@
+Type,Attack_Speed,Attack_Up,Recovery_HP
+AttackSpeed,10,0,0
+AttackUp,0,10,0
+RecoveryHP,0,0,10

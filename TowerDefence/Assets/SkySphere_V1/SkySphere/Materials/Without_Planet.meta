@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: bb163bd4648371646b431b71b3ce4252
+=======
+guid: 4c1f1d35d33afc5449cd4c862175dbb7
+>>>>>>> origin/Solbin
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
