@@ -26,6 +26,10 @@ public class Player_Shoot : MonoBehaviour
         {
             return;
         }
+        if(Shop_Buff.instance.isAttackEnforce==false)
+        {
+            attackEnforceCount = 0;
+        }
         ARAVRInput.DrawCrosshair(crossHair);
         shootingCoolTime += Time.deltaTime;
         if (ARAVRInput.GetDown(ARAVRInput.Button.IndexTrigger,ARAVRInput.Controller.RTouch))

@@ -8,17 +8,19 @@ using UnityEngine.UI;
 public class Shop_Main : MonoBehaviour
 {
     public Player_Shop playerShop;
+    public GameObject shopObj;
     public GameObject leftArrow;
     public GameObject rightArrow;
     public Button leftButton;
     public Button rightButton;
     public GameObject buffPage;
     public GameObject unitPage;
+   
     // Start is called before the first frame update
     void Start()
     {
-    
-        
+        shopObj.SetActive(false);
+
         leftArrow.SetActive(false);
         unitPage.SetActive(false);
     }
@@ -44,11 +46,13 @@ public class Shop_Main : MonoBehaviour
     }
     public void ActiveShop()
     {
-        gameObject.SetActive(true);
+        shopObj.SetActive(true);
+
+       
     }
     public void ExitShop()
     {
-        gameObject.SetActive(false);
+        shopObj.SetActive(false);
         playerShop.isShopOpen = false;
     }
 }
