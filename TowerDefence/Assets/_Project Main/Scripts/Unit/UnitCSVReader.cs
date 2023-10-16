@@ -4,11 +4,11 @@ using UnityEngine;
 
 
 /// <summary>
-/// Unit ¼Ó¼ºÀ» ´ãÀº CSV ÆÄÀÏÀ» ÀĞ¾î¿Â´Ù
+/// Unit ì†ì„±ì„ ë‹´ì€ CSV íŒŒì¼ì„ ì½ì–´ì˜¨ë‹¤
 /// </summary>
 public class UnitCSVReader : MonoBehaviour
 {
-    // À¯´Ö CSV TextAsset
+    // ìœ ë‹› CSV TextAsset
     [Header("CSV File")]
     public TextAsset attackUnitCSV, buffUnitCSV = default;
 
@@ -18,7 +18,7 @@ public class UnitCSVReader : MonoBehaviour
     }
 
     /// <summary>
-    /// À¯´Ö Á¤º¸¸¦ ´ãÀº CSV ÆÄÀÏÀ» ÀĞ¾îµéÀÓ 
+    /// ìœ ë‹› ì •ë³´ë¥¼ ë‹´ì€ CSV íŒŒì¼ì„ ì½ì–´ë“¤ì„ 
     /// </summary>
     private void ReadCSV()
     {
@@ -26,27 +26,52 @@ public class UnitCSVReader : MonoBehaviour
 
         if (attackUnitCSV != null && buffUnitCSV != null)
         {
-            // °³Çà¹®ÀÚ ºĞÇÒ
+            // ê°œí–‰ë¬¸ì ë¶„í• 
             attackUnitCSV_Line = attackUnitCSV.text.Split('\n');
             buffUnitCSV_Line = buffUnitCSV.text.Split('\n');
 
-            string[] headers = attackUnitCSV_Line[0].Split(','); // Çì´õ
-            // ¼³Ä¡/°ø°İÇü À¯´Ö ½°Ç¥ ºĞÇÒ
+            #region ì„¤ì¹˜/ê³µê²©í˜• ìœ ë‹›
+            string[] headers = attackUnitCSV_Line[0].Split(','); // í—¤ë”
+            // ìœ ë‹› í—¤ë” ì²´í¬
             for (int i = 0; i < headers.Length; i++)
             {
-                if (headers[i] == "")
+                if (headers[i] == "Power")
                 {
-
+                    int powerIndex = i;
                 }
-                //string[] attackValue = attackUnitCSV_Line[i].Split(',');
+                else if (headers[i] == "Speed")
+                {
+                    int speedIndex = i;
+                }
+                else if (headers[i] == "Recognition_Range")
+                {
+                    int recognitionRangeIndex = i;
+                }
+                else if (headers[i] == "Attack_Range")
+                {
+                    int attackRangeIndex = i;
+                }
             }
-            // ¹öÇÁÇü À¯´Ö ½°Ç¥ ºĞÇÒ 
-            for (int i = 1; i < buffUnitCSV_Line.Length; i++)
+            // ì†ì„± ì‹¤ë¶€ì—¬
+            for (int i = 1; i < attackUnitCSV_Line.Length; i++)
             {
-                string[] buffValue = buffUnitCSV_Line[i].Split(',');
+
             }
+            #endregion
+
+            #region ë²„í”„í˜• ìœ ë‹›
+            //headers = buffUnitCSV_Line[0].Split(',');
+            //// ì„¤ì¹˜/ê³µê²©í˜• ìœ ë‹› í—¤ë” ì²´í¬
+            //for (int i = 0; i < headers.Length; i++)
+            //{
+            //    if (headers[i] == "Power")
+            //    {
+            //        int powerIndex = i;
+            //    }
+            //}
+            #endregion
         }
-        else Debug.Log("CSV ¾øÀ½");
+        else Debug.Log("CSV ì—†ìŒ");
     }
 
     private void EndueProperty()
@@ -57,7 +82,7 @@ public class UnitCSVReader : MonoBehaviour
 
             if (attackComponent != null)
             {
-                Debug.Log("°ø°İ À¯´ÖÀ» È®ÀÎÇÔ.");
+                Debug.Log("ê³µê²© ìœ ë‹›ì„ í™•ì¸í•¨.");
             }
         }
     }

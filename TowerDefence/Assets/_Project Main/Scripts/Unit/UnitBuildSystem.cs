@@ -5,68 +5,73 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// À¯´Ö ¼³Ä¡ Å¬·¡½º
+/// ìœ ë‹› ì„¤ì¹˜ í´ë˜ìŠ¤
 /// </summary>
 public class UnitBuildSystem : MonoBehaviour
 {
-    #region °ÔÀÓ ¿ÀºêÁ§Æ® º¯¼ö
-    // ÀüÃ¼ À¯´Ö ¸®½ºÆ®
+    #region ê²Œì„ ì˜¤ë¸Œì íŠ¸ ë³€ìˆ˜
+    // ì „ì²´ ìœ ë‹› ë¦¬ìŠ¤íŠ¸
     public static List<GameObject> units = new List<GameObject>();
-    // Å¸¿ö ÇÁ¸®ÆÕ
+    // íƒ€ì›Œ í”„ë¦¬íŒ¹
     [SerializeField] private GameObject bombUnitPrefab, bladeUnitPrefab = default;
-    // Å¸¿ö ¿ÀºêÁ§Æ®
+    // íƒ€ì›Œ ì˜¤ë¸Œì íŠ¸
     private GameObject bombUnit, bladeUnit = default;
-    // ¼±ÅÃ ½ÃÀÇ À¯´Ö ÇÁ¸®ÆÕ
+    // ì„ íƒ ì‹œì˜ ìœ ë‹› í”„ë¦¬íŒ¹
     [SerializeField] private GameObject selectBombPrefab, selectBladePrefab = default;
-    // ¼±ÅÃ ½ÃÀÇ À¯´Ö ¿ÀºêÁ§Æ® 
+    // ì„ íƒ ì‹œì˜ ìœ ë‹› ì˜¤ë¸Œì íŠ¸ 
     private GameObject selectBombUnit, selectBladeUnit = default;
-    // ±×¸®µå
+    // ê·¸ë¦¬ë“œ
     [SerializeField] private Grid grid;
-    // ÇÃ·¹ÀÌ¾î
+    // í”Œë ˆì´ì–´
     [SerializeField]private GameObject player;
     #endregion
 
-    // Ç® Æ÷Áö¼Ç
+    // í’€ í¬ì§€ì…˜
     private Vector3 poolPos = new Vector3(0f, -10f, 0f);
+    // í­íƒ„ ìœ ë‹› ì„¤ì¹˜ ì—¬ë¶€ 
+    private bool buildBombUnit = false;
 
     private void Awake()
     {
-        // Å¸¿ö »ı¼º 
+        // íƒ€ì›Œ ìƒì„± 
         bombUnit = Instantiate(bombUnitPrefab, poolPos, Quaternion.identity);
         bladeUnit = Instantiate(bladeUnitPrefab, poolPos, Quaternion.identity);
-        // ¼±ÅÃ ½Ã Å¸¿ö ¿ÀºêÁ§Æ® »ı¼º
+        // ì„ íƒ ì‹œ íƒ€ì›Œ ì˜¤ë¸Œì íŠ¸ ìƒì„±
         selectBombUnit = Instantiate(selectBombPrefab, poolPos, Quaternion.identity);
         selectBladeUnit = Instantiate(selectBladePrefab, poolPos, Quaternion.identity);
     }
 
     private void Update()
     {
-#if PC
-        if (Input.GetKey(KeyCode.LeftShift))
+        #region í­íƒ„ìœ ë‹› ì„¤ì¹˜
+        if (UnitBuySystem.active_attackEnforce && !buildBombUnit) // í­íƒ„ìœ ë‹›ë¥¼ êµ¬ë§¤ & ë¹„í™œì„±í™” ì¤‘
         {
-            Tower_Range(); // ¼³Ä¡ ¹üÀ§ Ç¥½Ã
+            BombUnit_Range(); // ì„¤ì¹˜ ë²”ìœ„ í‘œì‹œ
 
-            if (ARAVRInput.Get(ARAVRInput.Button.Thumbstick))
+            if (ARAVRInput.GetDown(ARAVRInput.Button.IndexTrigger, ARAVRInput.Controller.RTouch)) // ì…ë ¥ ì‹œ 
             {
-                Tower_Build(); // Å¸¿ö ¼³Ä¡
+                buildBombUnit = true; // í­íƒ„ìœ ë‹› ì„¤ì¹˜ = í™œì„±í™”
+                BombUnit_Build(); // íƒ€ì›Œ ì„¤ì¹˜
             }
         }
-        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        else if (bombUnit) // í­íƒ„ìœ ë‹›ì„ í™œì„±í™”í–ˆë‹¤ë©´
         {
-            selectBombUnit.transform.position = poolPos; // ¼ÕÀ» ¶Ã´Ù¸é Ç®·Î º¹±Í 
-        }
+            selectBombUnit.transform.position = poolPos;
 
-#elif Oculus
-        if (ARAVRInput.Get(ARAVRInput.Button.Thumbstick))
-        {
-            Tower_Range();
+            if (!UnitBuySystem.active_attackEnforce) // í­íƒ„ìœ ë‹› ì¿¨íƒ€ì„ ì¢…ë£Œ ì‹œ
+            {
+                buildBombUnit = false; // ì„¤ì¹˜ ì—¬ë¶€ ì´ˆê¸°í™” 
+            }
         }
+        #endregion
 
-#endif
+        #region ì¹¼ë‚  ìœ ë‹›
+
+        #endregion
     }
 
     /// <summary>
-    /// À¯´Ö ¼³Ä¡¸¦ À§ÇÑ ÁÂÇ¥¸¦ ±¸ÇÔ
+    /// ìœ ë‹› ì„¤ì¹˜ë¥¼ ìœ„í•œ ì¢Œí‘œë¥¼ êµ¬í•¨
     /// </summary>
     private Vector3 SelectPosition
     {
@@ -74,8 +79,8 @@ public class UnitBuildSystem : MonoBehaviour
         {
             Vector3 selectPos = default;
             int floorLayer = 1 << LayerMask.NameToLayer("Terrain");
-            // Ray¸¦ Ä«¸Ş¶óÀÇ À§Ä¡·ÎºÎÅÍ ³ª°¡µµ·Ï ÇÑ´Ù.
-            Ray ray = new Ray(ARAVRInput.RHandPosition, ARAVRInput.RHandDirection); // ¿Ö ¾ÈµÇ³ª...?
+            // Rayë¥¼ ì¹´ë©”ë¼ì˜ ìœ„ì¹˜ë¡œë¶€í„° ë‚˜ê°€ë„ë¡ í•œë‹¤.
+            Ray ray = new Ray(ARAVRInput.RHandPosition, ARAVRInput.RHandDirection); // ì™œ ì•ˆë˜ë‚˜...?
             RaycastHit hitInfo = default;
 
             if (Physics.Raycast(ray, out hitInfo, 200f, floorLayer))
@@ -85,31 +90,32 @@ public class UnitBuildSystem : MonoBehaviour
 
             Vector3Int gridPos = grid.WorldToCell(selectPos);
 
-            return gridPos; // ÀÌÈÄ ¼¿Æ÷Áö¼ÇÀ» return ÇÏµµ·Ï ¼öÁ¤
+            return gridPos; // ì´í›„ ì…€í¬ì§€ì…˜ì„ return í•˜ë„ë¡ ìˆ˜ì •
         }
     }
 
+    #region í­íƒ„ ìœ ë‹›
     /// <summary>
-    /// À¯´Ö ¹èÄ¡ ¹üÀ§¸¦ Ç¥½Ã
+    /// ìœ ë‹› ë°°ì¹˜ ë²”ìœ„ë¥¼ í‘œì‹œ
     /// </summary>
-    private void Tower_Range()
+    private void BombUnit_Range()
     {
-        Vector3 buildPos = SelectPosition; // À¯´ÖÀ» ¼³Ä¡ÇÒ ÁÂÇ¥
-        buildPos.y += 0.5f; // TODO: ¼±ÅÃÀ¯´Ö Äİ¶óÀÌ´õÀÇ Àı¹İ ³ôÀÌ Ãß°¡ => GetComponent<Collider>(), collider.bounds.size.y
+        Vector3 buildPos = SelectPosition; // ìœ ë‹›ì„ ì„¤ì¹˜í•  ì¢Œí‘œ
+        buildPos.y += 0.5f; // TODO: ì„ íƒìœ ë‹› ì½œë¼ì´ë”ì˜ ì ˆë°˜ ë†’ì´ ì¶”ê°€ => GetComponent<Collider>(), collider.bounds.size.y
 
-        // TODO: if¹® °Å¸® Á¦ÇÑ (ÇÃ·¹ÀÌ¾î, ¼³Ä¡ À§Ä¡)
-        // TODO: À¯´ÖÃ¢ Ãß°¡ ÈÄ À¯´Ö ¼±ÅÃ Ãß°¡
+        // TODO: ifë¬¸ ê±°ë¦¬ ì œí•œ (í”Œë ˆì´ì–´, ì„¤ì¹˜ ìœ„ì¹˜)
+        // TODO: ìœ ë‹›ì°½ ì¶”ê°€ í›„ ìœ ë‹› ì„ íƒ ì¶”ê°€
         selectBombUnit.transform.position = buildPos;
     }
 
     /// <summary>
-    /// À¯´ÖÀ» ¹èÄ¡
+    /// ìœ ë‹›ì„ ë°°ì¹˜
     /// </summary>
-    private void Tower_Build()
+    private void BombUnit_Build()
     {
-        // TODO: À¯´ÖÃ¢ Ãß°¡ ÈÄ À¯´Ö ¼±ÅÃ Ãß°¡
-        // Å¸¿ö ¼³Ä¡ 
-        //bombUnit.transform.position = selectBombUnit.transform.position;
-        bladeUnit.transform.position = selectBombUnit.transform.position;
+        // TODO: ìœ ë‹›ì°½ ì¶”ê°€ í›„ ìœ ë‹› ì„ íƒ ì¶”ê°€
+        // íƒ€ì›Œ ì„¤ì¹˜ 
+        bombUnit.transform.position = selectBombUnit.transform.position;
     }
+    #endregion
 }
