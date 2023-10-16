@@ -1,13 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 
 public class Shop_Buff : MonoBehaviour
 {
+    public static Shop_Buff instance;
+    
     public GameObject[] buffIcon;
     public Slider[] buffSlider;
+    public bool isAttackEnforce = false;
+    public bool isDamageUp = false;
+    public bool isUnitDuration = false;
 
     private const int ATTACK_ENFORCE = 0;
     private const int UNIT_DURATION = 1;
@@ -18,6 +24,13 @@ public class Shop_Buff : MonoBehaviour
     private float unitDurationCoolTime = 0f;
     private float buffCoolTimeRate = 15f;
 
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -61,7 +74,7 @@ public class Shop_Buff : MonoBehaviour
     {
         if (attackEnforceCoolTime == 0)
         {
-
+            isAttackEnforce = true;
             buffIcon[ATTACK_ENFORCE].SetActive(true);
             attackEnforceCoolTime = buffCoolTimeRate;
             StartCoroutine(AttackEnforceRoutine());
@@ -100,6 +113,7 @@ public class Shop_Buff : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
         buffIcon[ATTACK_ENFORCE].SetActive(false);
+        isAttackEnforce = false;
 
     }
 }
