@@ -863,8 +863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64893f41a0df10740882d182bc11049f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerShop: {fileID: 0}
-  shopObj: {fileID: 0}
+  playerShop: {fileID: 1515474013}
   leftArrow: {fileID: 585599936}
   rightArrow: {fileID: 1055618537}
   leftButton: {fileID: 585599938}

@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class Shop_Main : MonoBehaviour
 {
     public Player_Shop playerShop;
-    public GameObject shopObj;
     public GameObject leftArrow;
     public GameObject rightArrow;
     public Button leftButton;

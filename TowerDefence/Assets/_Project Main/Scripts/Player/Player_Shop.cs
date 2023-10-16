@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Player_Shop : MonoBehaviour
 {
+    private Shop_Main shopMain;
     private LineRenderer lineRenderer;
     public bool isShopOpen = false;
     public bool isShopIn = false;
@@ -12,6 +13,7 @@ public class Player_Shop : MonoBehaviour
     void Start()
     {
         lineRenderer=GetComponent<LineRenderer>();
+        shopMain=FindAnyObjectByType<Shop_Main>();  
     }
 
     // Update is called once per frame
@@ -48,10 +50,12 @@ public class Player_Shop : MonoBehaviour
             if(isShopOpen==false)
             {
                 isShopOpen = true;
+                shopMain.ActiveShop();
             }
             else
             {
                 isShopOpen = false;
+                shopMain.ExitShop();
             }
         }
     }
