@@ -85,7 +85,6 @@ public class UnitSystem : MonoBehaviour
             Vector3Int gridPos = grid.WorldToCell(selectPos);
 
             return gridPos; // 이후 셀포지션을 return 하도록 수정
-            //return selectPos; // 테스트
         }
     }
 
@@ -109,6 +108,7 @@ public class UnitSystem : MonoBehaviour
     {
         // TODO: 유닛창 추가 후 유닛 선택 추가
         // 타워 설치 
-        bombUnit.transform.position = selectBombUnit.transform.position;
+        //bombUnit.transform.position = selectBombUnit.transform.position;
+        bladeUnit.transform.position = selectBombUnit.transform.position;
     }
 }
