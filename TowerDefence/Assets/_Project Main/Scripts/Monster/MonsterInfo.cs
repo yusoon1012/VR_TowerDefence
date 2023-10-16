@@ -161,7 +161,7 @@ public class MonsterInfo : MonsterData
         yield return new WaitForSeconds(duration);
 
         this.gameObject.SetActive(false);
-    }       // AttackPlayer()       // 사운드, 디졸브, 효과 추가 예정
+    }       // AttackPlayer()       // 사운드 추가 예정
 
     //! 몬스터의 능력 향상 에니메이션 재생
     private IEnumerator Buffer()
@@ -188,7 +188,7 @@ public class MonsterInfo : MonsterData
         // TODO: 능력
 
         isBuffer = false;
-    }       // Buffer()     // 사운드, 효과 추가 예정
+    }       // Buffer()     // 사운드, 효과, 능력 추가 예정
 
     //! 몬스터의 죽어을 때 에니메이션 재생
     private IEnumerator Death()
@@ -207,14 +207,14 @@ public class MonsterInfo : MonsterData
 
         float duration = AniCheckLength();
 
-        // TODO: 사운드, 효과
+        // TODO: 사운드
 
         StartCoroutine(SetDissolve(duration, splitEndValue, splitStartValue));
 
         yield return new WaitForSeconds(duration);
 
         this.gameObject.SetActive(false);
-    }       // Death()      // 사운드, 디졸브, 효과 추가 예정
+    }       // Death()      // 사운드 추가 예정
     #endregion
 
     #region 초기화
