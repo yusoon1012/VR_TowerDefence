@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DissolveHideV2Body
+  m_Name: DissolveFastMonster
   m_Shader: {fileID: -6465566751694194690, guid: c5e9fd666297e074c9efa3749435e414,
     type: 3}
   m_ValidKeywords: []
@@ -35,11 +35,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Base_Map:
-        m_Texture: {fileID: 2800000, guid: a8afb1f7dd8d7044980e15bb6f4cd7e6, type: 3}
+        m_Texture: {fileID: 2800000, guid: 42f2d4bea584d0743b8e9c9193c35484, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Emission_Map:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 323857705539e9a408fec64c71a4a9e9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Metallic_Map:
@@ -47,15 +47,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Noise_Map:
-        m_Texture: {fileID: 2800000, guid: 547dedaaf63056943a46e884e6258c4d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1dd87d263698bdd489172bf9aa265da1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal_Map:
-        m_Texture: {fileID: 2800000, guid: eeed1ebcff49df84f803435bddec5d27, type: 3}
+        m_Texture: {fileID: 2800000, guid: c31c2d4c43b9c884ca1ce8c7960003c5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Occlusion_Map:
-        m_Texture: {fileID: 2800000, guid: 3a88e45539d1eb64690d3644e8f3b40d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 13f56bedefa4f8549be48f097940efb6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -76,9 +76,9 @@ Material:
     - _Glow_Size: 0.05
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _SplitValue: 1
+    - _SplitValue: 1.1
     - _Split_Value: 1
     m_Colors:
-    - _Emission_Color: {r: 0, g: 0, b: 0, a: 0}
-    - _Glow_Color: {r: 0.0625, g: 0, b: 0, a: 0}
+    - _Emission_Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Glow_Color: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []

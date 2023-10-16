@@ -9779,7 +9779,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7ab30e31633e0fc44b06aa3127406710, type: 2}
+  - {fileID: 2100000, guid: 01f512396546c1d4f802a590e8668cbe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -25788,6 +25788,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AttackFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 3772171472793506256, guid: 3581ffd551a4a4e49a93fb4f7bcefeac,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7525055715723708378, guid: 3581ffd551a4a4e49a93fb4f7bcefeac,
         type: 3}

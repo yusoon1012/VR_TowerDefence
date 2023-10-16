@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DissolveHideV1Body
+  m_Name: DissolveNormalMonster
   m_Shader: {fileID: -6465566751694194690, guid: c5e9fd666297e074c9efa3749435e414,
     type: 3}
   m_ValidKeywords: []
@@ -35,11 +35,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Base_Map:
-        m_Texture: {fileID: 2800000, guid: 5564528b0ab03524eb66528acaca5e71, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0d934ceabb53165489c77657fc3a6341, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Emission_Map:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: df4fd5527d4345b4991d9eec621023a8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Metallic_Map:
@@ -47,11 +47,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Noise_Map:
-        m_Texture: {fileID: 2800000, guid: 547dedaaf63056943a46e884e6258c4d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 944e46c432d9df545a480d781ab0c1bc, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal_Map:
-        m_Texture: {fileID: 2800000, guid: db4b51880c66cc3428793455a65aa214, type: 3}
+        m_Texture: {fileID: 2800000, guid: 81db13657034ce440b67d86d35093646, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Occlusion_Map:
@@ -76,9 +76,9 @@ Material:
     - _Glow_Size: 0.05
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _SplitValue: 1.36
+    - _SplitValue: 1.1
     - _Split_Value: 1
     m_Colors:
-    - _Emission_Color: {r: 0, g: 0, b: 0, a: 0}
-    - _Glow_Color: {r: 0.0625, g: 0, b: 0, a: 0}
+    - _Emission_Color: {r: 1, g: 0, b: 0, a: 0}
+    - _Glow_Color: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []

@@ -398,7 +398,7 @@ PrefabInstance:
     - target: {fileID: 4658791484443656045, guid: 4a2844629e9b5ef4ebc4cbe554da6e68,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4658791484443656045, guid: 4a2844629e9b5ef4ebc4cbe554da6e68,
         type: 3}
@@ -1113,7 +1113,7 @@ MonoBehaviour:
   maxFastMonsterDistance: 100
   playerPos: {fileID: 239504378}
   bossPos: {fileID: 1311943381}
-  indexMonsterCount: 1
+  indexMonsterCount: 5
   layerMask:
     serializedVersion: 2
     m_Bits: 8192

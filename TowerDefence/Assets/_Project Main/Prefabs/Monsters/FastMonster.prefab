@@ -1157,7 +1157,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7613269658558567144}
-  - component: {fileID: 7613269658548316670}
+  - component: {fileID: 4329291851957519778}
   - component: {fileID: -6138838826161773204}
   - component: {fileID: 4734045675993674140}
   m_Layer: 0
@@ -1186,25 +1186,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!111 &7613269658548316670
-Animation:
+--- !u!95 &4329291851957519778
+Animator:
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7613269658558337028}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400002, guid: 8f3bc2ea309de274fbacc32a00c4e40e, type: 3}
-  m_Animations:
-  - {fileID: 7400002, guid: 8f3bc2ea309de274fbacc32a00c4e40e, type: 3}
-  - {fileID: 7400000, guid: 1dd8c86042c72324497cec04a5a80296, type: 3}
-  - {fileID: 7400000, guid: 420c1612848da6048a4c66d52c899d4c, type: 3}
-  - {fileID: 7400000, guid: 13056dd71b9b6cd42b4d8e0e58923ede, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bf50c7bb633b97b49af5edc04a6e27ff, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &-6138838826161773204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1523,7 +1525,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e059d84e94b24d74d8b2a9967c73b2db, type: 2}
+  - {fileID: 2100000, guid: ab1a0f1bd14219e40bb096cff207f816, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1780,6 +1782,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AttackFX
       objectReference: {fileID: 0}
+    - target: {fileID: 3772171472793506256, guid: 3581ffd551a4a4e49a93fb4f7bcefeac,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7525055715723708378, guid: 3581ffd551a4a4e49a93fb4f7bcefeac,
         type: 3}
       propertyPath: m_RootOrder
@@ -1788,17 +1795,17 @@ PrefabInstance:
     - target: {fileID: 7525055715723708378, guid: 3581ffd551a4a4e49a93fb4f7bcefeac,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 544.75726
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7525055715723708378, guid: 3581ffd551a4a4e49a93fb4f7bcefeac,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.72317505
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7525055715723708378, guid: 3581ffd551a4a4e49a93fb4f7bcefeac,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 453.59735
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7525055715723708378, guid: 3581ffd551a4a4e49a93fb4f7bcefeac,
         type: 3}

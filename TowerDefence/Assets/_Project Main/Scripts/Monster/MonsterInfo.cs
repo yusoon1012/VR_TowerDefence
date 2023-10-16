@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -17,12 +18,12 @@ using UnityEngine.AI;
 public class MonsterInfo : MonsterData
 {
     private Animator animator;
-    private Animation animation;
     private GameObject player;
     private NavMeshAgent nav;
     private string monsterName;
     private float distance;
 
+    private Material material;
     [SerializeField]
     private GameObject attackFX;
     [SerializeField]
@@ -34,37 +35,28 @@ public class MonsterInfo : MonsterData
     private bool isBuffer = false;
     private bool isDeath = false;
 
+    private float splitStartValue = -0.1f;
+    private float splitEndValue = 1.1f;
+    private float lifeDuration = 6.0f;
+
     private void Awake()
     {
+        FindComponet(transform);
         player = GameObject.FindWithTag("Player");
         monsterName = transform.name.Replace("(Clone)", "");
 
         attackFX.SetActive(false);
         lifeFX.SetActive(false);
 
-        if (GetComponent<Animator>() != null)
-        {
-            animator = GetComponent<Animator>();
-        }
-        else
-        {
-            animation = GetComponent<Animation>();
-        }
-
+        animator = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
     }
 
     private void OnEnable()
     {
-        MonsterReset();
         SetMonster();
+        MonsterReset();
     }       // OnEnable()
-
-    private void Start()
-    {
-        MonsterReset();
-        SetMonster();
-    }       // Start()
 
     private void Update()
     {
@@ -105,58 +97,68 @@ public class MonsterInfo : MonsterData
         }
     }       // TargetPlayer()
 
+    //! 디졸브 효과 코루틴
+    private IEnumerator SetDissolve(float _duration, float _startValue, float _endValue)
+    {
+        float timeElapsed = 0.0f;
+
+        while (timeElapsed < _duration)
+        {
+            timeElapsed += Time.deltaTime;
+
+            float time = Mathf.Clamp01(timeElapsed / _duration);
+
+            material.SetFloat("_SplitValue", Mathf.Lerp(_startValue, _endValue, time));
+
+            yield return null;
+        }
+
+        material.SetFloat("_SplitValue", _endValue);
+    }
+
+    //! SkinnedMeshRenderer 컴포넌트를 찾는 재귀함수
+    private void FindComponet(Transform _parent)
+    {
+        for (int i = 0; i < _parent.childCount; i++)
+        {
+            if (_parent.GetChild(i).GetComponent<SkinnedMeshRenderer>())
+            {
+                material = _parent.GetChild(i).GetComponent<SkinnedMeshRenderer>().material;
+
+                return;
+            }
+            else
+            {
+                FindComponet(_parent.GetChild(i));
+            }
+        }
+    }
+
     #region 에니메이션
     //! 몬스터의 공격 에니메이션 재생
     private IEnumerator Attack()
     {
         isAttack = true;
 
-        if (animator != null)
+        animator.SetTrigger("Attack");
+
+        if (!AniCheckInfo("Attack"))
         {
-            animator.SetTrigger("Attack");
-
-            if (!AniCheckInfo("Attack"))
+            while (!AniCheckInfo("Attack"))
             {
-                while (!AniCheckInfo("Attack"))
-                {
-                    yield return null;
-                }       // loop: 에니메이션이 JumpStart에 들어올때까지 대기
-            }       // if: 에니메이션이 잘 들어왔을 경우 패스
-
-            float timeElpased = 0.0f;
-            float duration = AniCheckLength();
-
-            //! TODO: 거리를 계산하여 거리 내에 있는 오브젝트 체력 닳게 하기 또는 콜라이더 생성후 Trigger 닿은 몬스터 체력 닳게 하기
-
-            attackFX.SetActive(true);
-
-            while (timeElpased < duration)
-            {
-                timeElpased += Time.deltaTime;
-
-                // TODO: 디졸브 효과 보간으로 추가
-
                 yield return null;
-            }
-        }       // Animator 기반
-        else if (animation != null)
-        {
-            animation.Play("Attack");
+            }       // loop: 에니메이션이 JumpStart에 들어올때까지 대기
+        }       // if: 에니메이션이 잘 들어왔을 경우 패스
 
-            float timeElapsed = 0.0f;
-            float duration = animation.GetClip("Attack").length;
+        float duration = AniCheckLength();
 
-            attackFX.SetActive(true);
+        //! TODO: 거리를 계산하여 거리 내에 있는 오브젝트 체력 닳게 하기 또는 콜라이더 생성후 Trigger 닿은 몬스터 체력 닳게 하기
 
-            while (timeElapsed < duration)
-            {
-                timeElapsed += Time.deltaTime;
+        attackFX.SetActive(true);
 
-                // TODO: 디졸브 효과 보간으로 추가
+        StartCoroutine(SetDissolve(duration, splitEndValue, splitStartValue));
 
-                yield return null;
-            }
-        }       // Animation 기반
+        yield return new WaitForSeconds(duration);
 
         this.gameObject.SetActive(false);
     }       // AttackPlayer()       // 사운드, 디졸브, 효과 추가 예정
@@ -166,47 +168,24 @@ public class MonsterInfo : MonsterData
     {
         isBuffer = true;
 
-        if (animator != null)
+        animator.SetTrigger("Buffer");
+
+        if (!AniCheckInfo("Buffer"))
         {
-            animator.SetTrigger("Buffer");
-
-            if (!AniCheckInfo("Buffer"))
-            {
-                while (!AniCheckInfo("Buffer"))
-                {
-                    yield return null;
-                }       // loop: 에니메이션이 JumpStart에 들어올때까지 대기
-            }       // if: 에니메이션이 잘 들어왔을 경우 패스
-
-            // TODO: 사운드, 효과
-
-            while (animator.GetCurrentAnimatorStateInfo(0).IsName("Buffer"))
+            while (!AniCheckInfo("Buffer"))
             {
                 yield return null;
-            }
+            }       // loop: 에니메이션이 JumpStart에 들어올때까지 대기
+        }       // if: 에니메이션이 잘 들어왔을 경우 패스
 
-            // TODO: 능력
-        }
-        else if (animation != null)
+        // TODO: 사운드, 효과
+
+        while (animator.GetCurrentAnimatorStateInfo(0).IsName("Buffer"))
         {
-            animation.Play("Buffer");
-
-            float timeElapsed = 0.0f;
-            float duration = animation.GetClip("Buffer").length;
-
-            // TODO: 사운드, 효과
-
-            while (timeElapsed < duration)
-            {
-                timeElapsed += Time.deltaTime;
-
-                yield return null;
-            }
-
-            // TODO: 능력
-
-            animation.Play("Walk");
+            yield return null;
         }
+
+        // TODO: 능력
 
         isBuffer = false;
     }       // Buffer()     // 사운드, 효과 추가 예정
@@ -216,50 +195,23 @@ public class MonsterInfo : MonsterData
     {
         isDeath = true;
 
-        if (animator != null)
+        animator.SetTrigger("Death");
+
+        if (!AniCheckInfo("Death"))
         {
-            animator.SetTrigger("Death");
-
-            if (!AniCheckInfo("Death"))
+            while (!AniCheckInfo("Death"))
             {
-                while (!AniCheckInfo("Death"))
-                {
-                    yield return null;
-                }       // loop: 에니메이션이 JumpStart에 들어올때까지 대기
-            }       // if: 에니메이션이 잘 들어왔을 경우 패스
-
-            float timeElpased = 0.0f;
-            float duration = AniCheckLength();
-
-            // TODO: 사운드, 효과
-
-            while (timeElpased < duration)
-            {
-                timeElpased += Time.deltaTime;
-
-                // TODO: 디졸브 효과 보간으로 추가
-
                 yield return null;
-            }
-        }
-        else if (animation != null)
-        {
-            animation.Play("Death");
+            }       // loop: 에니메이션이 JumpStart에 들어올때까지 대기
+        }       // if: 에니메이션이 잘 들어왔을 경우 패스
 
-            float timeElapsed = 0.0f;
-            float duration = animation.GetClip("Death").length;
+        float duration = AniCheckLength();
 
-            // TODO: 사운드, 효과
+        // TODO: 사운드, 효과
 
-            while (timeElapsed < duration)
-            {
-                timeElapsed += Time.deltaTime;
+        StartCoroutine(SetDissolve(duration, splitEndValue, splitStartValue));
 
-                // TODO: 디졸브 효과 보간으로 추가
-
-                yield return null;
-            }
-        }
+        yield return new WaitForSeconds(duration);
 
         this.gameObject.SetActive(false);
     }       // Death()      // 사운드, 디졸브, 효과 추가 예정
@@ -274,6 +226,8 @@ public class MonsterInfo : MonsterData
         isBuffer = false;
         isDeath = false;
 
+        material.SetFloat("_SplitValue", splitStartValue);
+
         attackFX.SetActive(false);
         lifeFX.SetActive(false);
 
@@ -286,9 +240,10 @@ public class MonsterInfo : MonsterData
             this.gameObject.SetActive(true);
         }
 
+        StartCoroutine(SetDissolve(lifeDuration, splitStartValue, splitEndValue));
+
         lifeFX.SetActive(true);
 
-        if (animation != null) { animation.Play("Walk"); }
         isReady = true;
     }
     #endregion
