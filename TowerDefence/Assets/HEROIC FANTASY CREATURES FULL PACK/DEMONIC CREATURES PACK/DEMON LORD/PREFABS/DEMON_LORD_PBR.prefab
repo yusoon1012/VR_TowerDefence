@@ -1678,6 +1678,9 @@ GameObject:
   m_Component:
   - component: {fileID: 471928}
   - component: {fileID: 11198244}
+  - component: {fileID: 97107608}
+  - component: {fileID: 97107611}
+  - component: {fileID: 97107612}
   m_Layer: 0
   m_Name: DEMON_LORD_PBR
   m_TagString: Untagged
@@ -1694,8 +1697,8 @@ Transform:
   m_GameObject: {fileID: 140824}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 35, y: 35, z: 35}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 412088}
   - {fileID: 470532}
@@ -1752,6 +1755,50 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 1
+--- !u!114 &97107608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dbebec832e91f541a15e27fb115c5ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossHp: 100
+  finalBossPhase: 0
+  bossImmotalForm: 0
+--- !u!54 &97107611
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140824}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &97107612
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140824}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.6670449, y: 4.2319746, z: 1.0438998}
+  m_Center: {x: -0.021498544, y: 2.1124756, z: 0.17010531}
 --- !u!1 &143586
 GameObject:
   m_ObjectHideFlags: 0
