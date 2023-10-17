@@ -8,11 +8,11 @@ using UnityEngine.AI;
 
 /*
  * 2023 - 10 - 15
- * ¸ó½ºÅÍ ¾Ö´Ï¸ŞÀÌ¼Ç¿¡ ¸Â°Ô È¿°ú ¼öÁ¤
- * ¸Û¸ÛÀÌ ÃÊ±â ¾Ö´Ï¸ŞÀÌ¼Ç °È±â ¿À·ù
- * ¸Û¸ÛÀÌ °ø°İ ÇÒ ¶§ È¿°ú ¿À·ù
- * ¸ó½ºÅÍ ·¹ÀÌ ¿À·ù
- * »ç¿îµå Ã£±â
+ * ëª¬ìŠ¤í„° ì• ë‹ˆë©”ì´ì…˜ì— ë§ê²Œ íš¨ê³¼ ìˆ˜ì •
+ * ë©ë©ì´ ì´ˆê¸° ì• ë‹ˆë©”ì´ì…˜ ê±·ê¸° ì˜¤ë¥˜
+ * ë©ë©ì´ ê³µê²© í•  ë•Œ íš¨ê³¼ ì˜¤ë¥˜
+ * ëª¬ìŠ¤í„° ë ˆì´ ì˜¤ë¥˜
+ * ì‚¬ìš´ë“œ ì°¾ê¸°
  */
 
 public class MonsterInfo : MonsterData
@@ -60,8 +60,8 @@ public class MonsterInfo : MonsterData
 
     private void Update()
     {
-        // TODO: ÇÃ·¹ÀÌ¾î Ã¼·Â 0ÃÊ°úÀÎÁö Ã¼Å©ÇÏ´Â if¹® ÀÛ¼º -------------------------------------------
-        // ÇÃ·¹ÀÌ¾î¿Í ¸ó½ºÅÍ°£ÀÇ °Å¸® °è»ê
+        // TODO: í”Œë ˆì´ì–´ ì²´ë ¥ 0ì´ˆê³¼ì¸ì§€ ì²´í¬í•˜ëŠ” ifë¬¸ ì‘ì„± -------------------------------------------
+        // í”Œë ˆì´ì–´ì™€ ëª¬ìŠ¤í„°ê°„ì˜ ê±°ë¦¬ ê³„ì‚°
         distance = Vector3.Distance(transform.position, player.transform.position);
 
         if (isReady)
@@ -88,7 +88,7 @@ public class MonsterInfo : MonsterData
         }
     }
 
-    //! ¸ó½ºÅÍ°¡ ÇÃ·¹ÀÌ¾î¸¦ Ã£¾Æ°¡´Â ³×ºñ°ÔÀÌ¼Ç
+    //! ëª¬ìŠ¤í„°ê°€ í”Œë ˆì´ì–´ë¥¼ ì°¾ì•„ê°€ëŠ” ë„¤ë¹„ê²Œì´ì…˜
     private void TargetPlayer()
     {
         if (distance < this.recognitionRange)
@@ -97,7 +97,7 @@ public class MonsterInfo : MonsterData
         }
     }       // TargetPlayer()
 
-    //! µğÁ¹ºê È¿°ú ÄÚ·çÆ¾
+    //! ë””ì¡¸ë¸Œ íš¨ê³¼ ì½”ë£¨í‹´
     private IEnumerator SetDissolve(float _duration, float _startValue, float _endValue)
     {
         float timeElapsed = 0.0f;
@@ -116,7 +116,7 @@ public class MonsterInfo : MonsterData
         material.SetFloat("_SplitValue", _endValue);
     }
 
-    //! SkinnedMeshRenderer ÄÄÆ÷³ÍÆ®¸¦ Ã£´Â Àç±ÍÇÔ¼ö
+    //! SkinnedMeshRenderer ì»´í¬ë„ŒíŠ¸ë¥¼ ì°¾ëŠ” ì¬ê·€í•¨ìˆ˜
     private void FindComponet(Transform _parent)
     {
         for (int i = 0; i < _parent.childCount; i++)
@@ -134,8 +134,8 @@ public class MonsterInfo : MonsterData
         }
     }
 
-    #region ¿¡´Ï¸ŞÀÌ¼Ç
-    //! ¸ó½ºÅÍÀÇ °ø°İ ¿¡´Ï¸ŞÀÌ¼Ç Àç»ı
+    #region ì—ë‹ˆë©”ì´ì…˜
+    //! ëª¬ìŠ¤í„°ì˜ ê³µê²© ì—ë‹ˆë©”ì´ì…˜ ì¬ìƒ
     private IEnumerator Attack()
     {
         isAttack = true;
@@ -147,12 +147,12 @@ public class MonsterInfo : MonsterData
             while (!AniCheckInfo("Attack"))
             {
                 yield return null;
-            }       // loop: ¿¡´Ï¸ŞÀÌ¼ÇÀÌ JumpStart¿¡ µé¾î¿Ã¶§±îÁö ´ë±â
-        }       // if: ¿¡´Ï¸ŞÀÌ¼ÇÀÌ Àß µé¾î¿ÔÀ» °æ¿ì ÆĞ½º
+            }       // loop: ì—ë‹ˆë©”ì´ì…˜ì´ JumpStartì— ë“¤ì–´ì˜¬ë•Œê¹Œì§€ ëŒ€ê¸°
+        }       // if: ì—ë‹ˆë©”ì´ì…˜ì´ ì˜ ë“¤ì–´ì™”ì„ ê²½ìš° íŒ¨ìŠ¤
 
         float duration = AniCheckLength();
 
-        //! TODO: °Å¸®¸¦ °è»êÇÏ¿© °Å¸® ³»¿¡ ÀÖ´Â ¿ÀºêÁ§Æ® Ã¼·Â ´â°Ô ÇÏ±â ¶Ç´Â Äİ¶óÀÌ´õ »ı¼ºÈÄ Trigger ´êÀº ¸ó½ºÅÍ Ã¼·Â ´â°Ô ÇÏ±â
+        //! TODO: ê±°ë¦¬ë¥¼ ê³„ì‚°í•˜ì—¬ ê±°ë¦¬ ë‚´ì— ìˆëŠ” ì˜¤ë¸Œì íŠ¸ ì²´ë ¥ ë‹³ê²Œ í•˜ê¸° ë˜ëŠ” ì½œë¼ì´ë” ìƒì„±í›„ Trigger ë‹¿ì€ ëª¬ìŠ¤í„° ì²´ë ¥ ë‹³ê²Œ í•˜ê¸°
 
         attackFX.SetActive(true);
 
@@ -161,9 +161,9 @@ public class MonsterInfo : MonsterData
         yield return new WaitForSeconds(duration);
 
         this.gameObject.SetActive(false);
-    }       // AttackPlayer()       // »ç¿îµå Ãß°¡ ¿¹Á¤
+    }       // AttackPlayer()       // ì‚¬ìš´ë“œ ì¶”ê°€ ì˜ˆì •
 
-    //! ¸ó½ºÅÍÀÇ ´É·Â Çâ»ó ¿¡´Ï¸ŞÀÌ¼Ç Àç»ı
+    //! ëª¬ìŠ¤í„°ì˜ ëŠ¥ë ¥ í–¥ìƒ ì—ë‹ˆë©”ì´ì…˜ ì¬ìƒ
     private IEnumerator Buffer()
     {
         isBuffer = true;
@@ -175,22 +175,22 @@ public class MonsterInfo : MonsterData
             while (!AniCheckInfo("Buffer"))
             {
                 yield return null;
-            }       // loop: ¿¡´Ï¸ŞÀÌ¼ÇÀÌ JumpStart¿¡ µé¾î¿Ã¶§±îÁö ´ë±â
-        }       // if: ¿¡´Ï¸ŞÀÌ¼ÇÀÌ Àß µé¾î¿ÔÀ» °æ¿ì ÆĞ½º
+            }       // loop: ì—ë‹ˆë©”ì´ì…˜ì´ JumpStartì— ë“¤ì–´ì˜¬ë•Œê¹Œì§€ ëŒ€ê¸°
+        }       // if: ì—ë‹ˆë©”ì´ì…˜ì´ ì˜ ë“¤ì–´ì™”ì„ ê²½ìš° íŒ¨ìŠ¤
 
-        // TODO: »ç¿îµå, È¿°ú
+        // TODO: ì‚¬ìš´ë“œ, íš¨ê³¼
 
         while (animator.GetCurrentAnimatorStateInfo(0).IsName("Buffer"))
         {
             yield return null;
         }
 
-        // TODO: ´É·Â
+        // TODO: ëŠ¥ë ¥
 
         isBuffer = false;
-    }       // Buffer()     // »ç¿îµå, È¿°ú, ´É·Â Ãß°¡ ¿¹Á¤
+    }       // Buffer()     // ì‚¬ìš´ë“œ, íš¨ê³¼, ëŠ¥ë ¥ ì¶”ê°€ ì˜ˆì •
 
-    //! ¸ó½ºÅÍÀÇ Á×¾îÀ» ¶§ ¿¡´Ï¸ŞÀÌ¼Ç Àç»ı
+    //! ëª¬ìŠ¤í„°ì˜ ì£½ì–´ì„ ë•Œ ì—ë‹ˆë©”ì´ì…˜ ì¬ìƒ
     private IEnumerator Death()
     {
         isDeath = true;
@@ -202,23 +202,23 @@ public class MonsterInfo : MonsterData
             while (!AniCheckInfo("Death"))
             {
                 yield return null;
-            }       // loop: ¿¡´Ï¸ŞÀÌ¼ÇÀÌ JumpStart¿¡ µé¾î¿Ã¶§±îÁö ´ë±â
-        }       // if: ¿¡´Ï¸ŞÀÌ¼ÇÀÌ Àß µé¾î¿ÔÀ» °æ¿ì ÆĞ½º
+            }       // loop: ì—ë‹ˆë©”ì´ì…˜ì´ JumpStartì— ë“¤ì–´ì˜¬ë•Œê¹Œì§€ ëŒ€ê¸°
+        }       // if: ì—ë‹ˆë©”ì´ì…˜ì´ ì˜ ë“¤ì–´ì™”ì„ ê²½ìš° íŒ¨ìŠ¤
 
         float duration = AniCheckLength();
 
-        // TODO: »ç¿îµå
+        // TODO: ì‚¬ìš´ë“œ
 
         StartCoroutine(SetDissolve(duration, splitEndValue, splitStartValue));
 
         yield return new WaitForSeconds(duration);
 
         this.gameObject.SetActive(false);
-    }       // Death()      // »ç¿îµå Ãß°¡ ¿¹Á¤
+    }       // Death()      // ì‚¬ìš´ë“œ ì¶”ê°€ ì˜ˆì •
     #endregion
 
-    #region ÃÊ±âÈ­
-    //! ¿ÀºêÁ§Æ® Ç®¸µÀ» À§ÇÑ ¸®¼Â
+    #region ì´ˆê¸°í™”
+    //! ì˜¤ë¸Œì íŠ¸ í’€ë§ì„ ìœ„í•œ ë¦¬ì…‹
     private void MonsterReset()
     {
         isReady = false;
@@ -248,8 +248,8 @@ public class MonsterInfo : MonsterData
     }
     #endregion
 
-    #region ¿¡´Ï¸ŞÀÌ¼Ç Á¤º¸
-    //! ÇöÀç ÁøÇàµÇ°í ÀÖ´Â ¿¡´Ï¸ŞÀÌ¼Ç Ã¼Å©
+    #region ì—ë‹ˆë©”ì´ì…˜ ì •ë³´
+    //! í˜„ì¬ ì§„í–‰ë˜ê³  ìˆëŠ” ì—ë‹ˆë©”ì´ì…˜ ì²´í¬
     private bool AniCheckInfo(string _name)
     {
         if (animator.GetCurrentAnimatorStateInfo(0).IsName(_name))
@@ -262,15 +262,15 @@ public class MonsterInfo : MonsterData
         }
     }
 
-    //! ÇöÀç ÁøÇàµÇ°í ÀÖ´Â ¿¡´Ï¸ŞÀÌ¼Ç Å¬¸³ ±æÀÌ
+    //! í˜„ì¬ ì§„í–‰ë˜ê³  ìˆëŠ” ì—ë‹ˆë©”ì´ì…˜ í´ë¦½ ê¸¸ì´
     private float AniCheckLength()
     {
         return animator.GetCurrentAnimatorStateInfo(0).length;
     }
     #endregion
 
-    #region ¸ó½ºÅÍ ¼Ó¼º°ª Á¤ÇØÁÖ±â
-    //! ¸ó½ºÅÍÀÇ Á¤º¸ Á¤ÇØ ÁÖ±â
+    #region ëª¬ìŠ¤í„° ì†ì„±ê°’ ì •í•´ì£¼ê¸°
+    //! ëª¬ìŠ¤í„°ì˜ ì •ë³´ ì •í•´ ì£¼ê¸°
     private void SetMonster()
     {
         switch (monsterName)
