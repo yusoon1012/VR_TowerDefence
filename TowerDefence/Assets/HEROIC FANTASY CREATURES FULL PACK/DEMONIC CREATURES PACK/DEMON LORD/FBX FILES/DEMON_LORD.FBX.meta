@@ -615,7 +615,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -674,14 +674,14 @@ ModelImporter:
   - 4b88cfa0f5cb3444caa0869d6e83fc35
   - ad165c18b1b7afd478d62e2dbe849c35
   - 4ce679204abc7874fb2fbc6f98cb54b5
-  - 0ad12a48572e85146a9371a9fbdd3e7f
+  - 572f7a7224d2a244a8ae3bfc6a81a614
   - 2b6fbfac5f2ccab44a3d0526865de871
   - 5b3b0e46605c5a847a2c363f2c639717
   - d7870392082afb54daf4552c413874e7
   - 66952a00b3e7e73498db7bbfc2be2608
   - 83c5598ed37f8be49b9a5bdc3e6fed4d
   - c89c8ce6cea5a4d4cb334c3b63ffea30
-  - 035b0fea196ff394e8eec982a02e7b5b
+  - 193ffa2f0c33a3e4ca63b32acc74a9f0
   - 30638fb1d62b09c44b72413722516692
   - 1156391b9f31e96458b5d35ba800f5e2
   - 10faf116138445441bb1ff4fbcba366b
@@ -714,11 +714,11 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 1
+  animationType: 2
   humanoidOversampling: 1
   avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 0

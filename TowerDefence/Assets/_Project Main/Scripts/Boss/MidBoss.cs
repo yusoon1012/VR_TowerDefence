@@ -9,14 +9,11 @@ public class MidBoss : MonoBehaviour
     // 중간 보스 등장 시 공중에서 내려오는 속도
     public float lerpSpeed = 2f;
     // 중간 보스의 스펠 발사 쿨타임
-    public float throwSphereTime = 5f;
+    public float throwSphereTime = 10f;
     // 중간 보스의 페이즈
     public int midBossPhase = default;
     // 중간 보스 HP 량
     public int midBossHp = 50;
-
-    //// 졸개를 소환할 HP 단계
-    //public int spawnSoldierStep = 10;
 
     // 중간 보스 등장 시 최종적으로 이동할 위치
     private Vector3 groundMidBossPosition = Vector3.zero;
@@ -33,12 +30,15 @@ public class MidBoss : MonoBehaviour
     private GameObject fireBall = default;
 
     // 중간 보스가 내려오는 상황인지 체크
-    [SerializeField] private bool lerping = false;
+    private bool lerping = false;
     // 중간 보스가 활성화 된 상태인지 체크
-    [SerializeField] private bool activeBoss = false;
+    private bool activeBoss = false;
+    // Test : 필드에 몬스터가 있는지 없는지 체크
+    private bool isMonsterClear = false;
     // 중간 보스의 스펠 발사 쿨타임 까지의 중첩 값
-    [SerializeField] private bool testBool = false;
     private float throwSphereTimepass = default;
+    // 보스가 2 페이즈 상태일 때 구체 던지기와 졸개 강화 중 랜덤 선택 값
+    private int rand = default;
     // } 변수 설정
 
     void Awake()
@@ -50,11 +50,12 @@ public class MidBoss : MonoBehaviour
         finalBossObj = GameObject.Find("FinalBoss");
         fireBall = GameObject.Find("BossFireBall");
         // 중간 보스 등장 시 최종적으로 이동할 위치 값 지정
-        groundMidBossPosition = new Vector3(0f, 0f, 81.2f);
+        groundMidBossPosition = new Vector3(0f, 0f, 165f);
         // 중간 보스의 초기 위치 값
-        midBossOriginPosition = new Vector3(0f, 500f, 81.2f);
-        bossFireBallShootPosition = new Vector3(0f, 50f, 40f);
+        midBossOriginPosition = new Vector3(0f, 500f, 165f);
+        bossFireBallShootPosition = new Vector3(0f, 50f, 135f);
         throwSphereTimepass = 0f;
+        rand = 0;
         // } 초기 변수 값 설정
     }     // Awake()
 
@@ -72,12 +73,11 @@ public class MidBoss : MonoBehaviour
         // lerping 값이 true 일때만 실행
         if (lerping == true)
         {
-            // 중간 보스의 y 위치값이 0 보다 작거나 같으면
+            // 중간 보스의 y 위치값이 1 보다 작거나 같으면
             if (transform.position.y <= 1)
             {
                 // lerping 값을 false 로 바꿔 더이상 내려오지 않게 설정
                 lerping = false;
-                testBool = true;
                 // 중간 보스의 위치를 최종적인 위치값으로 고정 시켜준다
                 transform.position = groundMidBossPosition;
             }
@@ -89,20 +89,9 @@ public class MidBoss : MonoBehaviour
             }
         }
 
-        //if (midBossPhase == 1 && lerping == false)
-        //{
-        //    throwSphereTimepass += Time.deltaTime;
-        //    if (throwSphereTimepass >= throwSphereTime)
-        //    {
-        //        throwSphereTimepass = 0f;
-        //        ThrowSphere();
-        //    }
-        //}
-
-        if (testBool == true)
+        if (midBossPhase == 1 && lerping == false)
         {
             throwSphereTimepass += Time.deltaTime;
-            Debug.LogFormat("스펠 쿨타임 진행 : {0}", throwSphereTimepass);
             if (throwSphereTimepass >= throwSphereTime)
             {
                 throwSphereTimepass = 0f;
@@ -111,7 +100,12 @@ public class MidBoss : MonoBehaviour
         }
         else if (midBossPhase == 3 && lerping == false)
         {
-
+            throwSphereTimepass += Time.deltaTime;
+            if (throwSphereTimepass >= throwSphereTime)
+            {
+                throwSphereTimepass = 0f;
+                ThrowSphereOrPowerUp();
+            }
         }
     }     // Update()
 
@@ -120,7 +114,7 @@ public class MidBoss : MonoBehaviour
     {
         // 최종 보스의 페이즈 값을 참조하여 중간 보스의 페이즈 값을 지정함
         midBossPhase = finalBossObj.GetComponent<FinalBoss>().finalBossPhase;
-        Debug.Log(midBossPhase);
+        Debug.LogFormat("중간 보스의 시작 페이즈 : {0}", midBossPhase);
         // 중간 보스가 등장해 내려올 수 있도록 해준다
         lerping = true;
         // 중간 보스를 활성화 상태로 바꿔준다
@@ -139,7 +133,7 @@ public class MidBoss : MonoBehaviour
         if (midBossHp <= 0)
         {
             // 중간 보스의 사망 함수를 실행한다
-            DeathBoss();
+            MidBossDeath();
         }
 
         // 졸개를 소환할 HP 단계를 데미지만큼 감소
@@ -150,26 +144,62 @@ public class MidBoss : MonoBehaviour
     // 중간 보스의 스펠 발사 기능 함수
     private void ThrowSphere()
     {
-        Debug.Log("스펠 함수에 진입함");
         // 발사 스펠을 활성화 시킴
         fireBall.gameObject.SetActive(true);
         // 발사 스펠의 위치를 발사 전 위치로 초기화 시킴
         fireBall.transform.position = bossFireBallShootPosition;
     }     // ThrowSphere()
 
-    // 중간 보스가 죽으면 실행되는 함수
-    private void DeathBoss()
+    // 졸개 능력치 증가 버프 실행 함수
+    private void SoldierPowerUp()
     {
+        /* Init : 소환 된 상태의 졸개들의 능력치 증가 버프 */
+    }     // SoldierPowerUp()
+
+    // 구체 날리기 Or 졸개 능력치 증가 버프 중 실행 구분 함수
+    private void ThrowSphereOrPowerUp()
+    {
+        // 현재 필드에 졸개들이 없다면
+        if (isMonsterClear == true)
+        {
+            // 구체 날리기 함수 실행
+            ThrowSphere();
+        }
+        // 현재 필드에 졸개들이 남아 있다면
+        else
+        {
+            // 0, 1 랜덤 값 생성
+            rand = Random.Range(0, 100);
+            // 랜덤 값이 0 이면
+            if (rand < 60)
+            {
+                // 구체 날리기 함수 실행
+                ThrowSphere();
+            }
+            // 랜덤 값이 1 이면
+            else if (rand >= 60)
+            {
+                // 졸개 능력치 증가 버프 함수 실행
+                SoldierPowerUp();
+            }
+
+            Debug.LogFormat("랜덤값 생성됨 : {0}", rand);
+        }
+    }     // ThrowSphereOrPowerUp()
+
+    // 중간 보스가 죽으면 실행되는 함수
+    private void MidBossDeath()
+    {
+        // 최종 보스에게 현재 페이즈 값을 넘겨준다
+        finalBossObj.GetComponent<FinalBoss>().DeathMidBoss(midBossPhase);
+        // 중간 보스의 위치를 초기 위치 값으로 이동시킨다
+        transform.position = midBossOriginPosition;
         // 중간 보스를 비활성화 시킨다
         activeBoss = false;
         // 스펠 발사 쿨타임을 초기화 시킨다
         throwSphereTimepass = 0f;
         // 중간 보스 오브젝트를 비활성화 시켜준다
         this.gameObject.SetActive(false);
-        // 중간 보스의 위치를 초기 위치 값으로 이동시킨다
-        transform.position = midBossOriginPosition;
-        // 최종 보스에게 현재 페이즈 값을 넘겨준다
-        finalBossObj.GetComponent<FinalBoss>().DeathMidBoss();
     }     // DeathBoss()
 
     // 중간 보스의 세팅 시간이 끝나고 다시 오브젝트를 비활성화 시키는 함수
@@ -178,6 +208,7 @@ public class MidBoss : MonoBehaviour
         // 0.5 초 후에
         yield return new WaitForSeconds(0.5f);
 
+        // 보스가 날리는 구체 오브젝트를 비활성화 시켜준다
         fireBall.gameObject.SetActive(false);
         // 중간 보스 오브젝트를 비활성화 시켜준다
         this.gameObject.SetActive(false);
