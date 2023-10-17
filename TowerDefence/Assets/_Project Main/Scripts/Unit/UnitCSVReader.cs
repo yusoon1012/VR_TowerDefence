@@ -4,11 +4,11 @@ using UnityEngine;
 
 
 /// <summary>
-/// Unit ¼Ó¼ºÀ» ´ãÀº CSV ÆÄÀÏÀ» ÀĞ¾î¿Â´Ù
+/// Unit ì†ì„±ì„ ë‹´ì€ CSV íŒŒì¼ì„ ì½ì–´ì˜¨ë‹¤
 /// </summary>
 public class UnitCSVReader : MonoBehaviour
 {
-    // À¯´Ö CSV TextAsset
+    // ìœ ë‹› CSV TextAsset
     [Header("CSV File")]
     public TextAsset attackUnitCSV, buffUnitCSV = default;
 
@@ -18,48 +18,98 @@ public class UnitCSVReader : MonoBehaviour
     }
 
     /// <summary>
-    /// À¯´Ö Á¤º¸¸¦ ´ãÀº CSV ÆÄÀÏÀ» ÀĞ¾îµéÀÓ 
+    /// ìœ ë‹› ì •ë³´ë¥¼ ë‹´ì€ CSV íŒŒì¼ì„ ì½ì–´ë“¤ì„ 
     /// </summary>
     private void ReadCSV()
     {
+        // CSV Line
         string[] attackUnitCSV_Line, buffUnitCSV_Line = default;
+
+        int power_Index = -1;
+        int speed_Index = -1;
+        int recognitionRange_Index = -1;
+        int attackRange_Index = -1;
 
         if (attackUnitCSV != null && buffUnitCSV != null)
         {
-            // °³Çà¹®ÀÚ ºĞÇÒ
+            // ê°œí–‰ë¬¸ì ë¶„í• 
             attackUnitCSV_Line = attackUnitCSV.text.Split('\n');
             buffUnitCSV_Line = buffUnitCSV.text.Split('\n');
 
-            string[] headers = attackUnitCSV_Line[0].Split(','); // Çì´õ
-            // ¼³Ä¡/°ø°İÇü À¯´Ö ½°Ç¥ ºĞÇÒ
+            // ê°œí–‰ë¬¸ì ì‚­ì œ 
+            for (int i = 0; i < attackUnitCSV_Line.Length; i++)
+            {
+                attackUnitCSV_Line[i] = attackUnitCSV_Line[i].TrimEnd('\n');
+            }
+            for (int i = 0; i < buffUnitCSV_Line.Length; i++)
+            {
+                buffUnitCSV_Line[i] = attackUnitCSV_Line[i].TrimEnd('\n');
+            }
+
+            #region ì„¤ì¹˜/ê³µê²©í˜• ìœ ë‹›
+            string[] headers = attackUnitCSV_Line[0].Split(','); // í—¤ë”
+            string[] lines = default; // ì†ì„± ì‹¤ ë‚´ìš©
+
+            // ìœ ë‹› í—¤ë” ì²´í¬
             for (int i = 0; i < headers.Length; i++)
             {
-                if (headers[i] == "")
+                /// IF TODO: ë§Œì•½ ë‚˜ì¤‘ì— ìœ ë‹› ì¶”ê°€ ì‹œ "Type" í—¤ë”ë„ ì¶”ê°€í•  ê²ƒ 
+                if (headers[i] == "Power")
+                {
+                    power_Index = i;
+                }
+                else if (headers[i] == "Speed")
+                {
+                    speed_Index = i;
+                }
+                else if (headers[i] == "Recognition_Range")
+                {
+                    recognitionRange_Index = i;
+                }
+                /// Point: (ë‚˜ì¤‘ì— ìˆ˜ì • í•„ìš”) Attack_Range ë’¤ ê°œí–‰ë¬¸ì íƒ“ì¸ì§€ ì œëŒ€ë¡œ ëª»ì¡ì•„ì„œ ì„ì‹œë°©í¸ìœ¼ë¡œ ì²˜ë¦¬
+                else if (headers[i] == headers[4])
+                {
+                    attackRange_Index = i;
+                }
+            }
+
+            // ì†ì„± ì‹¤ë¶€ì—¬
+            foreach (GameObject unit in UnitBuildSystem.units) // ìœ ë‹› ë¦¬ìŠ¤íŠ¸ ì „ì²´ ê²€ìƒ‰
+            {
+                AttackUnitProperty attackComponent = unit.GetComponent<AttackUnitProperty>(); // ì„¤ì¹˜/ê³µê²©í˜• ìœ ë‹› í™•ì¸
+                UnitBuffSystem buffComponent = transform.GetComponent<UnitBuffSystem>(); // ë²„í”„í˜• ìœ ë‹› í™•ì¸
+
+                if (attackComponent != null)
+                {
+                    if (unit.name == "Bomb Unit(Clone)") // í­íƒ„ ìœ ë‹›ì¼ë•Œ
+                    {
+                        lines = attackUnitCSV_Line[1].Split(','); // Bombì— í•´ë‹¹í•˜ëŠ” ì¤„
+                        AttackUnitProperty bombProperty = unit.GetComponent<AttackUnitProperty>();
+
+                        bombProperty.power = int.Parse(lines[power_Index]);
+                        bombProperty.speed = int.Parse(lines[speed_Index]);
+                        bombProperty.recognition_Range = int.Parse(lines[recognitionRange_Index]);
+                        bombProperty.attack_Range = int.Parse(lines[attackRange_Index]);
+                    }
+                    else if (unit.name == "Blade Unit(Clone)") // ì¹¼ë‚  ìœ ë‹›ì¼ë•Œ
+                    {
+                        lines = attackUnitCSV_Line[2].Split(','); // Bladeì— í•´ë‹¹í•˜ëŠ” ì¤„
+                        AttackUnitProperty bladeProperty = unit.GetComponent<AttackUnitProperty>();
+
+                        bladeProperty.power = int.Parse(lines[power_Index]);
+                        bladeProperty.speed = int.Parse(lines[speed_Index]);
+                        bladeProperty.recognition_Range = int.Parse(lines[recognitionRange_Index]);
+                        bladeProperty.attack_Range = int.Parse(lines[attackRange_Index]);
+                    }
+                }
+
+                if (buffComponent != null)
                 {
 
                 }
-                //string[] attackValue = attackUnitCSV_Line[i].Split(',');
             }
-            // ¹öÇÁÇü À¯´Ö ½°Ç¥ ºĞÇÒ 
-            for (int i = 1; i < buffUnitCSV_Line.Length; i++)
-            {
-                string[] buffValue = buffUnitCSV_Line[i].Split(',');
-            }
+            #endregion
         }
-        else Debug.Log("CSV ¾øÀ½");
+        else Debug.Log("CSV ì—†ìŒ");
     }
-
-    private void EndueProperty()
-    {
-        foreach (GameObject unit in UnitBuildSystem.units)
-        {
-            AttackUnitProperty attackComponent = unit.GetComponent<AttackUnitProperty>();
-
-            if (attackComponent != null)
-            {
-                Debug.Log("°ø°İ À¯´ÖÀ» È®ÀÎÇÔ.");
-            }
-        }
-    }
-
 }
