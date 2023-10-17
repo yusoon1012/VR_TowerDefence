@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class FinalBoss : MonoBehaviour
 {
+
+    public Slider bossHp;
     // { 변수 설정
     // 보스 HP 량
-    public int finalBossHp = 100;
+    public float finalBossHp;
+    private float finalBossMaxhp = 100;
     // 보스 페이즈
     public int finalBossPhase = default;
     // 졸개 소환 쿨타임
@@ -58,6 +63,7 @@ public class FinalBoss : MonoBehaviour
     {
         // { 초기 변수값 설정
         // 보스 오브젝트 참조
+        finalBossHp = finalBossMaxhp;
         finalBossObj = GetComponent<GameObject>();
         finalBossAnimator = GetComponent<Animator>();
         // 중간 보스의 오브젝트를 찾아서 참조
@@ -76,6 +82,7 @@ public class FinalBoss : MonoBehaviour
         rand = 0;
         spawnRand = 0;
         isSpawn = 0;
+        bossHp.value = finalBossHp / 100;
         // } 초기 변수값 설정
     }     // Awake()
 
@@ -148,6 +155,8 @@ public class FinalBoss : MonoBehaviour
 
         // 최종 보스의 HP 를 받은 데미지만큼 감소
         finalBossHp -= damage;
+        bossHp.value = finalBossHp / 100;
+
         if (finalBossHp <= 0)
         {
             FinalBossDeath();

@@ -13,15 +13,25 @@ public class Magic_Normal : MonoBehaviour
     {
         rb= GetComponent<Rigidbody>();
         rb.velocity = transform.forward * speed;
+        Destroy(gameObject, 15f);
     }
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("Boss"))
         {
-            Boss_Hp_Test bossHp=collision.gameObject.GetComponent<Boss_Hp_Test>();
+            FinalBoss bossHp=collision.gameObject.GetComponent<FinalBoss>();
             if(bossHp!=null)
             {
-                bossHp.LoseHp(damage);
+                bossHp.HitDamage(damage);
+                Destroy(gameObject);
+            }
+        }
+        if(collision.gameObject.CompareTag("MidBoss"))
+        {
+            MidBoss midboss=collision.gameObject.GetComponent<MidBoss>();
+            if(midboss!=null)
+            {
+                midboss.HitDamage(damage);
                 Destroy(gameObject);
             }
         }

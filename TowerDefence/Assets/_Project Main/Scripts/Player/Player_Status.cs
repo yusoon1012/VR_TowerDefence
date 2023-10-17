@@ -35,7 +35,7 @@ public class Player_Status : MonoBehaviour
             _instance = this;
         }
         playerCurrentHp = playerMaxHp;
-        hpBar.value =playerMaxHp/playerMaxHp;
+        hpBar.value = playerCurrentHp / playerMaxHp;
     }
 
     // Update is called once per frame

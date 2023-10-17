@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 using static UnityEngine.GraphicsBuffer;
 
 public class MidBoss : MonoBehaviour
 {
+    
+
     // { 변수 설정
     // 중간 보스 등장 시 공중에서 내려오는 속도
     public float lerpSpeed = 2f;
@@ -27,7 +30,7 @@ public class MidBoss : MonoBehaviour
     // 중간 보스 오브젝트
     private GameObject midBossObj = default;
     // 중간 보스의 발사되는 스펠 오브젝트
-    private GameObject fireBall = default;
+    public GameObject fireBall = default;
 
     // 중간 보스가 내려오는 상황인지 체크
     private bool lerping = false;
@@ -39,6 +42,7 @@ public class MidBoss : MonoBehaviour
     private float throwSphereTimepass = default;
     // 보스가 2 페이즈 상태일 때 구체 던지기와 졸개 강화 중 랜덤 선택 값
     private int rand = default;
+    private Rigidbody rb;
     // } 변수 설정
 
     void Awake()
@@ -48,14 +52,15 @@ public class MidBoss : MonoBehaviour
         midBossObj = GetComponent<GameObject>();
         // 최종 보스 오브젝트를 찾아서 참조
         finalBossObj = GameObject.Find("FinalBoss");
-        fireBall = GameObject.Find("BossFireBall");
+       
         // 중간 보스 등장 시 최종적으로 이동할 위치 값 지정
-        groundMidBossPosition = new Vector3(0f, 0f, 165f);
+        groundMidBossPosition = new Vector3(0f, 0f, 30f);
         // 중간 보스의 초기 위치 값
-        midBossOriginPosition = new Vector3(0f, 500f, 165f);
-        bossFireBallShootPosition = new Vector3(0f, 50f, 135f);
+        midBossOriginPosition = new Vector3(0f, 500f, 30f);
+        bossFireBallShootPosition = new Vector3(0f, 20f, 30f);
         throwSphereTimepass = 0f;
         rand = 0;
+        rb=GetComponent<Rigidbody>();
         // } 초기 변수 값 설정
     }     // Awake()
 
@@ -78,6 +83,7 @@ public class MidBoss : MonoBehaviour
             {
                 // lerping 값을 false 로 바꿔 더이상 내려오지 않게 설정
                 lerping = false;
+                rb.isKinematic = true;
                 // 중간 보스의 위치를 최종적인 위치값으로 고정 시켜준다
                 transform.position = groundMidBossPosition;
             }
@@ -145,9 +151,14 @@ public class MidBoss : MonoBehaviour
     private void ThrowSphere()
     {
         // 발사 스펠을 활성화 시킴
+        fireBall.transform.position = bossFireBallShootPosition;
+        Rigidbody fireBallRigid=fireBall.gameObject.GetComponent<Rigidbody>();
+        if (fireBallRigid != null)
+        {
+            fireBallRigid.velocity = Vector3.zero;
+        }
         fireBall.gameObject.SetActive(true);
         // 발사 스펠의 위치를 발사 전 위치로 초기화 시킴
-        fireBall.transform.position = bossFireBallShootPosition;
     }     // ThrowSphere()
 
     // 졸개 능력치 증가 버프 실행 함수

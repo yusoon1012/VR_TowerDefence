@@ -5,13 +5,13 @@ using UnityEngine;
 public class Player_Parry : MonoBehaviour
 {
     public ParticleSystem particle;
-    Boss_Hp_Test boss;
+    FinalBoss boss;
     float speed;
     bool isParriable=false;
     // Start is called before the first frame update
     void Start()
     {
-        boss=FindAnyObjectByType<Boss_Hp_Test>();
+        boss=FindAnyObjectByType<FinalBoss>();
     }
 
     // Update is called once per frame
