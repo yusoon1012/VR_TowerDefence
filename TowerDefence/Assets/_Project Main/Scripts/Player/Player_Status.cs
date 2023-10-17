@@ -7,14 +7,14 @@ using UnityEngine.UI;
 
 public class Player_Status : MonoBehaviour
 {
-    // ½Ì±ÛÅæ ÆĞÅÏÀ» Àû¿ëÇÒ Å¬·¡½ºÀÇ ÀÎ½ºÅÏ½º¸¦ ÀúÀåÇÏ´Â º¯¼ö
+    // ì‹±ê¸€í†¤ íŒ¨í„´ì„ ì ìš©í•  í´ë˜ìŠ¤ì˜ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ì €ì¥í•˜ëŠ” ë³€ìˆ˜
     private static Player_Status _instance;
-    public int playerCurrentHp;
-    public int playerMaxHp=50;
+    public float playerCurrentHp;
+    public float playerMaxHp=50;
     public int playerDamage = 1;
-    public TMP_Text damageStat;
+    public Slider hpBar;
 
-    // ´Ù¸¥ ½ºÅ©¸³Æ®¿¡¼­ ÀÌ Å¬·¡½ºÀÇ ÀÎ½ºÅÏ½º¿¡ ¾×¼¼½ºÇÒ ¼ö ÀÖ´Â ÇÁ·ÎÆÛÆ¼
+    // ë‹¤ë¥¸ ìŠ¤í¬ë¦½íŠ¸ì—ì„œ ì´ í´ë˜ìŠ¤ì˜ ì¸ìŠ¤í„´ìŠ¤ì— ì•¡ì„¸ìŠ¤í•  ìˆ˜ ìˆëŠ” í”„ë¡œí¼í‹°
     public static Player_Status Instance
     {
         get { return _instance; }
@@ -24,23 +24,30 @@ public class Player_Status : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // ¸¸¾à ÀÎ½ºÅÏ½º°¡ ÀÌ¹Ì ¼³Á¤µÇ¾î ÀÖ´Ù¸é, ÇöÀç ÀÎ½ºÅÏ½º¸¦ ÆÄ±«ÇÑ´Ù.
+        // ë§Œì•½ ì¸ìŠ¤í„´ìŠ¤ê°€ ì´ë¯¸ ì„¤ì •ë˜ì–´ ìˆë‹¤ë©´, í˜„ì¬ ì¸ìŠ¤í„´ìŠ¤ë¥¼ íŒŒê´´í•œë‹¤.
         if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);
         }
         else
         {
-            // ÀÎ½ºÅÏ½º°¡ ¼³Á¤µÇÁö ¾Ê¾Ò´Ù¸é, ÀÌ ½ºÅ©¸³Æ®ÀÇ ÀÎ½ºÅÏ½º¸¦ ¼³Á¤ÇÑ´Ù.
+            // ì¸ìŠ¤í„´ìŠ¤ê°€ ì„¤ì •ë˜ì§€ ì•Šì•˜ë‹¤ë©´, ì´ ìŠ¤í¬ë¦½íŠ¸ì˜ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ì„¤ì •í•œë‹¤.
             _instance = this;
         }
+        playerCurrentHp = playerMaxHp;
+        hpBar.value =playerMaxHp/playerMaxHp;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //damageStat.text=string.Format("player damage {0}",Player_Status.Instance.playerDamage);
+       
     }
 
+    public void PlayerDamaged(int damage)
+    {
+        playerCurrentHp -= damage;
+        hpBar.value=playerCurrentHp/playerMaxHp;
+    }
 
 }
