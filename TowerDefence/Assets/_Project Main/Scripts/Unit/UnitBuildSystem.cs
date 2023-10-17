@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 유닛 설치 클래스
+/// UnitBuySystem => 설치/공격형 유닛 적용
 /// </summary>
 public class UnitBuildSystem : MonoBehaviour
 {
