@@ -49,7 +49,7 @@ public class MonsterSpawn : MonoBehaviour
 
     private int maxMonsterCount = default;                        // 한 웨이브당 소환될 몬스터 갯수
     private float[] indexDegrees = new float[6];                  // 몬스터가 소환될 인덱스 값
-    private int currentCount = default;                           // 스폰한 몬스터 갯수
+    public int currentCount = default;                           // 스폰한 몬스터 갯수
     private bool isSpawn = false;                                 // 중복 소환 방지를 위한 bool값
 
     private int[] indexSpawnChecks = default;                     // 인덱스에 최대 마리 수가 소환 됬는지 체크

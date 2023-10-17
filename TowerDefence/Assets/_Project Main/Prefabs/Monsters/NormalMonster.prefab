@@ -9936,9 +9936,10 @@ GameObject:
   - component: {fileID: 985424135584633709}
   - component: {fileID: -7265265808427787190}
   - component: {fileID: 8546566954963472039}
+  - component: {fileID: 84865678340928874}
   m_Layer: 0
   m_Name: NormalMonster
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10025,6 +10026,20 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!136 &84865678340928874
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985424135575249071}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.38
+  m_Height: 4.47
+  m_Direction: 1
+  m_Center: {x: 0, y: 2.66, z: 0}
 --- !u!1 &985424135575249073
 GameObject:
   m_ObjectHideFlags: 0

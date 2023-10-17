@@ -12,7 +12,7 @@ public class MidBoss : MonoBehaviour
     // 중간 보스 등장 시 공중에서 내려오는 속도
     public float lerpSpeed = 2f;
     // 중간 보스의 스펠 발사 쿨타임
-    public float throwSphereTime = 10f;
+    public float throwSphereTime = 20f;
     // 중간 보스의 페이즈
     public int midBossPhase = default;
     // 중간 보스 HP 량
@@ -54,10 +54,10 @@ public class MidBoss : MonoBehaviour
         finalBossObj = GameObject.Find("FinalBoss");
        
         // 중간 보스 등장 시 최종적으로 이동할 위치 값 지정
-        groundMidBossPosition = new Vector3(0f, 0f, 30f);
+        groundMidBossPosition = new Vector3(720f,5f , 265f);
         // 중간 보스의 초기 위치 값
-        midBossOriginPosition = new Vector3(0f, 500f, 30f);
-        bossFireBallShootPosition = new Vector3(0f, 20f, 30f);
+        midBossOriginPosition = new Vector3(720f, 500f, 265f);
+        bossFireBallShootPosition = new Vector3(720f, 50f, 265f);
         throwSphereTimepass = 0f;
         rand = 0;
         rb=GetComponent<Rigidbody>();
@@ -79,7 +79,7 @@ public class MidBoss : MonoBehaviour
         if (lerping == true)
         {
             // 중간 보스의 y 위치값이 1 보다 작거나 같으면
-            if (transform.position.y <= 1)
+            if (transform.position.y <= 5)
             {
                 // lerping 값을 false 로 바꿔 더이상 내려오지 않게 설정
                 lerping = false;
@@ -100,6 +100,7 @@ public class MidBoss : MonoBehaviour
             throwSphereTimepass += Time.deltaTime;
             if (throwSphereTimepass >= throwSphereTime)
             {
+                fireBall.SetActive(false);
                 throwSphereTimepass = 0f;
                 ThrowSphere();
             }

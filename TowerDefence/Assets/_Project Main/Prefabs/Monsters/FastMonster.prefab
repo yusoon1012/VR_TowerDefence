@@ -1160,9 +1160,10 @@ GameObject:
   - component: {fileID: 4329291851957519778}
   - component: {fileID: -6138838826161773204}
   - component: {fileID: 4734045675993674140}
+  - component: {fileID: 8865610011609473916}
   m_Layer: 0
   m_Name: FastMonster
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1249,6 +1250,20 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!136 &8865610011609473916
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7613269658558337028}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.81
+  m_Height: 6
+  m_Direction: 2
+  m_Center: {x: 0, y: 2.66, z: 0}
 --- !u!1 &7613269658558337128
 GameObject:
   m_ObjectHideFlags: 0

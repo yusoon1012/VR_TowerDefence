@@ -87,6 +87,10 @@ public class MonsterInfo : MonsterData
             }
         }
     }
+    public void MonsterDamaged(int damage)
+    {
+        hp -= damage;
+    }
 
     //! 몬스터가 플레이어를 찾아가는 네비게이션
     private void TargetPlayer()
@@ -141,6 +145,7 @@ public class MonsterInfo : MonsterData
         isAttack = true;
 
         animator.SetTrigger("Attack");
+        //MonsterSpawn.instance.currentCount -= 1;
 
         if (!AniCheckInfo("Attack"))
         {
@@ -194,7 +199,7 @@ public class MonsterInfo : MonsterData
     private IEnumerator Death()
     {
         isDeath = true;
-
+        //MonsterSpawn.instance.currentCount -= 1;
         animator.SetTrigger("Death");
 
         if (!AniCheckInfo("Death"))

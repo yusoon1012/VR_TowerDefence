@@ -13,7 +13,7 @@ public class Magic_Normal : MonoBehaviour
     {
         rb= GetComponent<Rigidbody>();
         rb.velocity = transform.forward * speed;
-        Destroy(gameObject, 15f);
+        Destroy(gameObject, 30f);
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -34,6 +34,15 @@ public class Magic_Normal : MonoBehaviour
                 midboss.HitDamage(damage);
                 Destroy(gameObject);
             }
+        }
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            MonsterInfo monster=collision.gameObject.GetComponent<MonsterInfo>();
+            if(monster != null)
+            {
+                monster.MonsterDamaged(damage);
+            }
+
         }
     }
 }

@@ -281,7 +281,8 @@ public class FinalBoss : MonoBehaviour
     {
         isSpawn = 0;
         finalBossAnimator.SetInteger("Spawn", isSpawn);
+        Debug.Log("SpawnSoldier()");
 
-        //MonsterSpawn.instance.SetWave();
+        MonsterSpawn.instance.SetWave();
     }     // SpawnSoldier()
 }

@@ -6,6 +6,7 @@ public class Player_Parry : MonoBehaviour
 {
     public ParticleSystem particle;
     FinalBoss boss;
+    public Transform bossTransform;
     float speed;
     bool isParriable=false;
     // Start is called before the first frame update
@@ -37,9 +38,10 @@ public class Player_Parry : MonoBehaviour
             Rigidbody rb= other.GetComponent<Rigidbody>();
             if(rb != null )
             {
-                Vector3 dir=(boss.transform.position-transform.position).normalized;
+                Vector3 dir=(bossTransform.position-transform.position).normalized;
+               
                 rb.velocity = Vector3.zero;
-                rb.AddForce(dir*(speed*5),ForceMode.Impulse);
+                rb.AddForce(dir*50f,ForceMode.Impulse);
                 particle.Play();
             }
             }
