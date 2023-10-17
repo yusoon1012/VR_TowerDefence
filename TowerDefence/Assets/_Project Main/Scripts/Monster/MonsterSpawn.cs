@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MonsterSpawn : MonoBehaviour
 {
-    #region ½Ì±ÛÅÏ ¼±¾ğ
+    #region ì‹±ê¸€í„´ ì„ ì–¸
     public static MonsterSpawn instance;
 
     private void Awake()
@@ -17,47 +17,47 @@ public class MonsterSpawn : MonoBehaviour
 
         DontDestroyOnLoad(this.gameObject);
     }       // Awake()
-    #endregion // ½Ì±ÛÅÏ ¼±¾ğ
+    #endregion // ì‹±ê¸€í„´ ì„ ì–¸
 
-    [SerializeField]    // ¸ó½ºÅÍ ÇÁ¸®ÆéÀÌ µé¾î°¥ °ø°£  *¸ó½ºÅÍ Á¾·ù °áÁ¤µÇ¸é ¹è¿­·Î ¹Ù²ğ ¿¹Á¤*
+    [SerializeField]    // ëª¬ìŠ¤í„° í”„ë¦¬í©ì´ ë“¤ì–´ê°ˆ ê³µê°„  *ëª¬ìŠ¤í„° ì¢…ë¥˜ ê²°ì •ë˜ë©´ ë°°ì—´ë¡œ ë°”ë€” ì˜ˆì •*
     private List<GameObject> monsters = new List<GameObject>();
-    [SerializeField]    // ¿ÀºêÁ§Æ® Ç®¸µÀ» ¾²±âÀ§ÇÑ ºÎ¸ğ ¿ÀºêÁ§Æ®
+    [SerializeField]    // ì˜¤ë¸Œì íŠ¸ í’€ë§ì„ ì“°ê¸°ìœ„í•œ ë¶€ëª¨ ì˜¤ë¸Œì íŠ¸
     private Transform parent;
 
-    [SerializeField]    // ¸ó½ºÅÍ ½ºÆù °£°İ
-    [Range(0.1f, 1.0f)]      // ÃÖ´ë°ª ÇÑÁ¤ ¹üÀ§
+    [SerializeField]    // ëª¬ìŠ¤í„° ìŠ¤í° ê°„ê²©
+    [Range(0.1f, 1.0f)]      // ìµœëŒ€ê°’ í•œì • ë²”ìœ„
     private float maxTime = 0.5f;
 
-    [SerializeField]    // ÇÃ·¹ÀÌ¾î¿Í Normal ¸ó½ºÅÍ »çÀÌÀÇ °Å¸® (ÃÖ¼Ò °ª)
+    [SerializeField]    // í”Œë ˆì´ì–´ì™€ Normal ëª¬ìŠ¤í„° ì‚¬ì´ì˜ ê±°ë¦¬ (ìµœì†Œ ê°’)
     private int minNormalMonsterDistance;
-    [SerializeField]    // ÇÃ·¹ÀÌ¾î¿Í Normal ¸ó½ºÅÍ »çÀÌÀÇ °Å¸® (ÃÖ´ë °ª)
+    [SerializeField]    // í”Œë ˆì´ì–´ì™€ Normal ëª¬ìŠ¤í„° ì‚¬ì´ì˜ ê±°ë¦¬ (ìµœëŒ€ ê°’)
     private int maxNormalMonsterDistance;
-    [SerializeField]    // ÇÃ·¹ÀÌ¾î¿Í fast ¸ó½ºÅÍ »çÀÌÀÇ °Å¸® (ÃÖ¼Ò °ª) 
+    [SerializeField]    // í”Œë ˆì´ì–´ì™€ fast ëª¬ìŠ¤í„° ì‚¬ì´ì˜ ê±°ë¦¬ (ìµœì†Œ ê°’) 
     private int minFastMonsterDistance;
-    [SerializeField]    // ÇÃ·¹ÀÌ¾î¿Í fast ¸ó½ºÅÍ »çÀÌÀÇ °Å¸® (ÃÖ´ë °ª) 
+    [SerializeField]    // í”Œë ˆì´ì–´ì™€ fast ëª¬ìŠ¤í„° ì‚¬ì´ì˜ ê±°ë¦¬ (ìµœëŒ€ ê°’) 
     private int maxFastMonsterDistance;
 
-    [SerializeField]    // ÇÃ·¹ÀÌ¾î À§Ä¡¸¦ ¾Ë±â À§ÇÑ º¯¼ö
+    [SerializeField]    // í”Œë ˆì´ì–´ ìœ„ì¹˜ë¥¼ ì•Œê¸° ìœ„í•œ ë³€ìˆ˜
     private GameObject playerPos;
-    [SerializeField]    // º¸½º ¸ó½ºÅÍ À§Ä¡¸¦ ¾Ë±â À§ÇÑ º¯¼ö
+    [SerializeField]    // ë³´ìŠ¤ ëª¬ìŠ¤í„° ìœ„ì¹˜ë¥¼ ì•Œê¸° ìœ„í•œ ë³€ìˆ˜
     private GameObject bossPos;
     [SerializeField]
-    private int indexMonsterCount = default;        // ÇÏ³ªÀÇ ÀÎµ¦½º¿¡ ¼ÒÈ¯µÉ ¸ó¼öÅÍ °¹¼ö
+    private int indexMonsterCount = default;                      // í•˜ë‚˜ì˜ ì¸ë±ìŠ¤ì— ì†Œí™˜ë  ëª¬ìˆ˜í„° ê°¯ìˆ˜
 
     [SerializeField]
-    private LayerMask layerMask = default;          // ¶¥ ·¹ÀÌ¾î ÁöÁ¤
+    private LayerMask layerMask = default;                        // ë•… ë ˆì´ì–´ ì§€ì •
 
-    private int maxMonsterCount = default;          // ÇÑ ¿şÀÌºê´ç ¼ÒÈ¯µÉ ¸ó½ºÅÍ °¹¼ö
-    private float[] indexDegrees = new float[6];    // ¸ó½ºÅÍ°¡ ¼ÒÈ¯µÉ ÀÎµ¦½º °ª
-    private int currentCount = default;             // ½ºÆùÇÑ ¸ó½ºÅÍ °¹¼ö
-    private bool isSpawn = false;                   // Áßº¹ ¼ÒÈ¯ ¹æÁö¸¦ À§ÇÑ bool°ª
+    private int maxMonsterCount = default;                        // í•œ ì›¨ì´ë¸Œë‹¹ ì†Œí™˜ë  ëª¬ìŠ¤í„° ê°¯ìˆ˜
+    private float[] indexDegrees = new float[6];                  // ëª¬ìŠ¤í„°ê°€ ì†Œí™˜ë  ì¸ë±ìŠ¤ ê°’
+    private int currentCount = default;                           // ìŠ¤í°í•œ ëª¬ìŠ¤í„° ê°¯ìˆ˜
+    private bool isSpawn = false;                                 // ì¤‘ë³µ ì†Œí™˜ ë°©ì§€ë¥¼ ìœ„í•œ boolê°’
 
-    private int[] indexSpawnChecks = default;      // ÀÎµ¦½º¿¡ ÃÖ´ë ¸¶¸® ¼ö°¡ ¼ÒÈ¯ ‰ç´ÂÁö Ã¼Å©
+    private int[] indexSpawnChecks = default;                     // ì¸ë±ìŠ¤ì— ìµœëŒ€ ë§ˆë¦¬ ìˆ˜ê°€ ì†Œí™˜ ë¬ëŠ”ì§€ ì²´í¬
 
-    private Vector3 raycastDown = new Vector3(0.0f, -1.0f, 0.0f);     // ·¹ÀÌ ¹æÇâ (¾Æ·¡)
-    private float raycastRange = 100.0f;             // ·¹ÀÌ ±æÀÌ
+    private Vector3 raycastDown = new Vector3(0.0f, -1.0f, 0.0f); // ë ˆì´ ë°©í–¥ (ì•„ë˜)
+    private float raycastRange = 100.0f;                          // ë ˆì´ ê¸¸ì´
 
-    //! ¸ó½ºÅÍ°¡ ¼ÒÈ¯µÉ ÀÎµ¦½º °ª Á¤ÇØÁÖ±â, indexSpawnChecks ¹è¿­ 0À¸·Î ÃÊ±âÈ­
+    //! ëª¬ìŠ¤í„°ê°€ ì†Œí™˜ë  ì¸ë±ìŠ¤ ê°’ ì •í•´ì£¼ê¸°, indexSpawnChecks ë°°ì—´ 0ìœ¼ë¡œ ì´ˆê¸°í™”
     private void Start()
     {
         SpawnIndex();
@@ -71,16 +71,16 @@ public class MonsterSpawn : MonoBehaviour
         }
     }       // Start()
 
-    //! ½ºÆù ½ÃÀÛ ´Ù¸¥ ½ºÅ©¸³Æ®¿¡¼­ ½ºÆùÇÒ¶§ SetWave()ÇÔ¼ö »ç¿ë
+    //! ìŠ¤í° ì‹œì‘ ë‹¤ë¥¸ ìŠ¤í¬ë¦½íŠ¸ì—ì„œ ìŠ¤í°í• ë•Œ SetWave()í•¨ìˆ˜ ì‚¬ìš©
     public void SetWave()
     {
         if (!isSpawn)
         {
             StartCoroutine(StartSpawn());
-        }       // if: Áßº¹ ¼ÒÈ¯ ¹æÁö
+        }       // if: ì¤‘ë³µ ì†Œí™˜ ë°©ì§€
     }       // SetWave()
 
-    //! ¸ó½ºÅÍ ¼ÒÈ¯
+    //! ëª¬ìŠ¤í„° ì†Œí™˜
     private IEnumerator StartSpawn()
     {
         isSpawn = true;
@@ -90,7 +90,7 @@ public class MonsterSpawn : MonoBehaviour
             if (maxMonsterCount < currentCount)
             {
                 yield break;
-            }       // if: È¤½Ã¸ğ¸¦ ¿¹¿ÜÃ³¸®
+            }       // if: í˜¹ì‹œëª¨ë¥¼ ì˜ˆì™¸ì²˜ë¦¬
 
             SelectIndex();
 
@@ -100,15 +100,15 @@ public class MonsterSpawn : MonoBehaviour
 
             currentCount += 1;
 
-        }       // loop: wave ´ç ½ºÆùÇÑ ¸ó½ºÅÍ°¡ ÃÖ´ë°ª¿¡ µµ´ŞÇÒ¶§±îÁö ¹İº¹
+        }       // loop: wave ë‹¹ ìŠ¤í°í•œ ëª¬ìŠ¤í„°ê°€ ìµœëŒ€ê°’ì— ë„ë‹¬í• ë•Œê¹Œì§€ ë°˜ë³µ
 
-        // ¼ÒÈ¯ ÇÏ¸é¼­ ÇÊ¿äÇÑ °ª ÃÊ±âÈ­
-        // TODO: ÀÛ¼º ÇØ¾ßÇÔ
+        // ì†Œí™˜ í•˜ë©´ì„œ í•„ìš”í•œ ê°’ ì´ˆê¸°í™”
+        // TODO: ì‘ì„± í•´ì•¼í•¨
 
         isSpawn = false;
     }       // StartSpawn()
 
-    //! ½ºÆù À§Ä¡ ÁöÁ¤ÇØ ÁÖ±â
+    //! ìŠ¤í° ìœ„ì¹˜ ì§€ì •í•´ ì£¼ê¸°
     private void SelectIndex()
     {
         while (true)
@@ -125,7 +125,7 @@ public class MonsterSpawn : MonoBehaviour
                     indexSpawnChecks[randNumber] += 1;
 
                     break;
-                }       // FastMonster ¼±ÅÃ
+                }       // FastMonster ì„ íƒ
                 else
                 {
                     FindMonster(monsters[1], randNumber);
@@ -133,15 +133,15 @@ public class MonsterSpawn : MonoBehaviour
                     indexSpawnChecks[randNumber] += 1;
 
                     break;
-                }       // NormalMonster ¼±ÅÃ
+                }       // NormalMonster ì„ íƒ
             }
         }
     }       // SpawnPos()
 
-    //! ¿ÀºêÁ§Æ® Ç®¸µÀ» À§ÇÑ ¸ó½ºÅÍ ÀÌ¸§°ú °°Àº ºÎ¸ğ ¿ÀºêÁ§Æ® Ã£±â
+    //! ì˜¤ë¸Œì íŠ¸ í’€ë§ì„ ìœ„í•œ ëª¬ìŠ¤í„° ì´ë¦„ê³¼ ê°™ì€ ë¶€ëª¨ ì˜¤ë¸Œì íŠ¸ ì°¾ê¸°
     private void FindMonster(GameObject _monster, int _index)
     {
-        // ½ºÆùµÉ ¸ó½ºÅÍ À§Ä¡ ¼±Á¤ÇØÁÖ±â
+        // ìŠ¤í°ë  ëª¬ìŠ¤í„° ìœ„ì¹˜ ì„ ì •í•´ì£¼ê¸°
         Vector3 spawnPosition = SpawnPos(_index);
 
         for (int i = 0; i < parent.childCount; i++)
@@ -161,27 +161,26 @@ public class MonsterSpawn : MonoBehaviour
                             newMonster.SetActive(true);
 
                             break;
-                        }       // if: ºñÈ°¼ºÈ­ »óÅÂÀÇ ¿ÀºêÁ§Æ®¸¦ ¹ß°ßÇÏ¸é È°¼ºÈ­ ½ÃÄÑÁÖ±â
-                    }       // loop: ½ºÆùÇÒ À§Ä¡¿¡¼­ ºñÈ°¼ºÈ­ »óÅÂÀÎ ¿ÀºêÁ§Æ® Ã£±â
-                }       // if: ¿ÀºêÁ§Æ® Ç®¸µ ½ÃÀÛ
+                        }       // if: ë¹„í™œì„±í™” ìƒíƒœì˜ ì˜¤ë¸Œì íŠ¸ë¥¼ ë°œê²¬í•˜ë©´ í™œì„±í™” ì‹œì¼œì£¼ê¸°
+                    }       // loop: ìŠ¤í°í•  ìœ„ì¹˜ì—ì„œ ë¹„í™œì„±í™” ìƒíƒœì¸ ì˜¤ë¸Œì íŠ¸ ì°¾ê¸°
+                }       // if: ì˜¤ë¸Œì íŠ¸ í’€ë§ ì‹œì‘
 
-                // parent.GetChild(i).childCount °¡ 0ÀÌ°Å³ª ÀÚ½ÄÀÌ ¸ğµÎ È°¼ºÈ­ »óÅÂ¶ó¸é »õ·Î ½ºÆù
+                // parent.GetChild(i).childCount ê°€ 0ì´ê±°ë‚˜ ìì‹ì´ ëª¨ë‘ í™œì„±í™” ìƒíƒœë¼ë©´ ìƒˆë¡œ ìŠ¤í°
                 Spawn(_monster, spawnPosition, i);
 
                 break;
-            }       // if: ¸ó½ºÅÍ ÀÌ¸§°ú ºÎ¸ğ ¿ÀºêÁ§Æ®ÀÇ ÀÌ¸§ÀÌ °°ÀºÁö È®ÀÎ
-        }       // loop: ½ºÆùµÉ ¿ÀºêÁ§Æ®ÀÇ ºÎ¸ğ¿ÀºêÁ§Æ® ¼±Á¤
+            }       // if: ëª¬ìŠ¤í„° ì´ë¦„ê³¼ ë¶€ëª¨ ì˜¤ë¸Œì íŠ¸ì˜ ì´ë¦„ì´ ê°™ì€ì§€ í™•ì¸
+        }       // loop: ìŠ¤í°ë  ì˜¤ë¸Œì íŠ¸ì˜ ë¶€ëª¨ì˜¤ë¸Œì íŠ¸ ì„ ì •
     }       // FindMonster()
 
-    //! ½ºÆùÇÏ±â
+    //! ìŠ¤í°í•˜ê¸°
     private void Spawn(GameObject _monster, Vector3 _position, int _num)
     {
-        // »õ·Î¿î ¸ó½ºÅÍ »ı¼º
+        // ìƒˆë¡œìš´ ëª¬ìŠ¤í„° ìƒì„±
         Instantiate(_monster, _position, Quaternion.identity, parent.GetChild(_num));
-
     }       // Spawn()
 
-    //! °Å¸® ·£´ø À§Ä¡°ª Ã£±â
+    //! ê±°ë¦¬ ëœë˜ ìœ„ì¹˜ê°’ ì°¾ê¸°
     private Vector3 SpawnPos(int _index)
     {
         Vector3 spawnPosition = Vector3.zero;
@@ -208,17 +207,17 @@ public class MonsterSpawn : MonoBehaviour
         return spawnPosition;
     }
 
-    //! ·¹ÀÌÄ³½ºÆ®¸¦ ÀÌ¿ëÇÏ¿© Áö¸é Ã£±â
+    //! ë ˆì´ìºìŠ¤íŠ¸ë¥¼ ì´ìš©í•˜ì—¬ ì§€ë©´ ì°¾ê¸°
     private Vector3 RaycastPos(Vector3 _vector)
     {
-        _vector.y += 100.0f;        // ·¹ÀÌÄ³½ºÆ®¸¦ À§¿¡¼­ ¾Æ·¡·Î ½î±â À§ÇÑ ·ÎÁ÷
+        _vector.y += 100.0f;        // ë ˆì´ìºìŠ¤íŠ¸ë¥¼ ìœ„ì—ì„œ ì•„ë˜ë¡œ ì˜ê¸° ìœ„í•œ ë¡œì§
 
         RaycastHit hit;
 
         if (Physics.Raycast(_vector, raycastDown, out hit, raycastRange, layerMask))
         {
             return hit.point;
-        }       // ·¹ÀÌÄ³½ºÆ® ¾Æ·¡·Î ½î¾Æ¿Ã·ÈÀ» ¶§
+        }       // ë ˆì´ìºìŠ¤íŠ¸ ì•„ë˜ë¡œ ì˜ì•„ì˜¬ë ¸ì„ ë•Œ
         else
         {
             Debug.Log("Find not Ground Layer");
@@ -227,19 +226,25 @@ public class MonsterSpawn : MonoBehaviour
         }
     }
 
-    //! ¸ó½ºÅÍ ½ºÆù ±¸°£ ÁöÁ¤ÇÏ±â
+    //! ëª¬ìŠ¤í„° ìŠ¤í° êµ¬ê°„ ì§€ì •í•˜ê¸°
     private void SpawnIndex()
     {
-        // º¸½º ¸ó½ºÅÍ¿Í ÇÃ·¹ÀÌ¾î »çÀÌÀÇ °¢µµ °è»ê
+        // ë³´ìŠ¤ ëª¬ìŠ¤í„°ì™€ í”Œë ˆì´ì–´ ì‚¬ì´ì˜ ê°ë„ ê³„ì‚°
         Vector3 directionTarget = bossPos.transform.position - playerPos.transform.position;
         float currentDegree = Mathf.Atan2(directionTarget.x, directionTarget.z) * Mathf.Rad2Deg;
 
-        // -90 ~ +90 »çÀÌ¸¦ 5µîºĞ ÇÏ¿© Index ¸¸µé±â
+        // -90 ~ +90 ì‚¬ì´ë¥¼ 5ë“±ë¶„ í•˜ì—¬ Index ë§Œë“¤ê¸°
         for (int i = 0; i < 6; i++)
         {
-            // ÇÃ·¹ÀÌ¾î ±âÁØ º¸½º¸¦ ¹Ù¶óº¼ ¶§ ÃÊ±â °¢µµ: currentDegree
-            // i Áõ°¡¿¡ µû¶ó ¹è¿­¿¡ -90 ~ 90À¸·Î 6µîºĞ ÇÏ±â
+            // í”Œë ˆì´ì–´ ê¸°ì¤€ ë³´ìŠ¤ë¥¼ ë°”ë¼ë³¼ ë•Œ ì´ˆê¸° ê°ë„: currentDegree
+            // i ì¦ê°€ì— ë”°ë¼ ë°°ì—´ì— -90 ~ 90ìœ¼ë¡œ 6ë“±ë¶„ í•˜ê¸°
             indexDegrees[i] = currentDegree - 90 + i * 36;
         }
+    }
+
+    //! ë¯¸ë‹ˆë§µì— í‘œì‹œí•  ëª¬ìŠ¤í„° ìŠ¤í°
+    private void MinimapSpawn()
+    { 
+    
     }
 }       // class MonsterSpawn
