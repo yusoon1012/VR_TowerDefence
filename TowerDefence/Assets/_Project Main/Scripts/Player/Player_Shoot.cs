@@ -10,7 +10,7 @@ public class Player_Shoot : MonoBehaviour
     public GameObject magicPrefab;
     public GameObject strongMagicPrefab;
     private float shootingCoolTime = 0;
-    private float shootRate = 1.1f;
+    private float shootRate = 0.5f;
     private int attackEnforceCount = 0;
     Player_Shop shop;
     // Start is called before the first frame update
@@ -26,14 +26,14 @@ public class Player_Shoot : MonoBehaviour
         {
             return;
         }
-        if(Shop_Buff.instance.isAttackEnforce==false)
-        {
-            attackEnforceCount = 0;
-        }
+       
         ARAVRInput.DrawCrosshair(crossHair);
         shootingCoolTime += Time.deltaTime;
-        if (ARAVRInput.GetDown(ARAVRInput.Button.IndexTrigger,ARAVRInput.Controller.RTouch))
+        float horizontalInput = ARAVRInput.GetAxis("Horizontal", ARAVRInput.Controller.RTouch);
+        transform.Rotate(new Vector3(0, horizontalInput*30, 0));
+        if (ARAVRInput.Get(ARAVRInput.Button.IndexTrigger,ARAVRInput.Controller.RTouch))
         {
+
             if(shootingCoolTime<shootRate)
             {
                 return;
@@ -44,19 +44,22 @@ public class Player_Shoot : MonoBehaviour
             }
             Vector3 handRotation = ARAVRInput.RHandDirection;
             Quaternion staffRotation=Quaternion.LookRotation(handRotation);
-            if(Shop_Buff.instance.isAttackEnforce)
-            {
-                attackEnforceCount += 1;
-            }
+           
+            
 
-            if(Shop_Buff.instance.isAttackEnforce&&attackEnforceCount==3)
+                attackEnforceCount += 1;
+            if( attackEnforceCount==5)
             {
                 GameObject strongMagic = Instantiate(strongMagicPrefab, staffTop.position, staffRotation);
                 attackEnforceCount = 0;
+                
+                ARAVRInput.PlayVibration(shootRate / 2, 1000, 1000, ARAVRInput.Controller.RTouch);
+
             }
             else
             {
             GameObject magic = Instantiate(magicPrefab, staffTop.position, staffRotation);
+                ARAVRInput.PlayVibration(shootRate / 2, 50, 50, ARAVRInput.Controller.RTouch);
 
             }
         }

@@ -18,6 +18,7 @@ public class MidBoss : MonoBehaviour
     // 중간 보스 HP 량
     public int midBossHp = 50;
 
+    public Transform fireBallSpawnPosition;
     // 중간 보스 등장 시 최종적으로 이동할 위치
     private Vector3 groundMidBossPosition = Vector3.zero;
     // 중간 보스의 초기 위치 값
@@ -57,7 +58,7 @@ public class MidBoss : MonoBehaviour
         groundMidBossPosition = new Vector3(720f,5f , 265f);
         // 중간 보스의 초기 위치 값
         midBossOriginPosition = new Vector3(720f, 500f, 265f);
-        bossFireBallShootPosition = new Vector3(720f, 50f, 265f);
+        bossFireBallShootPosition = fireBallSpawnPosition.position ;
         throwSphereTimepass = 0f;
         rand = 0;
         rb=GetComponent<Rigidbody>();
@@ -152,6 +153,7 @@ public class MidBoss : MonoBehaviour
     private void ThrowSphere()
     {
         // 발사 스펠을 활성화 시킴
+        bossFireBallShootPosition = fireBallSpawnPosition.position;
         fireBall.transform.position = bossFireBallShootPosition;
         Rigidbody fireBallRigid=fireBall.gameObject.GetComponent<Rigidbody>();
         if (fireBallRigid != null)

@@ -6,9 +6,10 @@ public class Player_Parry : MonoBehaviour
 {
     public ParticleSystem particle;
     FinalBoss boss;
+    public Transform playerTransform;
     public Transform bossTransform;
     float speed;
-    bool isParriable=false;
+    public bool isParriable=false;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +20,7 @@ public class Player_Parry : MonoBehaviour
     void Update()
     {
         speed = OVRInput.GetLocalControllerVelocity(OVRInput.Controller.RTouch).magnitude;
-        if (speed >= 1f )
+        if (speed >= 1f)
         {
             Debug.Log("1보다 빠르다");
             isParriable = true;
@@ -38,10 +39,10 @@ public class Player_Parry : MonoBehaviour
             Rigidbody rb= other.GetComponent<Rigidbody>();
             if(rb != null )
             {
-                Vector3 dir=(bossTransform.position-transform.position).normalized;
+                Vector3 dir=(bossTransform.position- playerTransform.position).normalized;
                
                 rb.velocity = Vector3.zero;
-                rb.AddForce(dir*50f,ForceMode.Impulse);
+                rb.AddForce(dir*100f,ForceMode.Impulse);
                 particle.Play();
             }
             }
