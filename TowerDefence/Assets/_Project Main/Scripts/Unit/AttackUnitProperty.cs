@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ¼³Ä¡/°ø°İÇü À¯´ÖÀÇ ¼Ó¼º Á¤º¸
+/// ì„¤ì¹˜/ê³µê²©í˜• ìœ ë‹›ì˜ ì†ì„± ì •ë³´
 /// </summary>
 public class AttackUnitProperty : MonoBehaviour
 {
-    public int power; // °ø°İ·Â
-    public int speed; // ¼Óµµ
-    public int recognition_Range; // ÀÎ½Ä ¹üÀ§
-    public int attack_Range; // °ø°İ ¹üÀ§ 
+    public int attcakRange; // ê³µê²©ë²”ìœ„
+    public int damage; // ë°ë¯¸ì§€(ê³µê²©ë ¥)
+    public int attackCount; // ê³µê²©ëŒ€ìƒ
+    public int speed; // ê³µê²©ì†ë„
+    public int rotateSpeed; // íšŒì „ì†ë„
+    public int HP; // ì²´ë ¥
 }

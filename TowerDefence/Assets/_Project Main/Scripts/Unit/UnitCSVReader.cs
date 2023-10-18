@@ -25,10 +25,12 @@ public class UnitCSVReader : MonoBehaviour
         // CSV Line
         string[] attackUnitCSV_Line, buffUnitCSV_Line = default;
 
-        int power_Index = -1;
-        int speed_Index = -1;
-        int recognitionRange_Index = -1;
-        int attackRange_Index = -1;
+        int attcakRange_Index = -1; // 공격범위
+        int damage_Index = -1; // 데미지(공격력)
+        int attackCount_Index = -1; // 공격대상
+        int speed_Index = -1; // 공격속도
+        int rotateSpeed_Index = -1; // 회전속도
+        int HP_Index = -1; // 체력
 
         if (attackUnitCSV != null && buffUnitCSV != null)
         {
@@ -54,30 +56,38 @@ public class UnitCSVReader : MonoBehaviour
             for (int i = 0; i < headers.Length; i++)
             {
                 /// IF TODO: 만약 나중에 유닛 추가 시 "Type" 헤더도 추가할 것 
-                if (headers[i] == "Power")
+                // 공격범위, 데미지, 공격대상, 공격속도, 회전속도, 체력
+                if (headers[i] == "공격범위")
                 {
-                    power_Index = i;
+                    attcakRange_Index = i;
                 }
-                else if (headers[i] == "Speed")
+                else if (headers[i] == "데미지")
+                {
+                    damage_Index = i;
+                }
+                else if (headers[i] == "공격대상")
+                {
+                    attackCount_Index = i;
+                }
+                else if (headers[i] == "공격속도")
                 {
                     speed_Index = i;
                 }
-                else if (headers[i] == "Recognition_Range")
+                else if (headers[i] == "회전속도")
                 {
-                    recognitionRange_Index = i;
+                    rotateSpeed_Index = i;
                 }
-                /// Point: (나중에 수정 필요) Attack_Range 뒤 개행문자 탓인지 제대로 못잡아서 임시방편으로 처리
-                else if (headers[i] == headers[4])
+                else if (headers[i] == headers[8]) // Issue: 왜 '체력'을 체크하지 못하는가? 
                 {
-                    attackRange_Index = i;
+                    HP_Index = i;
                 }
             }
 
             // 속성 실부여
-            foreach (GameObject unit in UnitBuildSystem.units) // 유닛 리스트 전체 검색
+            for (int i = 0; i < UnitBuildSystem.units.Count; i++) // 유닛 리스트 전체 검색
             {
+                GameObject unit = UnitBuildSystem.units[i];
                 AttackUnitProperty attackComponent = unit.GetComponent<AttackUnitProperty>(); // 설치/공격형 유닛 확인
-                UnitBuffSystem buffComponent = transform.GetComponent<UnitBuffSystem>(); // 버프형 유닛 확인
 
                 if (attackComponent != null)
                 {
@@ -86,26 +96,38 @@ public class UnitCSVReader : MonoBehaviour
                         lines = attackUnitCSV_Line[1].Split(','); // Bomb에 해당하는 줄
                         AttackUnitProperty bombProperty = unit.GetComponent<AttackUnitProperty>();
 
-                        bombProperty.power = int.Parse(lines[power_Index]);
+                        bombProperty.attcakRange = int.Parse(lines[attcakRange_Index]);
+                        bombProperty.damage = int.Parse(lines[damage_Index]);
+                        bombProperty.attackCount = int.Parse(lines[attackCount_Index]);
                         bombProperty.speed = int.Parse(lines[speed_Index]);
-                        bombProperty.recognition_Range = int.Parse(lines[recognitionRange_Index]);
-                        bombProperty.attack_Range = int.Parse(lines[attackRange_Index]);
+                        bombProperty.rotateSpeed = int.Parse(lines[rotateSpeed_Index]);
+                        bombProperty.HP = int.Parse(lines[HP_Index]);
                     }
                     else if (unit.name == "Blade Unit(Clone)") // 칼날 유닛일때
                     {
                         lines = attackUnitCSV_Line[2].Split(','); // Blade에 해당하는 줄
                         AttackUnitProperty bladeProperty = unit.GetComponent<AttackUnitProperty>();
 
-                        bladeProperty.power = int.Parse(lines[power_Index]);
+                        bladeProperty.attcakRange = int.Parse(lines[attcakRange_Index]);
+                        bladeProperty.damage = int.Parse(lines[damage_Index]);
+                        bladeProperty.attackCount = int.Parse(lines[attackCount_Index]);
                         bladeProperty.speed = int.Parse(lines[speed_Index]);
-                        bladeProperty.recognition_Range = int.Parse(lines[recognitionRange_Index]);
-                        bladeProperty.attack_Range = int.Parse(lines[attackRange_Index]);
+                        bladeProperty.rotateSpeed = int.Parse(lines[rotateSpeed_Index]);
+                        bladeProperty.HP = int.Parse(lines[HP_Index]);
+
                     }
-                }
+                    else if (unit.name == "Shoot Boss Unit(Clone)")
+                    {
+                        lines = attackUnitCSV_Line[3].Split(','); // Blade에 해당하는 줄
+                        AttackUnitProperty shootBossProperty = unit.GetComponent<AttackUnitProperty>();
 
-                if (buffComponent != null)
-                {
-
+                        shootBossProperty.attcakRange = int.Parse(lines[attcakRange_Index]);
+                        shootBossProperty.damage = int.Parse(lines[damage_Index]);
+                        shootBossProperty.attackCount = int.Parse(lines[attackCount_Index]);
+                        //shootBossProperty.speed = int.Parse(lines[speed_Index]);
+                        shootBossProperty.rotateSpeed = int.Parse(lines[rotateSpeed_Index]);
+                        shootBossProperty.HP = int.Parse(lines[HP_Index]);
+                    }
                 }
             }
             #endregion

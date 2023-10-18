@@ -4,7 +4,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 /// <summary>
-/// ¼³Ä¡/°ø°İÇü À¯´Ö: Á¹°³ Á¢±Ù ½Ã Æø¹ß
+/// ì„¤ì¹˜/ê³µê²©í˜• ìœ ë‹›: ì¡¸ê°œ ì ‘ê·¼ ì‹œ í­ë°œ
 /// </summary>
 public class UnitAttack_Bomb : MonoBehaviour
 {
@@ -13,27 +13,13 @@ public class UnitAttack_Bomb : MonoBehaviour
         UnitBuildSystem.units.Add(transform.gameObject);
     }
 
-    /// <summary>
-    /// Á¹°³¸¦ °¨ÁöÇÏ´Â ¸Ş¼­µå
-    /// </summary>
-    private Collider[] EnemyGotcha
-   {
-        get
-        {
-            float radius = 5f; // Á¹°³ Å½Áö ¹İ°æ
-            int enemyLayer = 1 << LayerMask.NameToLayer("Enemy"); // Á¹°³ ·¹ÀÌ¾î¸¶½ºÅ©
-            Collider[] colliders = Physics.OverlapSphere(transform.position, radius, enemyLayer); // Á¹°³ °ËÃâ
-
-            return colliders;
-        }
-   }
-
-    private void Update()
+    private void OnCollisionEnter(Collision collision)
     {
-        if (EnemyGotcha.Length > 0) // ¹İ°æ ³» Á¹°³ ÇÏ³ª ÀÌ»ó °ËÃâ
+        int enemyMask = 1 << LayerMask.NameToLayer("Enemy"); // ì¡¸ê°œ ë ˆì´ì–´ë§ˆìŠ¤í¬
+
+        if (collision.gameObject.layer == enemyMask) // ì¶©ëŒí•œ ê²Œ ì¡¸ê°œ ë ˆì´ì–´ë§ˆìŠ¤í¬ë¥¼ ê°€ì§€ê³  ìˆë‹¤ë©´ 
         {
-            // TODO: Á¹°³ & ÀÌÆåÆ® Ãß°¡ ÈÄ Æø¹ß Ã³¸® Â¥±â
-            Debug.Log("Æø¹ß!");
+            Debug.Log("í­ë°œ!");
         }
     }
 }
