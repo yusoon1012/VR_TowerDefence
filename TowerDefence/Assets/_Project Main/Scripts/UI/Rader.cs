@@ -44,6 +44,8 @@ public class Rader : MonoBehaviour
 
         for (int i = 0; i < monsterRaders.Count; i++)
         {
+            monsterRaders[i].SetActive(monsterReals[i].activeSelf);
+
             Vector3 offset = new Vector3(playerReal.position.x, playerReal.position.z, 0.0f) -
                              new Vector3(monsterReals[i].transform.position.x, monsterReals[i].transform.position.z, 0.0f);
 
@@ -59,10 +61,44 @@ public class Rader : MonoBehaviour
 
     public void SetMonster(GameObject _monster)
     {
-        monsterReals.Add(_monster);
+        if (monsterRaders.Count != 0)
+        {
+            for (int i = 0; i < monsterRaders.Count; i++)
+            {
+                if (i == monsterRaders.Count - 1)
+                {
+                    monsterReals.Add(_monster);
 
-        GameObject newMonsterRader = Instantiate(monsterRader, monsterRaderParent);
+                    GameObject newMonsterRader = Instantiate(monsterRader, monsterRaderParent);
 
-        monsterRaders.Add(newMonsterRader);
+                    monsterRaders.Add(newMonsterRader);
+
+                    break;
+                }
+                else if (!monsterRaders[i].activeSelf)
+                {
+                    monsterReals[i] = _monster;
+
+                    break;
+                }
+            }
+        }
+        else
+        {
+            monsterReals.Add(_monster);
+
+            GameObject newMonsterRader = Instantiate(monsterRader, monsterRaderParent);
+
+            monsterRaders.Add(newMonsterRader);
+        }
+
+
+
+
+        //monsterReals.Add(_monster);
+
+        //GameObject newMonsterRader = Instantiate(monsterRader, monsterRaderParent);
+
+        //monsterRaders.Add(newMonsterRader);
     }
 }
