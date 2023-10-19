@@ -73,6 +73,7 @@ public class ObjectPooling : MonoBehaviour
         {
             // 이전에 발사한 구체를 비활성화 시킨다
             bossThrowSpell[rand].gameObject.SetActive(false);
+            bossThrowSpell[rand].transform.position = midBossShootPosition.position;
         }
 
         // 구체를 발사 할 보스 타입을 구분하여 저장한다
@@ -118,17 +119,21 @@ public class ObjectPooling : MonoBehaviour
         if (bossType == 1)
         {
             // 랜덤 값으로 지정받은 구체 타입을 활성화
+           bossThrowSpell[rand].transform.position = midBossShootPosition.position;
+            Rigidbody rb = bossThrowSpell[rand].GetComponent<Rigidbody>();
+            rb.velocity = Vector3.zero;
             bossThrowSpell[rand].gameObject.SetActive(true);
             // 활성화 된 구체를 보스에서 발사 할 지역으로 이동시킨다
-            bossThrowSpell[rand].transform.position = midBossShootPosition.position;
         }
         // 보스 타입이 2 면 최종 보스에서 구체를 발사
         else if (bossType == 2)
         {
             // 랜덤 값으로 지정받은 구체 타입을 활성화
+            bossThrowSpell[rand].transform.position = finalBossShootPosition.position;
+            Rigidbody rb = bossThrowSpell[rand].GetComponent<Rigidbody>();
+            rb.velocity = Vector3.zero;
             bossThrowSpell[rand].gameObject.SetActive(true);
             // 활성화 된 구체를 보스에서 발사 할 지역으로 이동시킨다.
-            bossThrowSpell[rand].transform.position = finalBossShootPosition.position;
         }
     }     // Launch()
 }

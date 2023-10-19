@@ -24,7 +24,7 @@ public class FinalBoss : MonoBehaviour
     // 보스 게임 오브젝트
     private GameObject finalBossObj = default;
     // 중간 보스 게임 오브젝트
-    private GameObject midBossObj = default;
+    public GameObject midBossObj = default;
     // 발사 스펠의 오브젝트
     private GameObject fireBallShootObject = default;
     // 최종 보스의 애니메이터
@@ -64,7 +64,7 @@ public class FinalBoss : MonoBehaviour
         finalBossObj = GetComponent<GameObject>();
         finalBossAnimator = GetComponent<Animator>();
         // 중간 보스의 오브젝트를 찾아서 참조
-        midBossObj = GameObject.Find("MidBoss");
+     
        
 
         actionTime = 0f;
@@ -97,7 +97,7 @@ public class FinalBoss : MonoBehaviour
         finalBossObj = GetComponent<GameObject>();
         finalBossAnimator = GetComponent<Animator>();
         // 중간 보스의 오브젝트를 찾아서 참조
-        midBossObj = GameObject.Find("MidBoss");
+       
         fireBallShootObject = GameObject.Find("ObjectPooling").gameObject;
 
         // 보스 HP 에서 80% 수치 값 저장

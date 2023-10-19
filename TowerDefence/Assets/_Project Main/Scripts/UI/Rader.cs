@@ -53,7 +53,7 @@ public class Rader : MonoBehaviour
             Vector3 rotatedPos = rotation * -offset;
 
             // 회전한 위치를 사용하여 monsterRader의 위치를 설정
-            monsterRaders[i].transform.position = rotatedPos * 0.04f + transform.position;
+            monsterRaders[i].transform.position = rotatedPos * 0.008f + transform.position;
         }
     }
 

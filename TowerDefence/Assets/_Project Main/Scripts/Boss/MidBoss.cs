@@ -26,7 +26,7 @@ public class MidBoss : MonoBehaviour
     // 중간 보스의 스펠 발사 전 스펠의 초기 위치 값
 
     // 최종 보스 오브젝트
-    private GameObject finalBossObj = default;
+    public GameObject finalBossObj = default;
     // 중간 보스 오브젝트
     private GameObject midBossObj = default;
     // 중간 보스의 발사되는 스펠 오브젝트
