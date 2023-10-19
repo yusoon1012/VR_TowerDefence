@@ -57,6 +57,9 @@ public class MonsterSpawn : MonoBehaviour
     private Vector3 raycastDown = new Vector3(0.0f, -1.0f, 0.0f); // 레이 방향 (아래)
     private float raycastRange = 100.0f;                          // 레이 길이
 
+    [SerializeField]
+    private Rader rader = default;
+
     //! 몬스터가 소환될 인덱스 값 정해주기, indexSpawnChecks 배열 0으로 초기화
     private void Start()
     {
@@ -160,6 +163,8 @@ public class MonsterSpawn : MonoBehaviour
 
                             newMonster.SetActive(true);
 
+                            SpawnRader(newMonster);
+
                             break;
                         }       // if: 비활성화 상태의 오브젝트를 발견하면 활성화 시켜주기
                     }       // loop: 스폰할 위치에서 비활성화 상태인 오브젝트 찾기
@@ -177,7 +182,9 @@ public class MonsterSpawn : MonoBehaviour
     private void Spawn(GameObject _monster, Vector3 _position, int _num)
     {
         // 새로운 몬스터 생성
-        Instantiate(_monster, _position, Quaternion.identity, parent.GetChild(_num));
+        GameObject newMonster = Instantiate(_monster, _position, Quaternion.identity, parent.GetChild(_num));
+
+        SpawnRader(newMonster);
     }       // Spawn()
 
     //! 거리 랜던 위치값 찾기
@@ -242,9 +249,9 @@ public class MonsterSpawn : MonoBehaviour
         }
     }
 
-    //! 미니맵에 표시할 몬스터 스폰
-    private void MinimapSpawn()
-    { 
-    
+    //! 몬스터 생성을 Rader 에도 표시하기
+    private void SpawnRader(GameObject _monster)
+    {
+        rader.SetMonster(_monster);
     }
 }       // class MonsterSpawn
