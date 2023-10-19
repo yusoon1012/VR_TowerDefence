@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+//using System.Numerics;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
@@ -15,25 +16,39 @@ public class UnitAttack_Bomb : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        int enemyMask = 1 << LayerMask.NameToLayer("Enemy"); // 졸개 레이어마스크
-
-        if (collision.gameObject.layer == enemyMask) // 충돌한게 졸개 레이어마스크를 가지고 있다면 
+        if (collision.gameObject.CompareTag("Enemy")) // 충돌한 것이 졸개 태그라면
         {
             Explosion();
         }
     }
 
-    private Collider[] Enemies()
+    private GameObject[] Enemies
     {
-        float radius = 15f; // 폭발 반경
-        int enemyMask = 1 << LayerMask.NameToLayer("Enemy");
+        get
+        {
+            float radius = 16 / 2f; // 폭발 반경
 
-        Collider[] enemyList = Physics.OverlapSphere(transform.position, radius, enemyMask); // 검출된 졸개 배열
-        return enemyList;
+            Collider[] colliders = Physics.OverlapSphere(transform.position, radius); // 검출 배열
+            GameObject[] enemies = new GameObject[colliders.Length]; // 검출 적 배열
+
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                if (colliders[i].gameObject.CompareTag("Enemy")) // 졸개 태그면
+                {
+                    enemies[i] = colliders[i].gameObject; // 추가
+                }
+            }
+            return enemies;
+        }
     }
 
     private void Explosion()
     {
-        // TODO: foreach문을 돌려 Enemies 게임오브젝트의 속성 스크립트를 가져와 HP를 깎는다. 
+        // TODO: 이펙트 추가
+
+        for (int i = 0; i < Enemies.Length; i++)
+        {
+            Enemies[i].transform.GetComponent<MonsterInfo>().MonsterDamaged(15); // 15만큼 공격
+        }
     }
 }

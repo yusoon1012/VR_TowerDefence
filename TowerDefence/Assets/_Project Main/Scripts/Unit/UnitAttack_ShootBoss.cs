@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class UnitAttack_ShootBoss : MonoBehaviour
 {
@@ -11,7 +13,18 @@ public class UnitAttack_ShootBoss : MonoBehaviour
     private Vector3 poolPos = new Vector3(0f, -10f, 0f); // 풀 포지션
     private Vector3 bossPosition = default; // 타겟 포지션 (보스)
 
-    private int unitHP = 100;
+    // 유닛 HP
+    public int unitHP = 100; // HP
+    private bool hit = false; // 피격 상태 체크
+    float time = 0f; // 피격 타임
+
+    Transform pivot = default; // 투석 시 회전
+    float initialSpeed = 10f; // 초기 회전 속도
+    float decelaration = 0.5f; // 감속도
+    bool fire = false; // 투척 중
+    bool pivotRotate = false; // 회전
+
+    private event EventHandler throwSphere;
 
     private void Awake()
     {
@@ -20,7 +33,10 @@ public class UnitAttack_ShootBoss : MonoBehaviour
         bossPosition = boss.transform.position;
         bossPosition.y = boss.GetComponent<Collider>().bounds.size.y * 0.55f; // 보스 키의 55% 지점 타격
 
-        firePosition = transform.GetChild(0);
+        firePosition = transform.GetChild(1);
+        pivot = transform.GetChild(0).transform.GetChild(1);
+
+        throwSphere += PivotRotate;
     }
 
     private void Update()
@@ -36,12 +52,44 @@ public class UnitAttack_ShootBoss : MonoBehaviour
         {
             StartCoroutine(ReadyFire());
         }
+
+        #region 유닛이 피격 당함
+        FindEnemy(); // 피격 체크
+
+        if (hit) // 피격 상태라면
+        {
+            int delayHit = 5;
+
+            if (time < delayHit)
+            {
+                time += Time.deltaTime;
+            }
+            else if (time >= delayHit)
+            {
+                time = 0f; // 타임 초기화
+                unitHP -= 10; // 피격 처리 
+            }
+        }
+        #endregion
     }
 
-    //private float HitDistance
-    //{
-      
-    //}
+    /// <summary>
+    /// 근처에 졸개가 있는지 검색하는 메서드 
+    /// </summary>
+    private void FindEnemy()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy"); // 졸개 태그를 달고 있는 오브젝트 배열 검출
+        GameObject[] detectedEnemies = default;
+
+        for (int i = 0; i < enemies.Length; i++) // 모든 적 검사
+        {
+            // TODO: 유닛과의 거리 계산, 만약 일정 거리 내 있다면 유닛은 피격됨. 
+            if (Vector3.Distance(transform.position, enemies[i].transform.position) <= 1f) // 거리 1 안쪽으로 적이 존재
+            {
+                hit = true;
+            }
+        }
+    }
 
     #region 투척
     /// <summary>
@@ -79,21 +127,20 @@ public class UnitAttack_ShootBoss : MonoBehaviour
 
     }
 
-    /// <summary>
     /// 연사 시간 조정
     /// </summary>
     /// <returns></returns>
     private IEnumerator ReadyFire()
     {
-        bool fire = true;
+        fire = true;
 
         while (fire)
         {
+            throwSphere?.Invoke(this, EventArgs.Empty);
             Fire();
 
             yield return new WaitForSeconds(2.5f); // 연사 대기 시간
         }
-
     }
 
     /// <summary>
@@ -111,6 +158,32 @@ public class UnitAttack_ShootBoss : MonoBehaviour
         sphereRigid.velocity = velocity;
 
         Path(velocity); // CaculateVelocity()의 계산값을 궤적을 그리는데 이용
+    }
+
+    void PivotRotate(object sender, EventArgs e) { pivotRotate = true; } // 투척 시 이벤트 발생
+
+    private void FixedUpdate()
+    {
+        if (fire && pivotRotate) // 앞으로 투척 
+        {
+            float degree = 200f;
+            float currentYRotation = pivot.transform.rotation.eulerAngles.y;
+
+            if (currentYRotation < 75)
+            {
+                Debug.Log("이동 시도");
+                pivot.transform.Rotate(-Vector3.up * Time.fixedDeltaTime * degree);
+            }
+            else if (currentYRotation >= 75) // 75가 회전각도
+            {
+                Debug.Log("정지 시도");
+                pivot.transform.rotation = pivot.transform.rotation; // 회전 정지
+            }
+        }
+        else if (fire && !pivotRotate) // 재투척 준비
+        {
+            Debug.Log("재투척 준비");
+        }
     }
 
     /// <summary>

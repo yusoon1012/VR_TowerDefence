@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class Bullet_HitBoss : MonoBehaviour
 {
+    FinalBoss finalBoss = new FinalBoss();
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Boss"))
         {
-            // TODO: Boss HP Damage
+            Debug.Log("보스 타격!");
+
             GameObject finalBoss = collision.gameObject;
-            finalBoss.GetComponent<FinalBoss>().finalBossHp -= 75; // TODO: CSV를 통해 변경 가능하도록 수정. 
+            finalBoss.GetComponent<FinalBoss>().HitDamage(10); // TODO: 데미지 임시값 교체 
         }
+
+        // TODO: (임시) Destroy, (후에 수정) 오브젝트 풀링
     }
 }
