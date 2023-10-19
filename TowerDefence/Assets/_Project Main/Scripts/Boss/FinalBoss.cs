@@ -65,9 +65,7 @@ public class FinalBoss : MonoBehaviour
         finalBossAnimator = GetComponent<Animator>();
         // 중간 보스의 오브젝트를 찾아서 참조
         midBossObj = GameObject.Find("MidBoss");
-        fireBall = GameObject.Find("BossFireBall");
-
-        bossFireBallShootPosition = new Vector3(5f, 155f, 185f);
+       
 
         actionTime = 0f;
         actionMaxTime = 5f;
@@ -87,7 +85,7 @@ public class FinalBoss : MonoBehaviour
     {
         // { CSV 파일 정보 읽기
         // CSV 에서 최종 보스 HP 값을 불러옴
-        int.TryParse(GameManager.instance.bossData["Hp"][1], out finalBossHp);
+        float.TryParse(GameManager.instance.bossData["Hp"][1], out finalBossHp);
         // CSV 에서 최종 보스 구체 발사 쿨타임 값을 불러옴
         float.TryParse(GameManager.instance.bossData["Attack_Cooltime"][1], out throwSphereTime);
         // CSV 에서 최종 보스의 졸개 소환 쿨타임 값을 불러옴

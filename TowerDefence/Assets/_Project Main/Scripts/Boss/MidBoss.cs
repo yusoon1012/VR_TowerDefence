@@ -198,14 +198,14 @@ public class MidBoss : MonoBehaviour
     private void ThrowSphere()
     {
         // 발사 스펠을 활성화 시킴
-        bossFireBallShootPosition = fireBallSpawnPosition.position;
-        fireBall.transform.position = bossFireBallShootPosition;
-        Rigidbody fireBallRigid=fireBall.gameObject.GetComponent<Rigidbody>();
-        if (fireBallRigid != null)
-        {
-            fireBallRigid.velocity = Vector3.zero;
-        }
-        fireBall.gameObject.SetActive(true);
+        //bossFireBallShootPosition = fireBallSpawnPosition.position;
+        //fireBall.transform.position = bossFireBallShootPosition;
+        //Rigidbody fireBallRigid=fireBall.gameObject.GetComponent<Rigidbody>();
+        //if (fireBallRigid != null)
+        //{
+        //    fireBallRigid.velocity = Vector3.zero;
+        //}
+        //fireBall.gameObject.SetActive(true);
         // 발사 스펠의 위치를 발사 전 위치로 초기화 시킴
         // 공격 애니메이션을 끔
         isAttack = false;

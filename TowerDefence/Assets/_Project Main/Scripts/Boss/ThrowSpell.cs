@@ -9,7 +9,8 @@ public class ThrowSpell : MonoBehaviour
     public float speed = 10f;
     // 보스 구체의 데미지 값
     public int power = default;
-    
+
+    public Transform initPosition;
     // 날아가는 스펠의 리짓바디
     private Rigidbody spellRigidbody = default;
     // 플레이어 트랜스폼
@@ -27,11 +28,12 @@ public class ThrowSpell : MonoBehaviour
         spellRigidbody = GetComponent<Rigidbody>();
         // 플레이어의 트랜스폼 참조
         playerTransform = GameObject.Find("Player").transform;
+        Vector3 dir = (playerTransform.position - initPosition.position).normalized;
+        spellRigidbody.velocity = dir * speed;
     }     // Start()
 
-        Vector3 dir = (playerTransform.position - initPosition).normalized;
-        spellRigidbody.velocity = dir * speed;
-    }
+
+
     void Update()
     {
         //// 보스의 구체가 플레이어를 바라보게 한다
@@ -48,8 +50,8 @@ public class ThrowSpell : MonoBehaviour
         {
             /* Init : 플레이어에게 스펠이 닿으면 실행 */
             spellRigidbody.velocity = Vector3.zero;
-            Player_Status player=collision.gameObject.GetComponent<Player_Status>();
-            if(player != null )
+            Player_Status player = collision.gameObject.GetComponent<Player_Status>();
+            if (player != null)
             {
                 gameObject.SetActive(false);
                 player.PlayerDamaged(5);
@@ -57,3 +59,4 @@ public class ThrowSpell : MonoBehaviour
         }
     }     // OnTriggerEnter()
 }
+
