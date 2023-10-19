@@ -1027,6 +1027,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MidBoss 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1875298177425356404, guid: 0e48fa41e20688d48b46c0b611f02c9c,
+        type: 3}
+      propertyPath: m_TagString
+      value: MidBoss
+      objectReference: {fileID: 0}
     - target: {fileID: 1877195679191362344, guid: 0e48fa41e20688d48b46c0b611f02c9c,
         type: 3}
       propertyPath: m_RootOrder
