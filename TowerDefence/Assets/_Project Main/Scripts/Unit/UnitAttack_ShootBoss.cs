@@ -10,13 +10,15 @@ public class UnitAttack_ShootBoss : MonoBehaviour
     private Transform firePosition; // 발사 위치
 
     private Vector3 poolPos = new Vector3(0f, -10f, 0f); // 풀 포지션
-    private GameObject boss = default; // 보스
+    private Vector3 bossPosition = default; // 타겟 포지션 (보스)
     
 
     private void Awake()
     {
         UnitBuildSystem.units.Add(transform.gameObject);
-        boss = GameObject.FindWithTag("Boss");
+        GameObject boss = GameObject.FindWithTag("Boss");
+        bossPosition = boss.transform.position;
+        bossPosition.y = boss.GetComponent<Collider>().bounds.size.y * 0.55f; // 보스 키의 55% 지점 타격
 
         firePosition = transform.GetChild(0);
     }
@@ -30,7 +32,7 @@ public class UnitAttack_ShootBoss : MonoBehaviour
         {
             Vector3 unitPos = transform.position;
             unitPos.y = 0.5f;
-            Vector3 bossPos = boss.transform.position;
+            Vector3 bossPos = bossPosition;
             bossPos.y = 0.5f;
 
             float distance = Vector3.Distance(bossPos, unitPos);
@@ -46,9 +48,10 @@ public class UnitAttack_ShootBoss : MonoBehaviour
             FindBoss();
         }
 
+        // TODO: 유닛 구매 & 배치 상태에서 작동하도록 변경 
         if (ARAVRInput.GetDown(ARAVRInput.Button.IndexTrigger, ARAVRInput.Controller.RTouch))
         {
-            Fire();
+            StartCoroutine(ReadyFire());
         }
     }
 
@@ -61,7 +64,7 @@ public class UnitAttack_ShootBoss : MonoBehaviour
 
         Vector3 unitPos = transform.position;
         unitPos.y = 0.5f;
-        Vector3 bossPos = boss.transform.position;
+        Vector3 bossPos = bossPosition;
         bossPos.y = 0.5f;
 
         Vector3 direction = (bossPos - unitPos).normalized; // 유닛 방향값 계산
@@ -71,11 +74,28 @@ public class UnitAttack_ShootBoss : MonoBehaviour
     }
 
     /// <summary>
+    /// 연사 시간 조정
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator ReadyFire()
+    {
+        bool fire = true;
+
+        while (fire)
+        {
+            Fire();
+
+            yield return new WaitForSeconds(1.5f); // 연사 대기 시간
+        }
+
+    }
+
+    /// <summary>
     /// 발사
     /// </summary>
     private void Fire()
     {
-        Vector3 velocity = CaculateVelocity(boss.transform.position, transform.position, 1f);
+        Vector3 velocity = CaculateVelocity(bossPosition, transform.position, 2f); // Velocity 계산은 항시
 
         Rigidbody sphereRigid = default; // 테스트
 
