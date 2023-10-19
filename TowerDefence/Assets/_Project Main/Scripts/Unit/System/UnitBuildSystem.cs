@@ -13,6 +13,8 @@ public class UnitBuildSystem : MonoBehaviour
     public static List<GameObject> units = new List<GameObject>();
     // 풀 포지션
     private Vector3 poolPos = new Vector3(0f, -10f, 0f);
+    // 유닛 설치 위치 
+    private Vector3 buildPos = default;
 
     #region 게임 오브젝트 변수
     // 타워 프리팹
@@ -61,13 +63,17 @@ public class UnitBuildSystem : MonoBehaviour
         red = Resources.Load<Material>("Material/Red");
 
         unit = shootBossUnit; // (test)
+        Debug.Assert(unit != null);
         selectUnit = selectShootBossUnit; // (test)
+        Debug.Assert(selectUnit != null);
 
         shootBossUnit.GetComponent<UnitAttack_ShootBoss>().enabled = true; // Issue: 비활성화 문제로 넣은 코드 
     }
 
     private void Update()
     {
+        Debug.Log("작동 중");
+
         #region 유닛 설치
         //if (/*Shop_Buff에 폭탄유닛 bool 추가되면 넣기*/ !buildBombUnit) // 폭탄유닛를 구매 & 비활성화 중
         //{
@@ -145,7 +151,7 @@ public class UnitBuildSystem : MonoBehaviour
         }
     }
 
-    #region 폭탄 유닛
+    #region 유닛 설치 
     /// <summary>
     /// 유닛 배치 범위를 표시
     /// </summary>
@@ -153,20 +159,34 @@ public class UnitBuildSystem : MonoBehaviour
     {
         bool overlap = false; // 유닛 위치 중복 여부 체크
 
-        Vector3 buildPos = SelectPosition; // 유닛을 설치할 좌표
-        buildPos.y += 0.5f; // TODO: 선택유닛 콜라이더의 절반 높이 추가 => GetComponent<Collider>(), collider.bounds.size.y
+        buildPos = SelectPosition; // 유닛을 설치할 좌표
+        //buildPos.y += 0.5f; // TODO: 선택유닛 콜라이더의 절반 높이 추가 => GetComponent<Collider>(), collider.bounds.size.y
 
         // 유닛 중복 위치 금지
         foreach (Vector3 location in unitBuildPos)
         {
             if (location == selectUnit.transform.position) // 중복 확인 시 
             {
-                selectUnit.GetComponent<MeshRenderer>().material = red;
+                Transform catapult = selectUnit.transform.GetChild(0);  // Catapult 실오브젝트
+                MeshRenderer[] children = catapult.GetComponentsInChildren<MeshRenderer>(); // 구성 요소 Material 배열
+                
+                for (int i = 0; i < children.Length; i++)
+                {
+                    children[i].material = red;
+                }
+
                 overlap = true;
             }
             else // 중복이 아니라면 
             {
-                selectUnit.GetComponent<MeshRenderer>().material = green;
+                Transform catapult = selectUnit.transform.GetChild(0);  // Catapult 실오브젝트
+                MeshRenderer[] children = catapult.GetComponentsInChildren<MeshRenderer>(); // 구성 요소 Material 배열
+
+                for (int i = 0; i < children.Length; i++)
+                {
+                    children[i].material = green;
+                }
+
                 overlap = false;
             }
         }
@@ -193,11 +213,13 @@ public class UnitBuildSystem : MonoBehaviour
     /// </summary>
     private void Unit_Build()
     {
+        selectUnit.transform.position = poolPos; // 위치 표시 유닛은 풀로 복귀 
         // 타워 설치 
-        unit.transform.position = selectUnit.transform.position;
+        unit.transform.position = buildPos;
         unitBuildPos.Add(unit.transform.position); // 유닛 설치 위치 등록
 
-        Invoke("BombUnit_TimeOver", unitLifeTime); // 유닛 유지시간 동안 대기 후 오브젝트 풀로 유닛 이동  
+        // TODO: 지속시간 존재 시 주석 해제 
+        //Invoke("Unit_TimeOver", unitLifeTime); // 유닛 유지시간 동안 대기 후 오브젝트 풀로 유닛 이동  
     }
 
     private void Unit_TimeOver() 

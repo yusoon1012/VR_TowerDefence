@@ -8,10 +8,10 @@ public class UnitAttack_ShootBoss : MonoBehaviour
     //GameObject[] spheres = default; // 투창
     GameObject sphere = default; // 테스트
     private Transform firePosition; // 발사 위치
-
     private Vector3 poolPos = new Vector3(0f, -10f, 0f); // 풀 포지션
     private Vector3 bossPosition = default; // 타겟 포지션 (보스)
-    
+
+    private int unitHP = 100;
 
     private void Awake()
     {
@@ -21,23 +21,6 @@ public class UnitAttack_ShootBoss : MonoBehaviour
         bossPosition.y = boss.GetComponent<Collider>().bounds.size.y * 0.55f; // 보스 키의 55% 지점 타격
 
         firePosition = transform.GetChild(0);
-    }
-
-    /// <summary>
-    /// 보스 - 유닛 거리
-    /// </summary>
-    private float Distance
-    {
-        get
-        {
-            Vector3 unitPos = transform.position;
-            unitPos.y = 0.5f;
-            Vector3 bossPos = bossPosition;
-            bossPos.y = 0.5f;
-
-            float distance = Vector3.Distance(bossPos, unitPos);
-            return distance;
-        }
     }
 
     private void Update()
@@ -52,6 +35,29 @@ public class UnitAttack_ShootBoss : MonoBehaviour
         if (ARAVRInput.GetDown(ARAVRInput.Button.IndexTrigger, ARAVRInput.Controller.RTouch))
         {
             StartCoroutine(ReadyFire());
+        }
+    }
+
+    //private float HitDistance
+    //{
+      
+    //}
+
+    #region 투척
+    /// <summary>
+    /// 보스 - 유닛 거리
+    /// </summary>
+    private float Distance
+    {
+        get
+        {
+            Vector3 unitPos = transform.position;
+            unitPos.y = 0.5f;
+            Vector3 bossPos = bossPosition;
+            bossPos.y = 0.5f;
+
+            float distance = Vector3.Distance(bossPos, unitPos);
+            return distance;
         }
     }
 
@@ -85,7 +91,7 @@ public class UnitAttack_ShootBoss : MonoBehaviour
         {
             Fire();
 
-            yield return new WaitForSeconds(1.5f); // 연사 대기 시간
+            yield return new WaitForSeconds(2.5f); // 연사 대기 시간
         }
 
     }
@@ -154,5 +160,5 @@ public class UnitAttack_ShootBoss : MonoBehaviour
             previousPoint = drawPoint;
         }
     }
-
+    #endregion
 }
