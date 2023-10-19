@@ -1,0 +1,3 @@
+Type,Hp,Power,Recognition_Range,Attack_Range,Attack_Cooltime,Spawn_Cooltime,Null
+midBoss,50,10,0,0,10,0,
+FinalBoss,100,10,0,0,10,15,

@@ -15,21 +15,18 @@ public class FinalBoss : MonoBehaviour
     // 보스 페이즈
     public int finalBossPhase = default;
     // 졸개 소환 쿨타임
-    public float spawnSoldierTime = 20f;
+    public float spawnSoldierTime = default;
     // 스펠 발사 쿨타임
-    public float throwSphereTime = 5f;
+    public float throwSphereTime = default;
     // 보스 무적 상태 체크
     public bool bossImmotalForm = false;
-
-    // 스펠 발사 전 스펠의 초기 위치
-    private Vector3 bossFireBallShootPosition = Vector3.zero;
 
     // 보스 게임 오브젝트
     private GameObject finalBossObj = default;
     // 중간 보스 게임 오브젝트
     private GameObject midBossObj = default;
     // 발사 스펠의 오브젝트
-    private GameObject fireBall = default;
+    private GameObject fireBallShootObject = default;
     // 최종 보스의 애니메이터
     private Animator finalBossAnimator = default;
 
@@ -88,6 +85,23 @@ public class FinalBoss : MonoBehaviour
 
     void Start()
     {
+        // { CSV 파일 정보 읽기
+        // CSV 에서 최종 보스 HP 값을 불러옴
+        int.TryParse(GameManager.instance.bossData["Hp"][1], out finalBossHp);
+        // CSV 에서 최종 보스 구체 발사 쿨타임 값을 불러옴
+        float.TryParse(GameManager.instance.bossData["Attack_Cooltime"][1], out throwSphereTime);
+        // CSV 에서 최종 보스의 졸개 소환 쿨타임 값을 불러옴
+        float.TryParse(GameManager.instance.bossData["Spawn_Cooltime"][1], out spawnSoldierTime);
+        // } CSV 파일 정보 읽기
+
+        // { 초기 변수값 설정
+        // 보스 오브젝트 참조
+        finalBossObj = GetComponent<GameObject>();
+        finalBossAnimator = GetComponent<Animator>();
+        // 중간 보스의 오브젝트를 찾아서 참조
+        midBossObj = GameObject.Find("MidBoss");
+        fireBallShootObject = GameObject.Find("ObjectPooling").gameObject;
+
         // 보스 HP 에서 80% 수치 값 저장
         boss80Hp = finalBossHp * 0.8f;
         // 보스 HP 에서 40% 수치 값 저장
@@ -146,11 +160,25 @@ public class FinalBoss : MonoBehaviour
                 ThrowSphereOrPowerUp();
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            if (bossImmotalForm == false)
+            {
+                Debug.LogFormat("최종 보스에게 1 공격. HP : {0}", finalBossHp - 1);
+                HitDamage(1);
+            }
+            else
+            {
+                midBossObj.GetComponent<MidBoss>().TestHitDamage();
+            }
+        }
     }     // Update()
 
     // 보스가 데미지를 받는 함수
     public void HitDamage(int damage)
     {
+        // 보스가 무적 상태이면 데미지를 받지 않음
         if (bossImmotalForm == true) { return; }
 
         // 최종 보스의 HP 를 받은 데미지만큼 감소
@@ -159,7 +187,8 @@ public class FinalBoss : MonoBehaviour
 
         if (finalBossHp <= 0)
         {
-            FinalBossDeath();
+            // 보스 사망 함수 실행
+            ReadyFinalBossDeath();
         }
     }     // HitDamage()
 
@@ -173,6 +202,7 @@ public class FinalBoss : MonoBehaviour
         bossImmotalForm = false;
     }     // DeathMidBoss()
 
+    // 구체를 날리거나 졸개들의 능력치를 올려주는 능력 중 선택하는 함수
     private void ThrowSphereOrPowerUp()
     {
         // 현재 필드에 졸개들이 없다면
@@ -184,15 +214,15 @@ public class FinalBoss : MonoBehaviour
         // 현재 필드에 졸개들이 남아 있다면
         else
         {
-            // 0, 1 랜덤 값 생성
+            // 0 ~ 99 랜덤 값 생성
             rand = Random.Range(0, 100);
-            // 랜덤 값이 0 이면
+            // 랜덤 값이 60 보다 작으면
             if (rand < 60)
             {
                 // 구체 날리기 함수 실행
                 ReadyThrowSphere();
             }
-            // 랜덤 값이 1 이면
+            // 랜덤 값이 60 보다 크거나 같으면
             else if (rand >= 60)
             {
                 // 졸개 능력치 증가 버프 함수 실행
@@ -203,18 +233,25 @@ public class FinalBoss : MonoBehaviour
         }
     }     // ThrowSphereOrPowerUp()
 
+    // 졸개 능력치 상승 버프를 준비하는 함수
     private void ReadySoldierPowerUp()
     {
+        // 함성을 지르는 애니메이션을 켠다
         isRoar = true;
+        // 보스 애니메이션 값 변경
         finalBossAnimator.SetBool("PowerUp", isRoar);
     }     // ReadySoldierPowerUp()
 
+    // 졸개 능력치 상승 버프를 실행하는 함수
     private void SoldierPowerUp()
     {
+        // 함성을 지르는 애니메이션을 끈다
         isRoar = false;
+        // 보스 애니메이션 값 변경
         finalBossAnimator.SetBool("PowerUp", isRoar);
 
         /* Init : 소환 된 상태의 졸개들의 능력치 증가 버프 */
+
     }     // SoldierPowerUp()
 
     // 구체를 날리기 전 준비하는 함수
@@ -233,15 +270,14 @@ public class FinalBoss : MonoBehaviour
         isFly = false;
         // 최종 보스의 날아 오르는 애니메이션을 중지시킨다
         finalBossAnimator.SetBool("Fly", isFly);
-        // 발사 스펠을 활성화 시킴
-        fireBall.gameObject.SetActive(true);
-        // 발사 스펠의 위치를 발사 전 위치로 초기화 시킴
-        fireBall.transform.position = bossFireBallShootPosition;
+        // 최종 보스로 참조하여 구체 날리는 함수를 실행
+        fireBallShootObject.GetComponent<ObjectPooling>().ReadyLaunch(2);
     }     // ThrowSphere()
 
     // 보스 HP 가 80% 미만일 때 실행되는 함수
     private void Boss80HpStart()
     {
+        // 최종 보스의 페이즈 값을 변경
         finalBossPhase = 1;
         // 보스가 무적 상태가 되도록 한다
         bossImmotalForm = true;
@@ -252,6 +288,7 @@ public class FinalBoss : MonoBehaviour
     // 보스 HP 가 40% 미만일 때 실행되는 함수
     private void Boss40HpStart()
     {
+        // 최종 보스의 페이즈 값을 변경
         finalBossPhase = 3;
         // 보스가 무적 상태가 되도록 한다
         bossImmotalForm = true;
@@ -259,11 +296,25 @@ public class FinalBoss : MonoBehaviour
         midBossObj.SetActive(true);
     }     // Boss40HpStart()
 
+    // 보스 사망을 준비하는 함수
+    private void ReadyFinalBossDeath()
+    {
+        // 중복 실행을 방지하기 위해서 보스를 무적상태로 만듬
+        bossImmotalForm = true;
+        // 보스 사망 애니메이션 실행
+        finalBossAnimator.SetTrigger("Death");
+    }     // ReadyFinalBossDeath()
+
+    // 보스가 사망하는 함수
     private void FinalBossDeath()
     {
+        // 보스의 오브젝트를 비활성화 한다
         this.gameObject.SetActive(false);
         Debug.Log("최종 보스 사망");
-    }
+
+        /* Add : 보스 사망 후 게임 종료 */
+
+    }     // FinalBossDeath()
 
     // 졸개 소환을 준비하는 함수 (애니메이션 실행)
     private void ReadySpawnSoldier()
@@ -279,10 +330,11 @@ public class FinalBoss : MonoBehaviour
     // 졸개를 소환하는 기능의 함수
     private void SpawnSoldier()
     {
+        // 졸개 소환 애니메이션을 종료함
         isSpawn = 0;
+        // 보스 졸개 소환 애니메이션 값 변경
         finalBossAnimator.SetInteger("Spawn", isSpawn);
-        Debug.Log("SpawnSoldier()");
-
+        // 졸개가 소환되는 함수 실행
         MonsterSpawn.instance.SetWave();
     }     // SpawnSoldier()
 }

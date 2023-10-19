@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
 
-    #region ½Ì±ÛÅÏ
+    #region ì‹±ê¸€í„´
     private void Awake()
     {
         if (instance == null)
@@ -15,25 +15,29 @@ public class GameManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(this.gameObject);
+
+        // CSV íŒŒì¼ì„ ì½ì–´ì˜¤ëŠ” ê¸°ëŠ¥
+        monsterData = CSVReader.instance.ReadCSVFile("MonsterData");
+        bossData = CSVReader.instance.ReadCSVFile("BossData");
     }       // Awake()
     #endregion
 
     /*
-     * °ÔÀÓ ¸Å´ÏÀú ÀÛ¼º ¹æ¹ı
-     * ¿¹)
-     * { ¹ÚÁØ¿À
-     * ³»¿ë
-     * } ¹ÚÁØ¿À
+     * ê²Œì„ ë§¤ë‹ˆì € ì‘ì„± ë°©ë²•
+     * ì˜ˆ)
+     * { ë°•ì¤€ì˜¤
+     * ë‚´ìš©
+     * } ë°•ì¤€ì˜¤
      */
 
-    // { ¹ÚÁØ¿À
+    // { ë°•ì¤€ì˜¤
     public Dictionary<string, List<string>> monsterData = new Dictionary<string, List<string>>();
+    // ì´ê²½ë¯¼ CSV íŒŒì¼ Read
+    public Dictionary<string, List<string>> bossData = new Dictionary<string, List<string>>();
 
     private void Start()
     {
-        StartCoroutine(Late());
-
-        monsterData = CSVReader.instance.ReadCSVFile("MonsterData");
+        //StartCoroutine(Late());
     }
 
     private IEnumerator Late()
@@ -42,5 +46,5 @@ public class GameManager : MonoBehaviour
 
         MonsterSpawn.instance.SetWave();
     }
-    // } ¹ÚÁØ¿À
+    // } ë°•ì¤€ì˜¤
 }
