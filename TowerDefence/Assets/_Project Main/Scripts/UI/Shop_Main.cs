@@ -22,7 +22,7 @@ public class Shop_Main : MonoBehaviour
         shopObj.SetActive(false);
 
         leftArrow.SetActive(false);
-        unitPage.SetActive(false);
+        buffPage.SetActive(false);
     }
 
     // Update is called once per frame
@@ -32,15 +32,15 @@ public class Shop_Main : MonoBehaviour
     }
     public void UnitPage()
     {
-        leftArrow.SetActive(true);
-        rightArrow.SetActive(false);
+        rightArrow.SetActive(true);
+        leftArrow.SetActive(false);
         unitPage.SetActive(true);
         buffPage.SetActive(false);
     }
     public void BuffPage()
     {
-        leftArrow.SetActive(false);
-        rightArrow.SetActive(true);
+        rightArrow.SetActive(false);
+        leftArrow.SetActive(true);
         unitPage.SetActive(false);
         buffPage.SetActive(true);
     }

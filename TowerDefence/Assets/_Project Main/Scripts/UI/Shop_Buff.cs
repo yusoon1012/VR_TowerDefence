@@ -20,9 +20,8 @@ public class Shop_Buff : MonoBehaviour
     private const int ATTACK_SPEED = 1;
     private const int HEAL = 2;
     private int buffCount = 0;
-    private float attackEnforceCoolTime = 0f;
-    private float attackDamageCoolTime = 0f;
-    private float unitDurationCoolTime = 0f;
+    private float damageUpCooltime = 0f;
+    private float attackSpeedUpCooltime = 0f;
     private float buffCoolTimeRate = 15f;
 
     private void Awake()
@@ -50,12 +49,26 @@ public class Shop_Buff : MonoBehaviour
     public void UnitDamageUp()
     {
         //유닛 공격력 상승시키는 버튼호출 함수
+        if(damageUpCooltime==0)
+        {
+            damageUpCooltime = buffCoolTimeRate;
+            buffIcon[POWER_UP].SetActive(true);
+            StartCoroutine(UnitDamageRoutine());
+        }
 
     }
 
     public void UnitAttackSpeedUp()
     {
         //유닛 공격속도 상승시키는 버튼호출 함수
+        if(attackSpeedUpCooltime==0)
+        {
+            attackSpeedUpCooltime= buffCoolTimeRate;
+            buffIcon[ATTACK_SPEED].SetActive(true);
+            StartCoroutine(UnitAttackSpeedUpRoutine());
+
+        }
+
     }
 
     public void PlayerHeal(int level)
@@ -73,6 +86,28 @@ public class Shop_Buff : MonoBehaviour
         }
     }
 
+    private IEnumerator UnitAttackSpeedUpRoutine()
+    {
+        while(attackSpeedUpCooltime>0)
+        {
+            attackSpeedUpCooltime -= 1;
+            yield return new WaitForSeconds(1);
+            buffSlider[ATTACK_SPEED].value = attackSpeedUpCooltime/buffCoolTimeRate;
+        }
+        buffIcon[ATTACK_SPEED].SetActive(false);
+    }
+    private IEnumerator UnitDamageRoutine()
+    {
+        //TODO : 유닛 데미지 업 함수 호출
+        while (damageUpCooltime>0)
+        {
+            damageUpCooltime -= 1;
+            yield return new WaitForSeconds(1);
+            buffSlider[POWER_UP].value = damageUpCooltime / buffCoolTimeRate;
+        }
+        buffIcon[POWER_UP].SetActive(false);
+
+    }
     private IEnumerator HealRoutine(int level)
     {
         float healTime = 5;
@@ -82,7 +117,7 @@ public class Shop_Buff : MonoBehaviour
             yield return new WaitForSeconds(1);
             lastTime = healTime;
             healTime -= 1;
-            buffSlider[HEAL].value= Mathf.Lerp(lastTime/5,healTime/5,Time.deltaTime);
+            buffSlider[HEAL].value=healTime/5;
             switch(level)
             {
                 case 1:
