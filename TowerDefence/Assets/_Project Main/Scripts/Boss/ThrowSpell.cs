@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -16,6 +17,8 @@ public class ThrowSpell : MonoBehaviour
     // 플레이어 트랜스폼
     [SerializeField]
     private Transform playerTransform = default;
+    // 발사체가 날아가는 방향이 어디쪽인지 확인
+    public bool shootFlip;
 
     void Start()
     {
@@ -56,7 +59,6 @@ public class ThrowSpell : MonoBehaviour
         // 보스의 구체가 플레이어 콜라이더에 닿으면
         if (collision.tag == "Player")
         {
-            /* Init : 플레이어에게 스펠이 닿으면 실행 */
             spellRigidbody.velocity = Vector3.zero;
             Player_Status player = collision.gameObject.GetComponent<Player_Status>();
             if (player != null)
@@ -65,6 +67,45 @@ public class ThrowSpell : MonoBehaviour
                 player.PlayerDamaged(5);
             }
         }
+        // 콜라이더에 부딛힌 오브젝트 태그가 MidBoss 이고, 반대방향으로 날아가고 있으면 실행
+        else if (collision.tag == "MidBoss" && shootFlip == true)
+        {
+            // 발사체의 운동량을 초기화
+            spellRigidbody.velocity = Vector3.zero;
+            // 콜라이더에 부딛힌 오브젝트의 MidBoss 스크립트 참조
+            MidBoss midBoss = collision.gameObject.GetComponent<MidBoss>();
+            // midBoss 오브젝트가 null 값이 아니면 실행
+            if (midBoss != null)
+            {
+                // 발사체 오브젝트를 비활성화 시킨다
+                gameObject.SetActive(false);
+                // 중간 보스에게 데미지를 입힌다
+                midBoss.HitDamage(10);
+            }
+        }
+        // 콜라이더에 부딛힌 오브젝트 태그가 Boss 이고, 반대방향으로 날아가고 있으면 실행
+        else if (collision.tag == "Boss" && shootFlip == true)
+        {
+            // 발사체의 운동량을 초기화
+            spellRigidbody.velocity = Vector3.zero;
+            // 콜라이더에 부딛힌 오브젝트의 FinalBoss 스크립트 참조
+            FinalBoss finalBoss = collision.gameObject.GetComponent<FinalBoss>();
+            // finalBoss 오브젝트가 null 값이 아니면 실행
+            if (finalBoss != null)
+            {
+                // 발사체 오브젝트를 비활성화 시킨다
+                gameObject.SetActive(false);
+                // 최종 보스에게 데미지를 입힌다
+                finalBoss.HitDamage(10);
+            }
+        }
     }     // OnTriggerEnter()
+
+    // 발사체가 날아가는 방향을 반대로 바꿔주는 함수
+    public void Reverse()
+    {
+        // 반대 방향으로 체크
+        shootFlip = true;
+    }     // Reverse()
 }
 

@@ -39,15 +39,15 @@ public class MidBoss : MonoBehaviour
     // 중간 보스가 활성화 된 상태인지 체크
     private bool activeBoss = false;
     // Test : 필드에 몬스터가 있는지 없는지 체크
-    private bool isMonsterClear = false;
+    //private bool isMonsterClear = false;
     // 구체를 날리는 중인지 확인 (Animator)
     private bool isAttack = false;
     // 졸개 강화를 위해 점프하는 중인지 확인 (Animator)
-    private bool isJump = false;
+    //private bool isJump = false;
     // 중간 보스의 스펠 발사 쿨타임 까지의 중첩 값
     private float throwSphereTimepass = default;
     // 보스가 2 페이즈 상태일 때 구체 던지기와 졸개 강화 중 랜덤 선택 값
-    private int rand = default;
+    //private int rand = default;
     private Rigidbody rb;
     // } 변수 설정
 
@@ -58,7 +58,7 @@ public class MidBoss : MonoBehaviour
         // 중간 보스의 초기 위치 값
         midBossOriginPosition = new Vector3(0f, 500f, 165f);
         throwSphereTimepass = 0f;
-        rand = 0;
+        //rand = 0;
         rb=GetComponent<Rigidbody>();
         // } 초기 변수 값 설정
     }     // Awake()
@@ -110,7 +110,7 @@ public class MidBoss : MonoBehaviour
         }
 
         // 중간 보스 페이즈가 1 이고, 내려오는 상황이 아니면 실행
-        if (midBossPhase == 1 && lerping == false)
+        if (midBossPhase >= 1 && lerping == false)
         {
             // 실시간 값을 더해줌
             throwSphereTimepass += Time.deltaTime;
@@ -123,20 +123,21 @@ public class MidBoss : MonoBehaviour
                 ReadyThrowSphere();
             }
         }
-        // 중간 보스 페이즈가 3 이고, 내려오는 상황이 아니면 실행
-        else if (midBossPhase == 3 && lerping == false)
-        {
-            // 실시간 값을 더해줌
-            throwSphereTimepass += Time.deltaTime;
-            // 쿨타임 시간과 같아지면
-            if (throwSphereTimepass >= throwSphereTime)
-            {
-                // 실시간 값 초기화
-                throwSphereTimepass = 0f;
-                // 구체를 날리거나, 졸개 능력치 증가 중 랜덤으로 실행되는 함수 실행
-                ThrowSphereOrPowerUp();
-            }
-        }
+
+        //// 중간 보스 페이즈가 3 이고, 내려오는 상황이 아니면 실행
+        //else if (midBossPhase == 3 && lerping == false)
+        //{
+        //    // 실시간 값을 더해줌
+        //    throwSphereTimepass += Time.deltaTime;
+        //    // 쿨타임 시간과 같아지면
+        //    if (throwSphereTimepass >= throwSphereTime)
+        //    {
+        //        // 실시간 값 초기화
+        //        throwSphereTimepass = 0f;
+        //        // 구체를 날리거나, 졸개 능력치 증가 중 랜덤으로 실행되는 함수 실행
+        //        ThrowSphereOrPowerUp();
+        //    }
+        //}
     }     // Update()
 
     // 중간 보스 오브젝트가 활성화 되었을 때 실행되는 함수
@@ -185,18 +186,16 @@ public class MidBoss : MonoBehaviour
         midBossAnimator.SetBool("Attack", isAttack);
     }     // ReadyThrowSphere()
 
-    // 졸개 능력치 증가를 준비하는 함수
-    private void ReadySoldierPowerUp()
-    {
-        // 점프 애니메이션을 켜줌
-        isJump = true;
-        // 보스 애니메이션 값 변경
-        midBossAnimator.SetBool("Jump", isJump);
-    }     // ReadySoldierPowerUp()
-
     // 중간 보스의 스펠 발사 기능 함수
     private void ThrowSphere()
     {
+        // 공격 애니메이션을 끔
+        isAttack = false;
+        // 보스 애니메이션 값 변경
+        midBossAnimator.SetBool("Attack", isAttack);
+        // 중간 보스를 참조하여 구체 날리기 함수 실행
+        fireBallShootObject.GetComponent<ObjectPooling>().ReadyLaunch(1);
+
         // 발사 스펠을 활성화 시킴
         //bossFireBallShootPosition = fireBallSpawnPosition.position;
         //fireBall.transform.position = bossFireBallShootPosition;
@@ -206,55 +205,57 @@ public class MidBoss : MonoBehaviour
         //    fireBallRigid.velocity = Vector3.zero;
         //}
         //fireBall.gameObject.SetActive(true);
-        // 발사 스펠의 위치를 발사 전 위치로 초기화 시킴
-        // 공격 애니메이션을 끔
-        isAttack = false;
-        // 보스 애니메이션 값 변경
-        midBossAnimator.SetBool("Attack", isAttack);
-        // 중간 보스를 참조하여 구체 날리기 함수 실행
-        fireBallShootObject.GetComponent<ObjectPooling>().ReadyLaunch(1);
     }     // ThrowSphere()
 
-    // 졸개 능력치 증가 버프 실행 함수
-    private void SoldierPowerUp()
-    {
-        // 점프 애니메이션을 끔
-        isJump = false;
-        // 보스 애니메이션 값 변경
-        midBossAnimator.SetBool("Jump", isJump);
-        /* Init : 소환 된 상태의 졸개들의 능력치 증가 버프 */
-    }     // SoldierPowerUp()
+    //// 졸개 능력치 증가를 준비하는 함수
+    //private void ReadySoldierPowerUp()
+    //{
+    //    // 점프 애니메이션을 켜줌
+    //    isJump = true;
+    //    // 보스 애니메이션 값 변경
+    //    midBossAnimator.SetBool("Jump", isJump);
+    //}     // ReadySoldierPowerUp()
+
+    //// 졸개 능력치 증가 버프 실행 함수
+    //private void SoldierPowerUp()
+    //{
+    //    // 점프 애니메이션을 끔
+    //    isJump = false;
+    //    // 보스 애니메이션 값 변경
+    //    midBossAnimator.SetBool("Jump", isJump);
+    //    /* Init : 소환 된 상태의 졸개들의 능력치 증가 버프 */
+    //}     // SoldierPowerUp()
 
     // 구체 날리기 Or 졸개 능력치 증가 버프 중 실행 구분 함수
-    private void ThrowSphereOrPowerUp()
-    {
-        // 현재 필드에 졸개들이 없다면
-        if (isMonsterClear == true)
-        {
-            // 구체 날리기 함수 실행
-            ReadyThrowSphere();
-        }
-        // 현재 필드에 졸개들이 남아 있다면
-        else
-        {
-            // 0 ~ 99 랜덤 값 생성
-            rand = Random.Range(0, 100);
-            // 랜덤 값이 60 보다 작으면
-            if (rand < 60)
-            {
-                // 구체 날리기 함수 실행
-                ReadyThrowSphere();
-            }
-            // 랜덤 값이 60 보다 크거나 같으면
-            else if (rand >= 60)
-            {
-                // 졸개 능력치 증가 버프 함수 실행
-                ReadySoldierPowerUp();
-            }
+    //private void ThrowSphereOrPowerUp()
+    //{
+    //    // 현재 필드에 졸개들이 없다면
+    //    if (isMonsterClear == true)
+    //    {
+    //        // 구체 날리기 함수 실행
+    //        ReadyThrowSphere();
+    //    }
+    //    // 현재 필드에 졸개들이 남아 있다면
+    //    else
+    //    {
+    //        // 0 ~ 99 랜덤 값 생성
+    //        rand = Random.Range(0, 100);
+    //        // 랜덤 값이 60 보다 작으면
+    //        if (rand < 60)
+    //        {
+    //            // 구체 날리기 함수 실행
+    //            ReadyThrowSphere();
+    //        }
+    //        // 랜덤 값이 60 보다 크거나 같으면
+    //        else if (rand >= 60)
+    //        {
+    //            // 졸개 능력치 증가 버프 함수 실행
+    //            ReadySoldierPowerUp();
+    //        }
 
-            Debug.LogFormat("랜덤값 생성됨 : {0}", rand);
-        }
-    }     // ThrowSphereOrPowerUp()
+    //        Debug.LogFormat("랜덤값 생성됨 : {0}", rand);
+    //    }
+    //}     // ThrowSphereOrPowerUp()
 
     // 중간 보스 사망을 준비하는 함수
     private void ReadyMidBossDeath()

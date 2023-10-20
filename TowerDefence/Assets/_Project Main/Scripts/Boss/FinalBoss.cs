@@ -51,7 +51,7 @@ public class FinalBoss : MonoBehaviour
     // Test : 필드에 졸개들이 존재하는지 없는지 체크
     private bool isMonsterClear = false;
     // 마지막 페이즈에서 구체 발사 or 졸개 능력치 강화 랜덤 시전 값
-    private int rand = default;
+    //private int rand = default;
     // 졸개 소환 애니메이션중 랜덤 재생 값
     private int spawnRand = default;
     // } 변수 설정
@@ -74,7 +74,7 @@ public class FinalBoss : MonoBehaviour
         finalBossPhase = 0;
         spawnSoldierTimepass = 0f;
         throwSphereTimepass = 0f;
-        rand = 0;
+        //rand = 0;
         spawnRand = 0;
         isSpawn = 0;
         bossHp.value = finalBossHp / 100;
@@ -139,7 +139,7 @@ public class FinalBoss : MonoBehaviour
         }
 
         // 중간 보스 처치 후 보스 페이즈가 2 라면 중간 보스의 구체 날리기를 사용함
-        if (finalBossPhase == 2 && bossImmotalForm == false && isSpawn == 0)
+        if (finalBossPhase >= 2 && bossImmotalForm == false && isSpawn == 0)
         {
             throwSphereTimepass += Time.deltaTime;
             if (throwSphereTimepass >= throwSphereTime)
@@ -148,16 +148,17 @@ public class FinalBoss : MonoBehaviour
                 ReadyThrowSphere();
             }
         }
-        // 중간 보스 처치 후 보스 페이즈가 4 라면 중간 보스의 구체 날리기 or 졸개 능력치 증가 둘 중에 하나를 사용함
-        else if (finalBossPhase == 4 && bossImmotalForm == false && isSpawn == 0)
-        {
-            throwSphereTimepass += Time.deltaTime;
-            if (throwSphereTimepass >= throwSphereTime)
-            {
-                throwSphereTimepass = 0f;
-                ThrowSphereOrPowerUp();
-            }
-        }
+
+        //// 중간 보스 처치 후 보스 페이즈가 4 라면 중간 보스의 구체 날리기 or 졸개 능력치 증가 둘 중에 하나를 사용함
+        //else if (finalBossPhase == 4 && bossImmotalForm == false && isSpawn == 0)
+        //{
+        //    throwSphereTimepass += Time.deltaTime;
+        //    if (throwSphereTimepass >= throwSphereTime)
+        //    {
+        //        throwSphereTimepass = 0f;
+        //        ThrowSphereOrPowerUp();
+        //    }
+        //}
 
         if (Input.GetKeyDown(KeyCode.T))
         {
@@ -170,6 +171,11 @@ public class FinalBoss : MonoBehaviour
             {
                 midBossObj.GetComponent<MidBoss>().TestHitDamage();
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            ReadyThrowSphere();
         }
     }     // Update()
 
@@ -200,57 +206,57 @@ public class FinalBoss : MonoBehaviour
         bossImmotalForm = false;
     }     // DeathMidBoss()
 
-    // 구체를 날리거나 졸개들의 능력치를 올려주는 능력 중 선택하는 함수
-    private void ThrowSphereOrPowerUp()
-    {
-        // 현재 필드에 졸개들이 없다면
-        if (isMonsterClear == true)
-        {
-            // 구체 날리기 함수 실행
-            ReadyThrowSphere();
-        }
-        // 현재 필드에 졸개들이 남아 있다면
-        else
-        {
-            // 0 ~ 99 랜덤 값 생성
-            rand = Random.Range(0, 100);
-            // 랜덤 값이 60 보다 작으면
-            if (rand < 60)
-            {
-                // 구체 날리기 함수 실행
-                ReadyThrowSphere();
-            }
-            // 랜덤 값이 60 보다 크거나 같으면
-            else if (rand >= 60)
-            {
-                // 졸개 능력치 증가 버프 함수 실행
-                ReadySoldierPowerUp();
-            }
+    //// 구체를 날리거나 졸개들의 능력치를 올려주는 능력 중 선택하는 함수
+    //private void ThrowSphereOrPowerUp()
+    //{
+    //    // 현재 필드에 졸개들이 없다면
+    //    if (isMonsterClear == true)
+    //    {
+    //        // 구체 날리기 함수 실행
+    //        ReadyThrowSphere();
+    //    }
+    //    // 현재 필드에 졸개들이 남아 있다면
+    //    else
+    //    {
+    //        // 0 ~ 99 랜덤 값 생성
+    //        rand = Random.Range(0, 100);
+    //        // 랜덤 값이 60 보다 작으면
+    //        if (rand < 60)
+    //        {
+    //            // 구체 날리기 함수 실행
+    //            ReadyThrowSphere();
+    //        }
+    //        // 랜덤 값이 60 보다 크거나 같으면
+    //        else if (rand >= 60)
+    //        {
+    //            // 졸개 능력치 증가 버프 함수 실행
+    //            ReadySoldierPowerUp();
+    //        }
 
-            Debug.LogFormat("랜덤값 생성됨 : {0}", rand);
-        }
-    }     // ThrowSphereOrPowerUp()
+    //        Debug.LogFormat("랜덤값 생성됨 : {0}", rand);
+    //    }
+    //}     // ThrowSphereOrPowerUp()
 
-    // 졸개 능력치 상승 버프를 준비하는 함수
-    private void ReadySoldierPowerUp()
-    {
-        // 함성을 지르는 애니메이션을 켠다
-        isRoar = true;
-        // 보스 애니메이션 값 변경
-        finalBossAnimator.SetBool("PowerUp", isRoar);
-    }     // ReadySoldierPowerUp()
+    //// 졸개 능력치 상승 버프를 준비하는 함수
+    //private void ReadySoldierPowerUp()
+    //{
+    //    // 함성을 지르는 애니메이션을 켠다
+    //    isRoar = true;
+    //    // 보스 애니메이션 값 변경
+    //    finalBossAnimator.SetBool("PowerUp", isRoar);
+    //}     // ReadySoldierPowerUp()
 
-    // 졸개 능력치 상승 버프를 실행하는 함수
-    private void SoldierPowerUp()
-    {
-        // 함성을 지르는 애니메이션을 끈다
-        isRoar = false;
-        // 보스 애니메이션 값 변경
-        finalBossAnimator.SetBool("PowerUp", isRoar);
+    //// 졸개 능력치 상승 버프를 실행하는 함수
+    //private void SoldierPowerUp()
+    //{
+    //    // 함성을 지르는 애니메이션을 끈다
+    //    isRoar = false;
+    //    // 보스 애니메이션 값 변경
+    //    finalBossAnimator.SetBool("PowerUp", isRoar);
 
-        /* Init : 소환 된 상태의 졸개들의 능력치 증가 버프 */
+    //    /* Init : 소환 된 상태의 졸개들의 능력치 증가 버프 */
 
-    }     // SoldierPowerUp()
+    //}     // SoldierPowerUp()
 
     // 구체를 날리기 전 준비하는 함수
     private void ReadyThrowSphere()
@@ -290,9 +296,17 @@ public class FinalBoss : MonoBehaviour
         finalBossPhase = 3;
         // 보스가 무적 상태가 되도록 한다
         bossImmotalForm = true;
+        isRoar = true;
+        finalBossAnimator.SetBool("PowerUp", isRoar);
+    }     // Boss40HpStart()
+
+    private void Boss40HpEnd()
+    {
+        isRoar = false;
+        finalBossAnimator.SetBool("PowerUp", isRoar);
         // 중간 보스 오브젝트를 활성화 시켜준다
         midBossObj.SetActive(true);
-    }     // Boss40HpStart()
+    }     // Boss40HpEnd()
 
     // 보스 사망을 준비하는 함수
     private void ReadyFinalBossDeath()
