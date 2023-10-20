@@ -25,6 +25,6 @@ public class GoldManager : MonoBehaviour
         
     }
 
-    public void 
+    //public void 
    
 }
