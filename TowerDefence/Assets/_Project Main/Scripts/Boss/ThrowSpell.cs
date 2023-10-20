@@ -31,7 +31,7 @@ public class ThrowSpell : MonoBehaviour
         spellRigidbody = GetComponent<Rigidbody>();
         // 플레이어의 트랜스폼 참조
         
-        //initPosition = transform.position;
+        initPosition = transform.position;
         //Vector3 dir = (playerTransform.position - initPosition).normalized;
         //spellRigidbody.velocity = dir * speed;
     }     // Start()

@@ -22,6 +22,7 @@ public class Magic_Normal : MonoBehaviour
             FinalBoss bossHp=collision.gameObject.GetComponent<FinalBoss>();
             if(bossHp!=null)
             {
+                GoldManager.instance.BossDamageGold(damage);
                 bossHp.HitDamage(damage);
                 Destroy(gameObject);
             }
@@ -40,7 +41,9 @@ public class Magic_Normal : MonoBehaviour
             MonsterInfo monster=collision.gameObject.GetComponent<MonsterInfo>();
             if(monster != null)
             {
+
                 monster.MonsterDamaged(damage);
+                Destroy(gameObject);
             }
 
         }
