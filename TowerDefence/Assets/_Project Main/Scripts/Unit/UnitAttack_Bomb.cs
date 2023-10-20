@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+//using System.Numerics;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
@@ -8,32 +10,79 @@ using UnityEngine;
 /// </summary>
 public class UnitAttack_Bomb : MonoBehaviour
 {
+    UnitBuildSystem buildSystem;
+    [SerializeField] private int damage = default; // (CSV) 폭발 유닛의 공격력
+    [SerializeField] private int explosionRange = default; // (CSV) 폭발 범위
+    [SerializeField] private int bombHP = default; // (CSV) 폭발 유닛 HP
+
     private void Awake()
     {
         UnitBuildSystem.units.Add(transform.gameObject);
+        buildSystem = GameObject.Find("Unit Manager").GetComponent<UnitBuildSystem>();
+    }
+
+    private void Start()
+    {
+        damage = transform.GetComponent<AttackUnitProperty>().damage;
+        explosionRange = transform.GetComponent<AttackUnitProperty>().attackRange;
+        bombHP = transform.GetComponent<AttackUnitProperty>().HP;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        int enemyMask = 1 << LayerMask.NameToLayer("Enemy"); // 졸개 레이어마스크
-
-        if (collision.gameObject.layer == enemyMask) // 충돌한게 졸개 레이어마스크를 가지고 있다면 
+        if (collision.gameObject.CompareTag("Enemy")) // 충돌한 것이 졸개 태그라면
         {
             Explosion();
         }
     }
 
-    private Collider[] Enemies()
+    private void OnTriggerEnter(Collider other)
     {
-        float radius = 15f; // 폭발 반경
-        int enemyMask = 1 << LayerMask.NameToLayer("Enemy");
+        if (other.gameObject.CompareTag("Enemy")) // 충돌한 것이 졸개 태그라면
+        {
+            Explosion();
+        }
+    }
 
-        Collider[] enemyList = Physics.OverlapSphere(transform.position, radius, enemyMask); // 검출된 졸개 배열
-        return enemyList;
+    private GameObject[] Enemies
+    {
+        get
+        {
+            float radius = explosionRange / 2f; // 폭발 반경
+
+            Collider[] colliders = Physics.OverlapSphere(transform.position, radius); // 검출 배열
+            GameObject[] enemies = new GameObject[colliders.Length]; // 검출 적 배열
+
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                if (colliders[i].gameObject.CompareTag("Enemy")) // 졸개 태그면
+                {
+                    enemies[i] = colliders[i].gameObject; // 추가
+                }
+            }
+            return enemies;
+        }
     }
 
     private void Explosion()
     {
-        // TODO: foreach문을 돌려 Enemies 게임오브젝트의 속성 스크립트를 가져와 HP를 깎는다. 
+        Transform effectList = transform.GetChild(1);
+        ParticleSystem[] effects = effectList.GetComponentsInChildren<ParticleSystem>();
+
+        foreach (ParticleSystem effect in effects) 
+        {
+            Debug.Assert(effect);
+            effect.Play(); // 파티클 시스템 플레이
+
+            Invoke("BackPool", 0.3f); // 폭발 유닛 풀로 복귀 
+        }
+ 
+        for (int i = 0; i < Enemies.Length; i++)
+        {
+            Debug.LogFormat("{0}에게 데미지 처리", Enemies.Length);
+            //Enemies[i].transform.GetComponent<MonsterInfo>().MonsterDamaged(damage); // TODO: 졸개 나오면 주석 해제
+        }
     }
+
+    private void BackPool() { buildSystem.ReturnPool(gameObject); }
 }

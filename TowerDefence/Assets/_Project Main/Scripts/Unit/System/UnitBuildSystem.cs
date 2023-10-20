@@ -9,7 +9,7 @@ using UnityEngine;
 /// </summary>
 public class UnitBuildSystem : MonoBehaviour
 {
-    // 전체 유닛 리스트
+    // 전체 설치/공격형 유닛 리스트
     public static List<GameObject> units = new List<GameObject>();
     // 풀 포지션
     private Vector3 poolPos = new Vector3(0f, -10f, 0f);
@@ -20,7 +20,7 @@ public class UnitBuildSystem : MonoBehaviour
     // 타워 프리팹
     [SerializeField] private GameObject bombUnitPrefab, bladeUnitPrefab, bossShootUnitPrefab = default;
     // 타워 오브젝트
-    private GameObject bombUnit, bladeUnit, shootBossUnit = default;
+    private GameObject[] bombUnit, bladeUnit, shootBossUnit = default;
     // 선택 시의 유닛 프리팹
     [SerializeField] private GameObject selectBombPrefab, selectBladePrefab, selectShootBossPrefab = default;
     // 선택 시의 유닛 오브젝트 
@@ -32,6 +32,7 @@ public class UnitBuildSystem : MonoBehaviour
     #endregion
 
     #region 설치를 위한 변수
+    Shop_Unit shop_Unit = new Shop_Unit();
     // 폭탄 유닛 설치 여부 
     private bool buildBombUnit = false;
     public float unitLifeTime = 10f; // 유닛 지속시간
@@ -41,90 +42,108 @@ public class UnitBuildSystem : MonoBehaviour
     private Material green = default;
     // 설치 불가 Material
     private Material red = default;
+    // 설치될 유닛
+    private GameObject unit = default;
+    // 설치될 유닛의 목표 위치
+    private GameObject selectUnit = default;
+    // 설치된 유닛 개수 (종류별)
+    int bombCount = 0;
+    int shootBossCount = 0;
+    int bladeCount = 0;
     #endregion
-
-    private GameObject unit = default; // (test)
-    private GameObject selectUnit = default; // (test)
 
     private void Awake()
     {
         // 플레이어
         player = GameObject.Find("Player");
-        // 타워 생성 
-        bombUnit = Instantiate(bombUnitPrefab, poolPos, Quaternion.identity);
-        bladeUnit = Instantiate(bladeUnitPrefab, poolPos, Quaternion.identity);
-        shootBossUnit = Instantiate(bossShootUnitPrefab, poolPos, Quaternion.identity);
-        // 선택 시 타워 오브젝트 생성
-        selectBombUnit = Instantiate(selectBombPrefab, poolPos, Quaternion.identity);
-        selectBladeUnit = Instantiate(selectBladePrefab, poolPos, Quaternion.identity);
-        selectShootBossUnit = Instantiate(selectShootBossPrefab, poolPos, Quaternion.identity);
+
+        // 배열 지정 
+        bombUnit = new GameObject[3];
+        shootBossUnit = new GameObject[2];
+        bladeUnit = new GameObject[1];
+
+        // 유닛 생성 
+        for (int i = 0; i < 3; i++) // 폭탄 유닛 3개
+        {
+            bombUnit[i] = Instantiate(bombUnitPrefab, poolPos, bombUnitPrefab.transform.rotation);
+        }
+        for (int i = 0; i < 2; i++) // 보스 타격 유닛 2개
+        {
+            shootBossUnit[i] = Instantiate(bossShootUnitPrefab, poolPos, bossShootUnitPrefab.transform.rotation);
+        }
+        for (int i = 0; i < 1; i++) // 근거리 타격 유닛 1개
+        {
+            bladeUnit[i] = Instantiate(bladeUnitPrefab, poolPos, bladeUnitPrefab.transform.rotation);
+        }
+
+        // 선택 시 유닛 오브젝트 생성
+        selectBombUnit = Instantiate(selectBombPrefab, poolPos, selectBombPrefab.transform.rotation);
+        selectBladeUnit = Instantiate(selectBladePrefab, poolPos, selectBladePrefab.transform.rotation);
+        selectShootBossUnit = Instantiate(selectShootBossPrefab, poolPos, selectShootBossPrefab.transform.rotation);
+
         // Material
         green = Resources.Load<Material>("Material/Green");
         red = Resources.Load<Material>("Material/Red");
 
-        unit = shootBossUnit; // (test)
-        Debug.Assert(unit != null);
-        selectUnit = selectShootBossUnit; // (test)
-        Debug.Assert(selectUnit != null);
+        shop_Unit = GameObject.Find("Shop").GetComponent<Shop_Unit>(); // 유닛 구매 여부를 알기 위함
 
-        shootBossUnit.GetComponent<UnitAttack_ShootBoss>().enabled = true; // Issue: 비활성화 문제로 넣은 코드 
+        //shootBossUnit.GetComponent<UnitAttack_ShootBoss>().enabled = true; // Issue: 비활성화 문제로 넣은 코드 
     }
 
     private void Update()
     {
-        Debug.Log("작동 중");
-
-        #region 유닛 설치
-        //if (/*Shop_Buff에 폭탄유닛 bool 추가되면 넣기*/ !buildBombUnit) // 폭탄유닛를 구매 & 비활성화 중
-        //{
-        //    BombUnit_Range(); // 설치 범위 표시
-
-        //    if (ARAVRInput.GetDown(ARAVRInput.Button.IndexTrigger, ARAVRInput.Controller.RTouch)) // 입력 시 
-        //    {
-        //        buildBombUnit = true; // 폭탄유닛 설치 = 활성화
-        //        BombUnit_Build(); // 타워 설치
-        //    }
-        //}
-        //else if (bombUnit) // 폭탄유닛을 활성화했다면
-        //{
-        //    selectBombUnit.transform.position = poolPos;
-
-        //    if (/* 폭탄 유닛 비활성 체크*/ 1 == 1) // 폭탄유닛 쿨타임 종료 시
-        //    {
-        //        buildBombUnit = false; // 설치 여부 초기화 
-        //    }
-        //}
-        #endregion
-
-        #region 테스트_유닛 설치
-        Unit_Range();
-        #endregion
+        // TODO: unit 배분 
+        // 폭발 유닛은 3개까지
+        // 보스 타격 유닛은 2개까지
+        // 근거리 타격 유닛은 1개만 
+        // 상점에서 구매 버튼을 누른다면 위 int 값을 수정하는 것으로 개수 조절. 
 
         #region 유닛 공격력 증가
-        if (Shop_Buff.instance.isDamageUp)
-        {
-            foreach(GameObject unit in units)
-            {
-                unit.GetComponent<AttackUnitProperty>().damage *= 2; // 공격력 * 2
-            }
-        }
-        else
-        {
-            foreach (GameObject unit in units)
-            {
-                unit.GetComponent<AttackUnitProperty>().damage /= 2; // 공격력 / 2 (원상태 복귀)
-            }
-        }
+        //if (Shop_Buff.instance.isDamageUp)
+        //{
+        //    foreach(GameObject unit in units)
+        //    {
+        //        unit.GetComponent<AttackUnitProperty>().damage *= 2; // 공격력 * 2
+        //    }
+        //}
+        //else
+        //{
+        //    foreach (GameObject unit in units)
+        //    {
+        //        unit.GetComponent<AttackUnitProperty>().damage /= 2; // 공격력 / 2 (원상태 복귀)
+        //    }
+        //}
         
         #endregion
 
         #region 유닛 지속시간 증가
-        if (Shop_Buff.instance.isUnitDuration)
-        {
-            unitLifeTime += 2; // 지속시간 두 배 증가 
-        }
-        else unitLifeTime = 10f; // 초기화
+        //if (Shop_Buff.instance.isUnitDuration)
+        //{
+        //    unitLifeTime += 2; // 지속시간 두 배 증가 
+        //}
+        //else unitLifeTime = 10f; // 초기화
         #endregion
+
+        if (shop_Unit.buildBomb) // 폭발 유닛 설치
+        {
+            unit = bombUnit[0];
+            selectUnit = selectBombUnit;
+            Unit_Range();
+        }
+
+        if (shop_Unit.buildBlade) // 근거리 타격 유닛 설치
+        {
+            unit = bladeUnit[0];
+            selectUnit = selectBladeUnit;
+            Unit_Range();
+        }
+
+        if (shop_Unit.buildShootBoss) // 보스 타격 유닛
+        {
+            unit = shootBossUnit[0];
+            selectUnit = selectShootBossUnit;
+            Unit_Range() ;
+        }
     }
 
     /// <summary>
@@ -135,9 +154,9 @@ public class UnitBuildSystem : MonoBehaviour
         get
         {
             Vector3 selectPos = default;
-            int floorLayer = 1 << LayerMask.NameToLayer("Terrain");
+            int floorLayer = 1 << LayerMask.NameToLayer("Ground");
             // Ray를 카메라의 위치로부터 나가도록 한다.
-            Ray ray = new Ray(ARAVRInput.RHandPosition, ARAVRInput.RHandDirection); // 왜 안되나...?
+            Ray ray = new Ray(ARAVRInput.RHandPosition, ARAVRInput.RHandDirection);
             RaycastHit hitInfo = default;
 
             if (Physics.Raycast(ray, out hitInfo, 200f, floorLayer))
@@ -146,6 +165,7 @@ public class UnitBuildSystem : MonoBehaviour
             }
 
             Vector3Int gridPos = grid.WorldToCell(selectPos);
+            Debug.LogFormat("그리드 Pos; {0}", gridPos);
 
             return gridPos; // 이후 셀포지션을 return 하도록 수정
         }
@@ -155,20 +175,19 @@ public class UnitBuildSystem : MonoBehaviour
     /// <summary>
     /// 유닛 배치 범위를 표시
     /// </summary>
-    private void Unit_Range()
+    /// <param name="unitNum">구매한 유닛 번호</param>
+    public void Unit_Range()
     {
         bool overlap = false; // 유닛 위치 중복 여부 체크
-
         buildPos = SelectPosition; // 유닛을 설치할 좌표
-        //buildPos.y += 0.5f; // TODO: 선택유닛 콜라이더의 절반 높이 추가 => GetComponent<Collider>(), collider.bounds.size.y
 
         // 유닛 중복 위치 금지
         foreach (Vector3 location in unitBuildPos)
         {
             if (location == selectUnit.transform.position) // 중복 확인 시 
             {
-                Transform catapult = selectUnit.transform.GetChild(0);  // Catapult 실오브젝트
-                MeshRenderer[] children = catapult.GetComponentsInChildren<MeshRenderer>(); // 구성 요소 Material 배열
+                Transform obj = selectUnit.transform.GetChild(0);  // 실오브젝트
+                MeshRenderer[] children = obj.GetComponentsInChildren<MeshRenderer>(); // 구성 요소 Material 배열
                 
                 for (int i = 0; i < children.Length; i++)
                 {
@@ -179,8 +198,8 @@ public class UnitBuildSystem : MonoBehaviour
             }
             else // 중복이 아니라면 
             {
-                Transform catapult = selectUnit.transform.GetChild(0);  // Catapult 실오브젝트
-                MeshRenderer[] children = catapult.GetComponentsInChildren<MeshRenderer>(); // 구성 요소 Material 배열
+                Transform obj= selectUnit.transform.GetChild(0);  // 실오브젝트
+                MeshRenderer[] children = obj.GetComponentsInChildren<MeshRenderer>(); // 구성 요소 Material 배열
 
                 for (int i = 0; i < children.Length; i++)
                 {
@@ -203,6 +222,10 @@ public class UnitBuildSystem : MonoBehaviour
             // 설치 키를 입력했으며 중복 설치 시도가 아니라면
             if (ARAVRInput.GetDown(ARAVRInput.Button.IndexTrigger, ARAVRInput.Controller.RTouch) && !overlap)
             {
+                shop_Unit.buildBomb = false;
+                shop_Unit.buildBlade = false;
+                shop_Unit.buildShootBoss = false;
+
                 Unit_Build(); // 타워 설치
             }
         }
@@ -218,17 +241,22 @@ public class UnitBuildSystem : MonoBehaviour
         unit.transform.position = buildPos;
         unitBuildPos.Add(unit.transform.position); // 유닛 설치 위치 등록
 
-        // TODO: 지속시간 존재 시 주석 해제 
+        // 임시 유지시간 20초. 폭발 유닛 빼고 
         //Invoke("Unit_TimeOver", unitLifeTime); // 유닛 유지시간 동안 대기 후 오브젝트 풀로 유닛 이동  
     }
 
     private void Unit_TimeOver() 
     {
-        Debug.Log("유닛 유지시간 종료");
         unitBuildPos.Remove(unit.transform.position); // 유닛 설치 위치 제거
         unit.transform.position = poolPos;
     }
     #endregion
 
-    
+    /// <summary>
+    /// 유닛이 풀로 복귀
+    /// </summary>
+    public void ReturnPool(GameObject unit)
+    {
+        unit.transform.position = poolPos;
+    }
 }

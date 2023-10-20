@@ -25,7 +25,7 @@ public class UnitCSVReader : MonoBehaviour
         // CSV Line
         string[] attackUnitCSV_Line, buffUnitCSV_Line = default;
 
-        int attcakRange_Index = -1; // 공격범위
+        int attackRange_Index = -1; // 공격범위
         int damage_Index = -1; // 데미지(공격력)
         int attackCount_Index = -1; // 공격대상
         int speed_Index = -1; // 공격속도
@@ -59,7 +59,7 @@ public class UnitCSVReader : MonoBehaviour
                 // 공격범위, 데미지, 공격대상, 공격속도, 회전속도, 체력
                 if (headers[i] == "공격범위")
                 {
-                    attcakRange_Index = i;
+                    attackRange_Index = i;
                 }
                 else if (headers[i] == "데미지")
                 {
@@ -91,40 +91,40 @@ public class UnitCSVReader : MonoBehaviour
 
                 if (attackComponent != null)
                 {
-                    if (unit.name == "Bomb Unit(Clone)") // 폭탄 유닛일때
+                    if (unit.name == "Unit_Bomb(Clone)") // 폭탄 유닛일때
                     {
                         lines = attackUnitCSV_Line[1].Split(','); // Bomb에 해당하는 줄
                         AttackUnitProperty bombProperty = unit.GetComponent<AttackUnitProperty>();
 
-                        bombProperty.attcakRange = int.Parse(lines[attcakRange_Index]);
+                        bombProperty.attackRange = int.Parse(lines[attackRange_Index]);
                         bombProperty.damage = int.Parse(lines[damage_Index]);
                         bombProperty.attackCount = int.Parse(lines[attackCount_Index]);
-                        bombProperty.speed = int.Parse(lines[speed_Index]);
+                        bombProperty.speed = float.Parse(lines[speed_Index]);
                         bombProperty.rotateSpeed = int.Parse(lines[rotateSpeed_Index]);
                         bombProperty.HP = int.Parse(lines[HP_Index]);
                     }
-                    else if (unit.name == "Blade Unit(Clone)") // 칼날 유닛일때
+                    else if (unit.name == "Unit_Blade(Clone)") // 근거리 타격 유닛일때
                     {
                         lines = attackUnitCSV_Line[2].Split(','); // Blade에 해당하는 줄
                         AttackUnitProperty bladeProperty = unit.GetComponent<AttackUnitProperty>();
 
-                        bladeProperty.attcakRange = int.Parse(lines[attcakRange_Index]);
+                        bladeProperty.attackRange = int.Parse(lines[attackRange_Index]);
                         bladeProperty.damage = int.Parse(lines[damage_Index]);
                         bladeProperty.attackCount = int.Parse(lines[attackCount_Index]);
-                        bladeProperty.speed = int.Parse(lines[speed_Index]);
+                        bladeProperty.speed = float.Parse(lines[speed_Index]);
                         bladeProperty.rotateSpeed = int.Parse(lines[rotateSpeed_Index]);
                         bladeProperty.HP = int.Parse(lines[HP_Index]);
 
                     }
-                    else if (unit.name == "Shoot Boss Unit(Clone)")
+                    else if (unit.name == "Unit_ShootBoss(Clone)") // 보스 타격 유닛일때
                     {
                         lines = attackUnitCSV_Line[3].Split(','); // Blade에 해당하는 줄
                         AttackUnitProperty shootBossProperty = unit.GetComponent<AttackUnitProperty>();
 
-                        shootBossProperty.attcakRange = int.Parse(lines[attcakRange_Index]);
+                        shootBossProperty.attackRange = int.Parse(lines[attackRange_Index]);
                         shootBossProperty.damage = int.Parse(lines[damage_Index]);
                         shootBossProperty.attackCount = int.Parse(lines[attackCount_Index]);
-                        //shootBossProperty.speed = int.Parse(lines[speed_Index]);
+                        shootBossProperty.speed = float.Parse(lines[speed_Index]);
                         shootBossProperty.rotateSpeed = int.Parse(lines[rotateSpeed_Index]);
                         shootBossProperty.HP = int.Parse(lines[HP_Index]);
                     }

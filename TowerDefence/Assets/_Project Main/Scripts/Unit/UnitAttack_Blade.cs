@@ -3,57 +3,128 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ¼³Ä¡/°ø°İÇü À¯´Ö: Á¹°³ÀÇ Á¢±ÙÀÌ È®ÀÎµÇ¸é Ä®³¯ È¸Àü
+/// ì„¤ì¹˜/ê³µê²©í˜• ìœ ë‹›: ì¡¸ê°œì˜ ì ‘ê·¼ì´ í™•ì¸ë˜ë©´ ì¹¼ë‚  íšŒì „
 /// </summary>
 public class UnitAttack_Blade : MonoBehaviour
 {
-    // Ä®³¯
-    private GameObject blade = default;
-    // Ä®³¯ È¸Àü ¿©ºÎ
+    // (CSV) ê·¼ê±°ë¦¬ íƒ€ê²© ìœ ë‹› HP
+    [SerializeField] private int bladeHP = default;
+    // (CSV) ê·¼ê±°ë¦¬ íƒ€ê²© ìœ ë‹› ê³µê²©ì†ë„
+    [SerializeField] private float bladeSpeed = default;
+    // (CSV) ê·¼ê±°ë¦¬ íƒ€ê²© ìœ ë‹› ê³µê²©ë ¥
+    [SerializeField] private int bladeDamage = default;
+    // (CSV) ê·¼ê±°ë¦¬ íƒ€ê²© ìœ ë‹› íšŒì „ì†ë„
+    [SerializeField] private int bladeRotateSpeed = default;
+
+    // ì¹¼ë‚ 
+    private Transform blade = default;
+    // ì¹¼ë‚  íšŒì „ ì—¬ë¶€
     private bool rotateBlade = false;
 
     private void Awake()
     {
         UnitBuildSystem.units.Add(transform.gameObject);
-        blade = transform.GetChild(0).gameObject;
+        blade = transform.GetChild(0);
     }
 
+    private void Start()
+    {
+        bladeHP = transform.GetComponent<AttackUnitProperty>().HP;
+        bladeSpeed = transform.GetComponent<AttackUnitProperty>().speed;
+        bladeDamage = transform.GetComponent<AttackUnitProperty>().damage;
+        bladeRotateSpeed = transform.GetComponent<AttackUnitProperty>().rotateSpeed;
+    }
+
+    #region ì¡¸ê°œ ê°ì§€
     /// <summary>
-    /// Á¹°³¸¦ °¨ÁöÇÏ´Â ¸Ş¼­µå
+    /// ê°ì§€í•œ ì¡¸ê°œ ë°°ì—´
     /// </summary>
-    private Collider[] EnemyGotcha
+    private GameObject[] EnemyGotcha
     {
         get
         {
-            float radius = 5f; // Á¹°³ Å½Áö ¹İ°æ
-            int enemyLayer = 1 << LayerMask.NameToLayer("Enemy"); // Á¹°³ ·¹ÀÌ¾î¸¶½ºÅ©
-            Collider[] colliders = Physics.OverlapSphere(transform.position, radius, enemyLayer); // Á¹°³ °ËÃâ
+            float range = 1 / 2; // ê°ì§€ ë°˜ê²½ 1m X 1m (ì ˆë°˜ ë‚˜ëˆ„ê¸°)
 
-            return colliders;
+            Collider[] colliders = Physics.OverlapBox(transform.position, new Vector3(range, 0.5f, range),
+                Quaternion.identity);
+            GameObject[] targetEnemies = new GameObject[colliders.Length]; // ê°ì§€í•œ ì  ì˜¤ë¸Œì íŠ¸ ë°°ì—´
+
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                if (colliders[i].gameObject.CompareTag("Enemy")) // ì  íƒœê·¸ë§Œ ê°ì§€
+                {
+                    targetEnemies[i] = colliders[i].gameObject;
+                }
+            }
+
+            return targetEnemies;
+        }
+    }
+    #endregion 
+
+    /// <summary>
+    /// ì²« ì§„ì… ì‹œ ê³µê²©
+    /// </summary>
+    /// <param name="other"></param>
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy")) // ì¡¸ê°œ íƒœê·¸ë©´
+        {
+            AttackDamage(other.gameObject); // ë°ë¯¸ì§€ í˜¸ì¶œ
+        }    
+    }
+
+    /// <summary>
+    /// ì´í›„ ì§€ì† ê³µê²©
+    /// </summary>
+    /// <param name="other"></param>
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Enemy")) // ì¡¸ê°œ íƒœê·¸ë©´
+        {
+            float time = 0f;
+
+            if (time < bladeSpeed)
+            {
+                time += Time.deltaTime;
+            }
+            else if (time >= bladeSpeed)
+            {
+                AttackDamage(other.gameObject); // ë°ë¯¸ì§€ í˜¸ì¶œ
+                time = 0f;
+            }
         }
     }
 
     private void Update()
     {
-        if (EnemyGotcha.Length > 0) // ¹İ°æ ³» Á¹°³ ÇÏ³ª ÀÌ»ó °ËÃâ
+        if (EnemyGotcha.Length > 0) // ë°˜ê²½ ë‚´ ì¡¸ê°œ í•˜ë‚˜ ì´ìƒ ê²€ì¶œ
         {
-            Debug.Log("Àû °ËÃâ!");
-            rotateBlade = true;
+            rotateBlade = true; // ì¹¼ë‚  íšŒì „
+            //StartCoroutine(AttackEnemy()); // Null ë°œìƒ
         }
-        else rotateBlade = false; // ¾Æ´Ï¸é Á¤Áö
+        else rotateBlade = false; // ì•„ë‹ˆë©´ ì •ì§€
     }
 
     private void FixedUpdate()
     {
+        int rotationsPerSecond = 3; // ì´ˆë‹¹ íšŒì „ íšŸìˆ˜
+        float rotateValue = 360f / rotationsPerSecond; // ì´ˆë‹¹ 3íšŒ íšŒì „
+
         if (rotateBlade)
         {
-            float rotateValue = 500f; // Ä®³¯ È¸Àü°ª
-            blade.transform.RotateAround(transform.position, Vector3.up, rotateValue * Time.deltaTime); // È¸Àü
+            blade.Rotate(0, rotateValue * Time.deltaTime, 0); // ì¤‘ì‹¬ìœ¼ë¡œ ëŒê¸°?
         }
         else
         {
-            Quaternion stopRotate = blade.transform.rotation;
-            blade.transform.rotation = stopRotate; // Á¤Áö
+            blade.rotation = blade.rotation; // ì¹¼ë‚  íšŒì „ ì •ì§€
         }
+    }
+
+    // MonsterInfoì˜ MonsterDamaged(ì„ì‹œê°’)
+    private void AttackDamage(GameObject enemy)
+    {
+        // TODO: ì¡¸ê°œì— ëŒ€í•œ ë°ë¯¸ì§€ ì²˜ë¦¬ 
+        Debug.Log("ë°ë¯¸ì§€ ì²˜ë¦¬");
     }
 }

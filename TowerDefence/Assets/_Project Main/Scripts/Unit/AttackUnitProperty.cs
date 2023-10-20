@@ -7,10 +7,10 @@ using UnityEngine;
 /// </summary>
 public class AttackUnitProperty : MonoBehaviour
 {
-    public int attcakRange; // 공격범위
+    public int attackRange; // 공격범위
     public int damage; // 데미지(공격력)
     public int attackCount; // 공격대상
-    public int speed; // 공격속도
+    public float speed; // 공격속도
     public int rotateSpeed; // 회전속도
     public int HP; // 체력
 }

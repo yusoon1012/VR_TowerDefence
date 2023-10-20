@@ -1,32 +1,58 @@
+using Meta.WitAi;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class UnitAttack_ShootBoss : MonoBehaviour
 {
-    public GameObject spherePrefab = default; // 투창 프리팹 
+    public GameObject stonePrefab = default; // 투창 프리팹 
     //GameObject[] spheres = default; // 투창
-    GameObject sphere = default; // 테스트
+    GameObject stone = default; // 테스트
     private Transform firePosition; // 발사 위치
     private Vector3 poolPos = new Vector3(0f, -10f, 0f); // 풀 포지션
     private Vector3 bossPosition = default; // 타겟 포지션 (보스)
 
-    private int unitHP = 100;
+    // 유닛 HP
+    public int shootBossHP = default; //(CSV) 보스 타격 유닛HP
+    private bool hit = false; // 피격 상태 체크
+    float time = 0f; // 피격 타임
+
+    Transform pivot = default; // 투석 시 회전
+    float initialSpeed = 10f; // 초기 회전 속도
+    float decelaration = 0.5f; // 감속도
+    bool fire = false; // 투척 중
+    bool pivotRotate = false; // 회전
+
+    private event EventHandler throwSphere;
 
     private void Awake()
     {
         UnitBuildSystem.units.Add(transform.gameObject);
         GameObject boss = GameObject.FindWithTag("Boss");
+        Debug.Assert(boss != null);
         bossPosition = boss.transform.position;
         bossPosition.y = boss.GetComponent<Collider>().bounds.size.y * 0.55f; // 보스 키의 55% 지점 타격
 
-        firePosition = transform.GetChild(0);
+        firePosition = transform.GetChild(1);
+        pivot = transform.GetChild(0).transform.GetChild(1);
+
+        throwSphere += PivotRotate;
     }
+
+    private void Start()
+    {
+        shootBossHP = transform.GetComponent<AttackUnitProperty>().HP;
+        //Invoke("TestStart", 3f); // 테스트용
+    }
+
+    //private void TestStart() { StartCoroutine(ReadyFire()); } // 테스트용
 
     private void Update()
     {
         // TODO: 유닛 구매 여부 추가 
-        if (Distance < 150f) // 반경 150 내 보스 존재
+        if (Distance < 1000f) // 반경 150 내 보스 존재 (임시값: 1000)
         {
             FindBoss();
         }
@@ -36,12 +62,44 @@ public class UnitAttack_ShootBoss : MonoBehaviour
         {
             StartCoroutine(ReadyFire());
         }
+
+        #region 유닛이 피격 당함
+        FindEnemy(); // 피격 체크
+
+        if (hit) // 피격 상태라면
+        {
+            int delayHit = 5; // 5초에 한 번씩 피격
+
+            if (time < delayHit)
+            {
+                time += Time.deltaTime;
+            }
+            else if (time >= delayHit)
+            {
+                time = 0f; // 타임 초기화
+                shootBossHP -= 5; // 피격 처리 (TODO: 졸개 공격력에서 가져오는 것으로 처리?)
+                Debug.LogFormat("HP: {0}", shootBossHP);
+            }
+        }
+        #endregion
     }
 
-    //private float HitDistance
-    //{
-      
-    //}
+    /// <summary>
+    /// 근처에 졸개가 있는지 검색하는 메서드 
+    /// </summary>
+    private void FindEnemy()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy"); // 졸개 태그를 달고 있는 오브젝트 배열 검출
+
+        for (int i = 0; i < enemies.Length; i++) // 모든 적 검사
+        {
+            // TODO: 유닛과의 거리 계산, 만약 일정 거리 내 있다면 유닛은 피격됨. 
+            if (Vector3.Distance(transform.position, enemies[i].transform.position) <= 10f) // 거리 1 안쪽으로 적이 존재
+            {
+                hit = true;
+            }
+        }
+    }
 
     #region 투척
     /// <summary>
@@ -77,23 +135,24 @@ public class UnitAttack_ShootBoss : MonoBehaviour
         Quaternion unitRotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Slerp(transform.rotation, unitRotation, rotationSpeed * Time.deltaTime);
 
+        Debug.Log("회전 완료");
+
     }
 
-    /// <summary>
     /// 연사 시간 조정
     /// </summary>
     /// <returns></returns>
     private IEnumerator ReadyFire()
     {
-        bool fire = true;
+        fire = true;
 
         while (fire)
         {
+            throwSphere?.Invoke(this, EventArgs.Empty);
             Fire();
 
             yield return new WaitForSeconds(2.5f); // 연사 대기 시간
         }
-
     }
 
     /// <summary>
@@ -105,12 +164,38 @@ public class UnitAttack_ShootBoss : MonoBehaviour
 
         Rigidbody sphereRigid = default; // 테스트
 
-        sphere = Instantiate(spherePrefab, firePosition.position, Quaternion.identity);
-        sphereRigid = sphere.GetComponent<Rigidbody>();
+        stone = Instantiate(stonePrefab, firePosition.position, Quaternion.identity);
+        sphereRigid = stone.GetComponent<Rigidbody>();
 
         sphereRigid.velocity = velocity;
 
         Path(velocity); // CaculateVelocity()의 계산값을 궤적을 그리는데 이용
+    }
+
+    void PivotRotate(object sender, EventArgs e) { pivotRotate = true; } // 투척 시 이벤트 발생
+
+    private void FixedUpdate()
+    {
+        if (fire && pivotRotate) // 앞으로 투척 
+        {
+            float degree = 200f;
+            float currentYRotation = pivot.transform.rotation.eulerAngles.y;
+
+            if (currentYRotation < 75)
+            {
+                Debug.Log("이동 시도");
+                pivot.transform.Rotate(-Vector3.up * Time.fixedDeltaTime * degree);
+            }
+            else if (currentYRotation >= 75) // 75가 회전각도
+            {
+                Debug.Log("정지 시도");
+                pivot.transform.rotation = pivot.transform.rotation; // 회전 정지
+            }
+        }
+        else if (fire && !pivotRotate) // 재투척 준비
+        {
+            Debug.Log("재투척 준비");
+        }
     }
 
     /// <summary>
