@@ -1,10 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
+    public TMP_Text timerText;
+    private float currentTime;
 
     #region 싱글턴
     private void Awake()
