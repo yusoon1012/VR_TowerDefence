@@ -10,10 +10,10 @@ public class ObjectPooling : MonoBehaviour
     private GameObject poolingObject = default;
     // 보스가 발사하는 구체 오브젝트 배열
     /*
-     * 0 : 라이트닝 구체
-     * 1 : 파이어 구체
+     * 0 : 파이어 구체
+     * 1 : 라이트닝 구체
      * 2 : 포이즌 구체
-     * 3 : 샌드 구체
+     * 3 : 쉐도우 구체
      */
     public GameObject[] bossThrowSpell = new GameObject[4];
     // 최종 보스 오브젝트

@@ -9,11 +9,11 @@ public class Player_Parry : MonoBehaviour
     public Transform playerTransform;
     public Transform bossTransform;
     float speed;
-    public bool isParriable=false;
+    public bool isParriable = false;
     // Start is called before the first frame update
     void Start()
     {
-        boss=FindAnyObjectByType<FinalBoss>();
+        boss = FindAnyObjectByType<FinalBoss>();
     }
 
     // Update is called once per frame
@@ -30,22 +30,27 @@ public class Player_Parry : MonoBehaviour
             isParriable = false;
         }
     }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Meteor"))
         {
-            if(isParriable) 
+            if (isParriable)
             {
-            Rigidbody rb= other.GetComponent<Rigidbody>();
-            if(rb != null )
-            {
-                Vector3 dir=(bossTransform.position- playerTransform.position).normalized;
-               
-                rb.velocity = Vector3.zero;
-                rb.AddForce(dir*100f,ForceMode.Impulse);
-                particle.Play();
+                // 콜라이더에 들어온 오브젝트의 ThrowSpell 스크립트를 참조한다
+                ThrowSpell throwSpell = other.GetComponent<ThrowSpell>();
+                Rigidbody rb = other.GetComponent<Rigidbody>();
+                // ThrowSpell 의 Reverse 함수를 실행해 발사체가 날아가는 방향을 바꿔준다
+                throwSpell.Reverse();
+                if (rb != null)
+                {
+                    Vector3 dir = (bossTransform.position - playerTransform.position).normalized;
+
+                    rb.velocity = Vector3.zero;
+                    rb.AddForce(dir * 100f, ForceMode.Impulse);
+                    particle.Play();
+                }
             }
-            }
-        }
+        }     // OnTriggerStay()
     }
 }
