@@ -50,7 +50,7 @@ public class UnitAttack_Blade : MonoBehaviour
         if (EnemyGotcha.Length > 0) // 반경 내 졸개 하나 이상 검출
         {
             rotateBlade = true; // 칼날 회전
-            StartCoroutine(AttackEnemy());
+            //StartCoroutine(AttackEnemy()); // Null 발생
         }
         else rotateBlade = false; // 아니면 정지
     }
