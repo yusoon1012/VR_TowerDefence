@@ -12,11 +12,22 @@ public class GoldManager : MonoBehaviour
     public int startGold = 250;
     private int timeGold = 15;
     private int monsterGold = 20;
+    public static GoldManager instance = null;
 
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+
+        DontDestroyOnLoad(this.gameObject);
+    }
     // Start is called before the first frame update
     void Start()
     {
-        
+        currentGold = startGold;
+        goldText.text = string.Format("{0}", currentGold);
     }
 
     // Update is called once per frame
@@ -25,6 +36,30 @@ public class GoldManager : MonoBehaviour
         
     }
 
-    public void 
-   
+    public void TimeAddGold()
+    {
+        int targetGold = currentGold + 15;       
+        StartCoroutine(GoldRoutine(targetGold));
+    }
+    public void EnemyDropGold()
+    {
+        int targetGold = currentGold + 20;
+        StartCoroutine(GoldRoutine(targetGold));
+
+    }
+    public void BossDamageGold(int damage_)
+    {
+        int targetGold = currentGold + (damage_/2) ;
+        StartCoroutine(GoldRoutine(targetGold));
+    }
+    private IEnumerator GoldRoutine(int targetGold_)
+    {
+        while(currentGold<targetGold_)
+        {
+            yield return new WaitForSeconds(0.01f);
+            currentGold += 1;
+            goldText.text = string.Format("{0}", currentGold);
+        }
+    }
+
 }
