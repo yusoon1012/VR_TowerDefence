@@ -1450,6 +1450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a9bdcb4e14a0b54b8ba1f1b362880fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healImages: []
   buffIcon:
   - {fileID: 0}
   - {fileID: 0}
@@ -1473,8 +1474,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa061609c3e91294db339180416372d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meeleUnitPrefab: {fileID: 0}
-  bombUnitPrefab: {fileID: 0}
 --- !u!1 &5736559254706201350
 GameObject:
   m_ObjectHideFlags: 0

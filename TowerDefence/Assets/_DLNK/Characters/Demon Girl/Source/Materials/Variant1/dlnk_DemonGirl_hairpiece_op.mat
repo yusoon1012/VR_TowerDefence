@@ -109,7 +109,7 @@ Material:
     m_Floats:
     - _AlphaClip: 0
     - _Blend: 0
-    - _BumpScale: 1
+    - _BumpScale: 2
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
@@ -143,8 +143,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.53773576, g: 0.0076094554, b: 0.3827757, a: 1}
-    - _Color: {r: 0.5377357, g: 0.0076094554, b: 0.38277566, a: 1}
+    - _BaseColor: {r: 0.39215687, g: 0, b: 0, a: 1}
+    - _Color: {r: 0.39215684, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _RimColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}

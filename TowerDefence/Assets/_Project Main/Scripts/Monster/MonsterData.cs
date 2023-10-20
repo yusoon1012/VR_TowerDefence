@@ -6,13 +6,13 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class MonsterData : MonoBehaviour
 {
-    #region ¸ó½ºÅÍ ¼Ó¼º °ª
-    public int hp = default;                 // ¸ó½ºÅÍ Ã¼·Â
-    public int power = default;              // ÀÚÆø µ¥¹ÌÁö
-    public int speed = default;              // ¸ó½ºÅÍ ¼Óµµ
-    public int recognitionRange = default;   // ÀÎ½Ä ¹üÀ§
-    public int attackRange = default;        // °ø°İ °¡´É ¹üÀ§
-    public int explosionRange = default;     // Æø¹ß ¹üÀ§
+    #region ëª¬ìŠ¤í„° ì†ì„± ê°’
+    public int hp = default;                 // ëª¬ìŠ¤í„° ì²´ë ¥
+    public int power = default;              // ìí­ ë°ë¯¸ì§€
+    public int speed = default;              // ëª¬ìŠ¤í„° ì†ë„
+    public int recognitionRange = default;   // ì¸ì‹ ë²”ìœ„
+    public int attackRange = default;        // ê³µê²© ê°€ëŠ¥ ë²”ìœ„
+    public int explosionRange = default;     // í­ë°œ ë²”ìœ„
     #endregion
 
     #region NormalMonster
@@ -38,6 +38,34 @@ public class MonsterData : MonoBehaviour
         int.TryParse(GameManager.instance.monsterData["Recognition_Range"][1], out _recognitionRange);
         int.TryParse(GameManager.instance.monsterData["Attack_Range"][1], out _attackRange);
         int.TryParse(GameManager.instance.monsterData["Explosion_Range"][1], out _explosionRange);
+
+        return (_hp, _power, _speed, _recognitionRange, _attackRange, _explosionRange);
+    }
+    #endregion
+
+    #region FastMonster
+    public virtual (int, int, int, int, int, int) NormalUpgradeMonster(int _hp, int _power, int _speed, int _recognitionRange, int _attackRange, int _explosionRange)
+    {
+        int.TryParse(GameManager.instance.monsterData["Hp"][2], out _hp);
+        int.TryParse(GameManager.instance.monsterData["Power"][2], out _power);
+        int.TryParse(GameManager.instance.monsterData["Speed"][2], out _speed);
+        int.TryParse(GameManager.instance.monsterData["Recognition_Range"][2], out _recognitionRange);
+        int.TryParse(GameManager.instance.monsterData["Attack_Range"][2], out _attackRange);
+        int.TryParse(GameManager.instance.monsterData["Explosion_Range"][2], out _explosionRange);
+
+        return (_hp, _power, _speed, _recognitionRange, _attackRange, _explosionRange);
+    }
+    #endregion
+
+    #region FastMonster
+    public virtual (int, int, int, int, int, int) FastUpgradeMonster(int _hp, int _power, int _speed, int _recognitionRange, int _attackRange, int _explosionRange)
+    {
+        int.TryParse(GameManager.instance.monsterData["Hp"][3], out _hp);
+        int.TryParse(GameManager.instance.monsterData["Power"][3], out _power);
+        int.TryParse(GameManager.instance.monsterData["Speed"][3], out _speed);
+        int.TryParse(GameManager.instance.monsterData["Recognition_Range"][3], out _recognitionRange);
+        int.TryParse(GameManager.instance.monsterData["Attack_Range"][3], out _attackRange);
+        int.TryParse(GameManager.instance.monsterData["Explosion_Range"][3], out _explosionRange);
 
         return (_hp, _power, _speed, _recognitionRange, _attackRange, _explosionRange);
     }

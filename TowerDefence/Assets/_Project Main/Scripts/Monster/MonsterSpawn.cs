@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MonsterSpawn : MonoBehaviour
@@ -49,7 +50,7 @@ public class MonsterSpawn : MonoBehaviour
 
     private int maxMonsterCount = default;                        // 한 웨이브당 소환될 몬스터 갯수
     private float[] indexDegrees = new float[6];                  // 몬스터가 소환될 인덱스 값
-    public int currentCount = default;                           // 스폰한 몬스터 갯수
+    public int currentCount = 0;                                  // 스폰한 몬스터 갯수
     private bool isSpawn = false;                                 // 중복 소환 방지를 위한 bool값
 
     private int[] indexSpawnChecks = default;                     // 인덱스에 최대 마리 수가 소환 됬는지 체크
@@ -106,37 +107,75 @@ public class MonsterSpawn : MonoBehaviour
         }       // loop: wave 당 스폰한 몬스터가 최대값에 도달할때까지 반복
 
         // 소환 하면서 필요한 값 초기화
-        // TODO: 작성 해야함
+
+        ResetSpawn();
 
         isSpawn = false;
     }       // StartSpawn()
 
-    //! 스폰 위치 지정해 주기
+    private void ResetSpawn()
+    {
+        currentCount = 0;
+
+        for (int i = 0; i < indexSpawnChecks.Length; i++)
+        {
+            indexSpawnChecks[i] = 0;
+        }
+    }
+
+    //! 스폰 몬스터 지정해 주기
     private void SelectIndex()
     {
         while (true)
         {
             int randNumber = Random.Range(0, indexSpawnChecks.Length);
 
-            if (indexSpawnChecks[randNumber] == 5) { continue; }
-            else
+            // 보스 체력이 40% 이상인치 체크
+            if (int.Parse(GameManager.instance.bossData["Hp"][1]) * 0.4f <= bossPos.GetComponent<FinalBoss>().finalBossHp)
             {
-                if (randNumber == 2)
-                {
-                    FindMonster(monsters[0], randNumber);
-
-                    indexSpawnChecks[randNumber] += 1;
-
-                    break;
-                }       // FastMonster 선택
+                if (indexSpawnChecks[randNumber] == indexMonsterCount) { continue; }
                 else
                 {
-                    FindMonster(monsters[1], randNumber);
+                    if (randNumber == 2)
+                    {
+                        FindMonster(monsters[1], randNumber);
 
-                    indexSpawnChecks[randNumber] += 1;
+                        indexSpawnChecks[randNumber] += 1;
 
-                    break;
-                }       // NormalMonster 선택
+                        break;
+                    }       // FastMonster 선택
+                    else
+                    {
+                        FindMonster(monsters[0], randNumber);
+
+                        indexSpawnChecks[randNumber] += 1;
+
+                        break;
+                    }       // NormalMonster 선택
+                }
+            }
+            else
+            {
+                if (indexSpawnChecks[randNumber] == 5) { continue; }
+                else
+                {
+                    if (randNumber == 2)
+                    {
+                        FindMonster(monsters[3], randNumber);
+
+                        indexSpawnChecks[randNumber] += 1;
+
+                        break;
+                    }       // FastUpgradeMonster 선택
+                    else
+                    {
+                        FindMonster(monsters[2], randNumber);
+
+                        indexSpawnChecks[randNumber] += 1;
+
+                        break;
+                    }       // NormalUpgradeMonster 선택
+                }
             }
         }
     }       // SpawnPos()
@@ -155,7 +194,13 @@ public class MonsterSpawn : MonoBehaviour
                 {
                     for (int j = 0; j < parent.GetChild(i).childCount; j++)
                     {
-                        if (!parent.GetChild(i).GetChild(j).gameObject.activeSelf)
+                        if (j == parent.GetChild(i).childCount - 1)
+                        {
+                            Spawn(_monster, spawnPosition, i);
+
+                            break;
+                        }
+                        else if (!parent.GetChild(i).GetChild(j).gameObject.activeSelf)
                         {
                             GameObject newMonster = parent.GetChild(i).GetChild(j).gameObject;
 
@@ -169,11 +214,13 @@ public class MonsterSpawn : MonoBehaviour
                         }       // if: 비활성화 상태의 오브젝트를 발견하면 활성화 시켜주기
                     }       // loop: 스폰할 위치에서 비활성화 상태인 오브젝트 찾기
                 }       // if: 오브젝트 풀링 시작
+                else
+                {
+                    // parent.GetChild(i).childCount 가 0이거나 자식이 모두 활성화 상태라면 새로 스폰
+                    Spawn(_monster, spawnPosition, i);
 
-                // parent.GetChild(i).childCount 가 0이거나 자식이 모두 활성화 상태라면 새로 스폰
-                Spawn(_monster, spawnPosition, i);
-
-                break;
+                    break;
+                }
             }       // if: 몬스터 이름과 부모 오브젝트의 이름이 같은지 확인
         }       // loop: 스폰될 오브젝트의 부모오브젝트 선정
     }       // FindMonster()

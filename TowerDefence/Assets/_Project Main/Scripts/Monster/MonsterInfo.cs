@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -66,6 +67,7 @@ public class MonsterInfo : MonsterData
 
         if (isReady)
         {
+
             if (this.hp <= 0)
             {
                 StartCoroutine(Death());
@@ -74,11 +76,12 @@ public class MonsterInfo : MonsterData
             {
                 if (distance <= this.attackRange && isAttack == false)
                 {
+
                     nav.speed = 0.0f;
 
                     StartCoroutine(Attack());
                 }
-                else
+                else if (isAttack == false)
                 {
                     nav.speed = this.speed;
 
@@ -86,10 +89,6 @@ public class MonsterInfo : MonsterData
                 }
             }
         }
-    }
-    public void MonsterDamaged(int damage)
-    {
-        hp -= damage;
     }
 
     //! 몬스터가 플레이어를 찾아가는 네비게이션
@@ -138,6 +137,12 @@ public class MonsterInfo : MonsterData
         }
     }
 
+    //! 몬스터 체력을 깍기
+    public void MonsterDamaged(int _damage)
+    {
+        this.hp -= _damage;
+    }
+
     #region 에니메이션
     //! 몬스터의 공격 에니메이션 재생
     private IEnumerator Attack()
@@ -145,7 +150,6 @@ public class MonsterInfo : MonsterData
         isAttack = true;
 
         animator.SetTrigger("Attack");
-        //MonsterSpawn.instance.currentCount -= 1;
 
         if (!AniCheckInfo("Attack"))
         {
@@ -157,49 +161,23 @@ public class MonsterInfo : MonsterData
 
         float duration = AniCheckLength();
 
-        //! TODO: 거리를 계산하여 거리 내에 있는 오브젝트 체력 닳게 하기 또는 콜라이더 생성후 Trigger 닿은 몬스터 체력 닳게 하기
+        yield return new WaitForSeconds(duration / 2);
 
-        attackFX.SetActive(true);
-
-        StartCoroutine(SetDissolve(duration, splitEndValue, splitStartValue));
-
-        yield return new WaitForSeconds(duration);
-
-        this.gameObject.SetActive(false);
-    }       // AttackPlayer()       // 사운드 추가 예정
-
-    //! 몬스터의 능력 향상 에니메이션 재생
-    private IEnumerator Buffer()
-    {
-        isBuffer = true;
-
-        animator.SetTrigger("Buffer");
-
-        if (!AniCheckInfo("Buffer"))
+        if (Vector3.Distance(transform.position, player.transform.position) <= attackRange)
         {
-            while (!AniCheckInfo("Buffer"))
-            {
-                yield return null;
-            }       // loop: 에니메이션이 JumpStart에 들어올때까지 대기
-        }       // if: 에니메이션이 잘 들어왔을 경우 패스
-
-        // TODO: 사운드, 효과
-
-        while (animator.GetCurrentAnimatorStateInfo(0).IsName("Buffer"))
-        {
-            yield return null;
+            Player_Status.Instance.PlayerDamaged(power);
         }
 
-        // TODO: 능력
-
-        isBuffer = false;
-    }       // Buffer()     // 사운드, 효과, 능력 추가 예정
+        yield return new WaitForSeconds(duration / 2);
+        
+        isAttack = false;
+    }       // AttackPlayer()       // 사운드 추가 예정
 
     //! 몬스터의 죽어을 때 에니메이션 재생
     private IEnumerator Death()
     {
         isDeath = true;
-        //MonsterSpawn.instance.currentCount -= 1;
+
         animator.SetTrigger("Death");
 
         if (!AniCheckInfo("Death"))
@@ -213,6 +191,16 @@ public class MonsterInfo : MonsterData
         float duration = AniCheckLength();
 
         // TODO: 사운드
+
+        if (monsterName == "NormalUpgradeMonster")
+        {
+            if (Vector3.Distance(transform.position, player.transform.position) <= explosionRange)
+            {
+                attackFX.SetActive(true);
+
+                Player_Status.Instance.PlayerDamaged(power);
+            }
+        }
 
         StartCoroutine(SetDissolve(duration, splitEndValue, splitStartValue));
 
