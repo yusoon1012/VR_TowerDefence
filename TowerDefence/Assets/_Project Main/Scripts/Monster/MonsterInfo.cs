@@ -74,7 +74,6 @@ public class MonsterInfo : MonsterData
             }
             else
             {
-                Debug.LogFormat("isAttack : {0}", isAttack);
                 if (distance <= this.attackRange && isAttack == false)
                 {
 
