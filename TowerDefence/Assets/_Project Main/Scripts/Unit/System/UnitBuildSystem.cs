@@ -224,6 +224,9 @@ public class UnitBuildSystem : MonoBehaviour
             if (ARAVRInput.GetDown(ARAVRInput.Button.IndexTrigger, ARAVRInput.Controller.RTouch) && !overlap)
             {
                 shop_Unit.buildBomb = false;
+                shop_Unit.buildBlade = false;
+                shop_Unit.buildShootBoss = false;
+
                 Unit_Build(); // 타워 설치
             }
         }

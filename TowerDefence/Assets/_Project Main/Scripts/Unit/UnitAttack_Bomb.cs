@@ -11,6 +11,9 @@ using UnityEngine;
 public class UnitAttack_Bomb : MonoBehaviour
 {
     UnitBuildSystem buildSystem;
+    [SerializeField] private int damage = default; // (CSV) 폭발 유닛의 공격력
+    [SerializeField] private int explosionRange = default; // (CSV) 폭발 범위
+    [SerializeField] private int bombHP = default; // (CSV) 폭발 유닛 HP
 
     private void Awake()
     {
@@ -18,20 +21,25 @@ public class UnitAttack_Bomb : MonoBehaviour
         buildSystem = GameObject.Find("Unit Manager").GetComponent<UnitBuildSystem>();
     }
 
+    private void Start()
+    {
+        damage = transform.GetComponent<AttackUnitProperty>().damage;
+        explosionRange = transform.GetComponent<AttackUnitProperty>().attackRange;
+        bombHP = transform.GetComponent<AttackUnitProperty>().HP;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy")) // 충돌한 것이 졸개 태그라면
         {
-            Debug.Log("폭발!");
             Explosion();
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy")) // 충돌한 것이 졸개 태그라면
         {
-            Debug.Log("폭발!");
             Explosion();
         }
     }
@@ -40,7 +48,7 @@ public class UnitAttack_Bomb : MonoBehaviour
     {
         get
         {
-            float radius = 16 / 2f; // 폭발 반경
+            float radius = explosionRange / 2f; // 폭발 반경
 
             Collider[] colliders = Physics.OverlapSphere(transform.position, radius); // 검출 배열
             GameObject[] enemies = new GameObject[colliders.Length]; // 검출 적 배열
@@ -58,7 +66,7 @@ public class UnitAttack_Bomb : MonoBehaviour
 
     private void Explosion()
     {
-        Transform effectList = transform.GetChild(0);
+        Transform effectList = transform.GetChild(1);
         ParticleSystem[] effects = effectList.GetComponentsInChildren<ParticleSystem>();
 
         foreach (ParticleSystem effect in effects) 
@@ -71,7 +79,7 @@ public class UnitAttack_Bomb : MonoBehaviour
  
         for (int i = 0; i < Enemies.Length; i++)
         {
-            //Enemies[i].transform.GetComponent<MonsterInfo>().MonsterDamaged(15); // 15만큼 공격
+            //Enemies[i].transform.GetComponent<MonsterInfo>().MonsterDamaged(damage); // TODO: 졸개 나오면 주석 해제
         }
     }
 }

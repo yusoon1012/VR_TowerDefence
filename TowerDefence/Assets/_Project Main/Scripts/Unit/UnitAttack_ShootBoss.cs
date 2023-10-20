@@ -14,7 +14,7 @@ public class UnitAttack_ShootBoss : MonoBehaviour
     private Vector3 bossPosition = default; // 타겟 포지션 (보스)
 
     // 유닛 HP
-    public int unitHP = 100; // HP
+    public int shootBossHP = default; //(CSV) 보스 타격 유닛HP
     private bool hit = false; // 피격 상태 체크
     float time = 0f; // 피격 타임
 
@@ -39,6 +39,11 @@ public class UnitAttack_ShootBoss : MonoBehaviour
         throwSphere += PivotRotate;
     }
 
+    private void Start()
+    {
+        shootBossHP = transform.GetComponent<AttackUnitProperty>().HP;
+    }
+
     private void Update()
     {
         // TODO: 유닛 구매 여부 추가 
@@ -58,7 +63,7 @@ public class UnitAttack_ShootBoss : MonoBehaviour
 
         if (hit) // 피격 상태라면
         {
-            int delayHit = 5;
+            int delayHit = 5; // 5초에 한 번씩 피격
 
             if (time < delayHit)
             {
@@ -67,7 +72,8 @@ public class UnitAttack_ShootBoss : MonoBehaviour
             else if (time >= delayHit)
             {
                 time = 0f; // 타임 초기화
-                unitHP -= 10; // 피격 처리 
+                shootBossHP -= 5; // 피격 처리 (TODO: 졸개 공격력에서 가져오는 것으로 처리?)
+                Debug.LogFormat("HP: {0}", shootBossHP);
             }
         }
         #endregion
@@ -79,12 +85,11 @@ public class UnitAttack_ShootBoss : MonoBehaviour
     private void FindEnemy()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy"); // 졸개 태그를 달고 있는 오브젝트 배열 검출
-        GameObject[] detectedEnemies = default;
 
         for (int i = 0; i < enemies.Length; i++) // 모든 적 검사
         {
             // TODO: 유닛과의 거리 계산, 만약 일정 거리 내 있다면 유닛은 피격됨. 
-            if (Vector3.Distance(transform.position, enemies[i].transform.position) <= 1f) // 거리 1 안쪽으로 적이 존재
+            if (Vector3.Distance(transform.position, enemies[i].transform.position) <= 10f) // 거리 1 안쪽으로 적이 존재
             {
                 hit = true;
             }

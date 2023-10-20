@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3274006904953536873}
   - component: {fileID: 8713812941311135419}
   - component: {fileID: 8189867287059019163}
+  - component: {fileID: 912743868285522237}
   m_Layer: 0
   m_Name: Unit_Blade
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4408834236029162307}
   - {fileID: 7848387385901689435}
@@ -47,6 +48,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cb9f65390093064bbc9d25ae35d2497, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bladeHP: 20
+  bladeSpeed: 0
+  bladeDamage: 0
+  bladeRotateSpeed: 0
 --- !u!114 &8189867287059019163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,12 +64,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb7c3c3143ba9e345b07ba75acbfa9ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attcakRange: 0
+  attackRange: 0
   damage: 0
   attackCount: 0
   speed: 0
   rotateSpeed: 0
   HP: 0
+--- !u!65 &912743868285522237
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4084792336850673797}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 4, z: 3}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4411600515784585221
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,17 +7,31 @@ using UnityEngine;
 /// </summary>
 public class UnitAttack_Blade : MonoBehaviour
 {
-    // 유닛 HP
-    public int bladeHP = 20;
+    // (CSV) 근거리 타격 유닛 HP
+    [SerializeField] private int bladeHP = default;
+    // (CSV) 근거리 타격 유닛 공격속도
+    [SerializeField] private float bladeSpeed = default;
+    // (CSV) 근거리 타격 유닛 공격력
+    [SerializeField] private int bladeDamage = default;
+    // (CSV) 근거리 타격 유닛 회전속도
+    [SerializeField] private int bladeRotateSpeed = default;
     // 칼날
-    private GameObject blade = default;
+    private Transform[] blades = default;
     // 칼날 회전 여부
     private bool rotateBlade = false;
 
     private void Awake()
     {
         UnitBuildSystem.units.Add(transform.gameObject);
-        blade = transform.GetChild(0).gameObject;
+        blades = transform.GetComponentsInChildren<Transform>();
+    }
+
+    private void Start()
+    {
+        bladeHP = transform.GetComponent<AttackUnitProperty>().HP;
+        bladeSpeed = transform.GetComponent<AttackUnitProperty>().speed;
+        bladeDamage = transform.GetComponent<AttackUnitProperty>().damage;
+        bladeRotateSpeed = transform.GetComponent<AttackUnitProperty>().rotateSpeed;
     }
 
     /// <summary>
@@ -62,13 +76,20 @@ public class UnitAttack_Blade : MonoBehaviour
 
         if (rotateBlade)
         {
-            blade.transform.RotateAround(transform.position, Vector3.up, rotateValue * Time.deltaTime);
+            for (int i = 0; i < blades.Length; i++)
+            {
+                blades[i].RotateAround(transform.position, Vector3.up, rotateValue * Time.deltaTime);
+            }
         }
         else
         {
             // 칼날 회전 정지
             Quaternion stopRotate = Quaternion.identity;
-            blade.transform.rotation = stopRotate;
+
+            for (int i = 0; i < blades.Length; i++)
+            {
+                blades[i].rotation = stopRotate;
+            }
         }
     }
 
@@ -81,10 +102,10 @@ public class UnitAttack_Blade : MonoBehaviour
         {
             foreach (GameObject enemy in EnemyGotcha)
             {
-                enemy.GetComponent<MonsterInfo>().MonsterDamaged(5); // 5만큼의 데미지를 입힌다
+                enemy.GetComponent<MonsterInfo>().MonsterDamaged(bladeDamage); 
             }
 
-            yield return new WaitForSeconds(1.0f); // 1초에 한 번씩 데미지를 먹인다. 
+            yield return new WaitForSeconds(bladeSpeed);
         }
 
         yield break;
