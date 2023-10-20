@@ -1,3 +1,4 @@
+using Meta.WitAi;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,9 +7,9 @@ using UnityEngine.EventSystems;
 
 public class UnitAttack_ShootBoss : MonoBehaviour
 {
-    public GameObject spherePrefab = default; // 투창 프리팹 
+    public GameObject stonePrefab = default; // 투창 프리팹 
     //GameObject[] spheres = default; // 투창
-    GameObject sphere = default; // 테스트
+    GameObject stone = default; // 테스트
     private Transform firePosition; // 발사 위치
     private Vector3 poolPos = new Vector3(0f, -10f, 0f); // 풀 포지션
     private Vector3 bossPosition = default; // 타겟 포지션 (보스)
@@ -30,6 +31,7 @@ public class UnitAttack_ShootBoss : MonoBehaviour
     {
         UnitBuildSystem.units.Add(transform.gameObject);
         GameObject boss = GameObject.FindWithTag("Boss");
+        Debug.Assert(boss != null);
         bossPosition = boss.transform.position;
         bossPosition.y = boss.GetComponent<Collider>().bounds.size.y * 0.55f; // 보스 키의 55% 지점 타격
 
@@ -42,12 +44,15 @@ public class UnitAttack_ShootBoss : MonoBehaviour
     private void Start()
     {
         shootBossHP = transform.GetComponent<AttackUnitProperty>().HP;
+        //Invoke("TestStart", 3f); // 테스트용
     }
+
+    //private void TestStart() { StartCoroutine(ReadyFire()); } // 테스트용
 
     private void Update()
     {
         // TODO: 유닛 구매 여부 추가 
-        if (Distance < 150f) // 반경 150 내 보스 존재
+        if (Distance < 1000f) // 반경 150 내 보스 존재 (임시값: 1000)
         {
             FindBoss();
         }
@@ -130,6 +135,8 @@ public class UnitAttack_ShootBoss : MonoBehaviour
         Quaternion unitRotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Slerp(transform.rotation, unitRotation, rotationSpeed * Time.deltaTime);
 
+        Debug.Log("회전 완료");
+
     }
 
     /// 연사 시간 조정
@@ -157,8 +164,8 @@ public class UnitAttack_ShootBoss : MonoBehaviour
 
         Rigidbody sphereRigid = default; // 테스트
 
-        sphere = Instantiate(spherePrefab, firePosition.position, Quaternion.identity);
-        sphereRigid = sphere.GetComponent<Rigidbody>();
+        stone = Instantiate(stonePrefab, firePosition.position, Quaternion.identity);
+        sphereRigid = stone.GetComponent<Rigidbody>();
 
         sphereRigid.velocity = velocity;
 

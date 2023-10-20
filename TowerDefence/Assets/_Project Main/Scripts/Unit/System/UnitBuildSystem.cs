@@ -52,7 +52,6 @@ public class UnitBuildSystem : MonoBehaviour
     int bladeCount = 0;
     #endregion
 
-
     private void Awake()
     {
         // 플레이어
@@ -66,20 +65,21 @@ public class UnitBuildSystem : MonoBehaviour
         // 유닛 생성 
         for (int i = 0; i < 3; i++) // 폭탄 유닛 3개
         {
-            bombUnit[i] = Instantiate(bombUnitPrefab, poolPos, Quaternion.identity);
+            bombUnit[i] = Instantiate(bombUnitPrefab, poolPos, bombUnitPrefab.transform.rotation);
         }
         for (int i = 0; i < 2; i++) // 보스 타격 유닛 2개
         {
-            shootBossUnit[i] = Instantiate(bossShootUnitPrefab, poolPos, Quaternion.identity);
+            shootBossUnit[i] = Instantiate(bossShootUnitPrefab, poolPos, bossShootUnitPrefab.transform.rotation);
         }
         for (int i = 0; i < 1; i++) // 근거리 타격 유닛 1개
         {
-            bladeUnit[i] = Instantiate(bladeUnitPrefab, poolPos, Quaternion.identity);
+            bladeUnit[i] = Instantiate(bladeUnitPrefab, poolPos, bladeUnitPrefab.transform.rotation);
         }
+
         // 선택 시 유닛 오브젝트 생성
-        selectBombUnit = Instantiate(selectBombPrefab, poolPos, Quaternion.identity);
-        selectBladeUnit = Instantiate(selectBladePrefab, poolPos, Quaternion.identity);
-        selectShootBossUnit = Instantiate(selectShootBossPrefab, poolPos, Quaternion.identity);
+        selectBombUnit = Instantiate(selectBombPrefab, poolPos, selectBombPrefab.transform.rotation);
+        selectBladeUnit = Instantiate(selectBladePrefab, poolPos, selectBladePrefab.transform.rotation);
+        selectShootBossUnit = Instantiate(selectShootBossPrefab, poolPos, selectShootBossPrefab.transform.rotation);
 
         // Material
         green = Resources.Load<Material>("Material/Green");
@@ -156,31 +156,30 @@ public class UnitBuildSystem : MonoBehaviour
             Vector3 selectPos = default;
             int floorLayer = 1 << LayerMask.NameToLayer("Ground");
             // Ray를 카메라의 위치로부터 나가도록 한다.
-            Ray ray = new Ray(ARAVRInput.RHandPosition, ARAVRInput.RHandDirection); // 왜 안되나...?
+            Ray ray = new Ray(ARAVRInput.RHandPosition, ARAVRInput.RHandDirection);
             RaycastHit hitInfo = default;
 
             if (Physics.Raycast(ray, out hitInfo, 200f, floorLayer))
             {
-                Debug.Log("땅과의 충돌을 감지!");
                 selectPos = hitInfo.point;
             }
 
             Vector3Int gridPos = grid.WorldToCell(selectPos);
+            Debug.LogFormat("그리드 Pos; {0}", gridPos);
 
             return gridPos; // 이후 셀포지션을 return 하도록 수정
         }
     }
 
     #region 유닛 설치 
-/// <summary>
-/// 유닛 배치 범위를 표시
-/// </summary>
-/// <param name="unitNum">구매한 유닛 번호</param>
+    /// <summary>
+    /// 유닛 배치 범위를 표시
+    /// </summary>
+    /// <param name="unitNum">구매한 유닛 번호</param>
     public void Unit_Range()
     {
         bool overlap = false; // 유닛 위치 중복 여부 체크
         buildPos = SelectPosition; // 유닛을 설치할 좌표
-        buildPos.y += unit.transform.GetComponent<Collider>().bounds.size.y / 2;
 
         // 유닛 중복 위치 금지
         foreach (Vector3 location in unitBuildPos)

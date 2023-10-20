@@ -74,12 +74,15 @@ public class UnitAttack_Bomb : MonoBehaviour
             Debug.Assert(effect);
             effect.Play(); // 파티클 시스템 플레이
 
-            buildSystem.ReturnPool(gameObject); // 본 유닛을 파괴하라는 메서드
+            Invoke("BackPool", 0.3f); // 폭발 유닛 풀로 복귀 
         }
  
         for (int i = 0; i < Enemies.Length; i++)
         {
+            Debug.LogFormat("{0}에게 데미지 처리", Enemies.Length);
             //Enemies[i].transform.GetComponent<MonsterInfo>().MonsterDamaged(damage); // TODO: 졸개 나오면 주석 해제
         }
     }
+
+    private void BackPool() { buildSystem.ReturnPool(gameObject); }
 }
