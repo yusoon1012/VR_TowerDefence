@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:TowerDefence/Assets/_DLNK/Characters/Demon Girl/[Prefabs]/Weapons.meta
-guid: 82b1cd922b3cc8045bfbf6ea2738e649
-========
-guid: b9409009871750d41b6ef695f14dc2f9
->>>>>>>> origin/Solbin:TowerDefence/Assets/_Project Main/Scripts/Unit/Bullet.meta
+guid: f65c614e7357fc146acfe7ba54dc05fb
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

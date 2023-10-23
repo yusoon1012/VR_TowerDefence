@@ -1,13 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:TowerDefence/Assets/_DLNK/_DLNK Source.meta
-<<<<<<< HEAD
-guid: 55653ffa7caeebb4781b8565b5bd71be
-=======
-guid: 89a9fb7b81f3ee347ae208ee26722dcf
->>>>>>> origin/Solbin
-========
-guid: fee06833e2aad8445a398005016d44de
->>>>>>>> origin/Solbin:TowerDefence/Assets/_Project Main/Scripts/Unit/System.meta
+guid: e948576c2837eaf47b0ab32203c90de3
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
