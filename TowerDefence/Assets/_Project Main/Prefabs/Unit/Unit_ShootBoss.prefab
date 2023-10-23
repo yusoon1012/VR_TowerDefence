@@ -66,7 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d0495ecc260c5242bf44e8e8048fe32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stonePrefab: {fileID: 4015693668653479043, guid: 609e092a61c51db4880193d1446cacff,
+  stonePrefab: {fileID: 4015693668653479043, guid: de986ecf24b364b4da871b9e4b5b8133,
     type: 3}
   stones: []
   shootBossDamage: 0
