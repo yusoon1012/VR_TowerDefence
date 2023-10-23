@@ -6,7 +6,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class MidBoss : MonoBehaviour
 {
-    
+    #region 변수 설정
 
     // { 변수 설정
     // 중간 보스 등장 시 공중에서 내려오는 속도
@@ -17,6 +17,8 @@ public class MidBoss : MonoBehaviour
     public int midBossPhase = default;
     // 중간 보스 HP 량
     public int midBossHp = default;
+
+    public Transform midGroundposition = default;
 
     public Transform fireBallSpawnPosition;
     // 중간 보스 등장 시 최종적으로 이동할 위치
@@ -38,18 +40,15 @@ public class MidBoss : MonoBehaviour
     private bool lerping = false;
     // 중간 보스가 활성화 된 상태인지 체크
     private bool activeBoss = false;
-    // Test : 필드에 몬스터가 있는지 없는지 체크
-    //private bool isMonsterClear = false;
     // 구체를 날리는 중인지 확인 (Animator)
     private bool isAttack = false;
-    // 졸개 강화를 위해 점프하는 중인지 확인 (Animator)
-    //private bool isJump = false;
     // 중간 보스의 스펠 발사 쿨타임 까지의 중첩 값
     private float throwSphereTimepass = default;
-    // 보스가 2 페이즈 상태일 때 구체 던지기와 졸개 강화 중 랜덤 선택 값
-    //private int rand = default;
+
     private Rigidbody rb;
     // } 변수 설정
+
+    #endregion 변수 설정
 
     void Awake()
     {
@@ -86,6 +85,8 @@ public class MidBoss : MonoBehaviour
 
     void Update()
     {
+        // 게임 오버 상태면 중간 보스 모든 기능을 정지시킨다
+        if (GameManager.instance.isGameOver == true) { return; }
         // 보스가 현재 비활성화 상태이면 아래 기능들을 스킵 한다
         if (activeBoss == false) { return; }
 
@@ -99,13 +100,13 @@ public class MidBoss : MonoBehaviour
                 lerping = false;
                 rb.isKinematic = true;
                 // 중간 보스의 위치를 최종적인 위치값으로 고정 시켜준다
-                transform.position = groundMidBossPosition;
+                transform.position = midGroundposition.position;
             }
             // 중간 보스의 y 위치값이 0 보다 크면
             else
             {
                 // 중간 보스의 y 위치값을 0 으로 lerp 값을 넣어 부드럽게 변경시킴
-                transform.position = Vector3.Lerp(transform.position, groundMidBossPosition, lerpSpeed * Time.deltaTime);
+                transform.position = Vector3.Lerp(transform.position, midGroundposition.position, lerpSpeed * Time.deltaTime);
             }
         }
 
@@ -123,21 +124,6 @@ public class MidBoss : MonoBehaviour
                 ReadyThrowSphere();
             }
         }
-
-        //// 중간 보스 페이즈가 3 이고, 내려오는 상황이 아니면 실행
-        //else if (midBossPhase == 3 && lerping == false)
-        //{
-        //    // 실시간 값을 더해줌
-        //    throwSphereTimepass += Time.deltaTime;
-        //    // 쿨타임 시간과 같아지면
-        //    if (throwSphereTimepass >= throwSphereTime)
-        //    {
-        //        // 실시간 값 초기화
-        //        throwSphereTimepass = 0f;
-        //        // 구체를 날리거나, 졸개 능력치 증가 중 랜덤으로 실행되는 함수 실행
-        //        ThrowSphereOrPowerUp();
-        //    }
-        //}
     }     // Update()
 
     // 중간 보스 오브젝트가 활성화 되었을 때 실행되는 함수
@@ -163,6 +149,8 @@ public class MidBoss : MonoBehaviour
     // 보스가 데미지를 받는 함수
     public void HitDamage(int damage)
     {
+        // 게임 오버 상태면 데미지를 받지 않음
+        if (GameManager.instance.isGameOver == true) { return; }
         // 중간 보스가 비활성화 상태면 스킵
         if (activeBoss == false) { return; }
 
@@ -195,67 +183,7 @@ public class MidBoss : MonoBehaviour
         midBossAnimator.SetBool("Attack", isAttack);
         // 중간 보스를 참조하여 구체 날리기 함수 실행
         fireBallShootObject.GetComponent<ObjectPooling>().ReadyLaunch(1);
-
-        // 발사 스펠을 활성화 시킴
-        //bossFireBallShootPosition = fireBallSpawnPosition.position;
-        //fireBall.transform.position = bossFireBallShootPosition;
-        //Rigidbody fireBallRigid=fireBall.gameObject.GetComponent<Rigidbody>();
-        //if (fireBallRigid != null)
-        //{
-        //    fireBallRigid.velocity = Vector3.zero;
-        //}
-        //fireBall.gameObject.SetActive(true);
-    }     // ThrowSphere()
-
-    //// 졸개 능력치 증가를 준비하는 함수
-    //private void ReadySoldierPowerUp()
-    //{
-    //    // 점프 애니메이션을 켜줌
-    //    isJump = true;
-    //    // 보스 애니메이션 값 변경
-    //    midBossAnimator.SetBool("Jump", isJump);
-    //}     // ReadySoldierPowerUp()
-
-    //// 졸개 능력치 증가 버프 실행 함수
-    //private void SoldierPowerUp()
-    //{
-    //    // 점프 애니메이션을 끔
-    //    isJump = false;
-    //    // 보스 애니메이션 값 변경
-    //    midBossAnimator.SetBool("Jump", isJump);
-    //    /* Init : 소환 된 상태의 졸개들의 능력치 증가 버프 */
-    //}     // SoldierPowerUp()
-
-    // 구체 날리기 Or 졸개 능력치 증가 버프 중 실행 구분 함수
-    //private void ThrowSphereOrPowerUp()
-    //{
-    //    // 현재 필드에 졸개들이 없다면
-    //    if (isMonsterClear == true)
-    //    {
-    //        // 구체 날리기 함수 실행
-    //        ReadyThrowSphere();
-    //    }
-    //    // 현재 필드에 졸개들이 남아 있다면
-    //    else
-    //    {
-    //        // 0 ~ 99 랜덤 값 생성
-    //        rand = Random.Range(0, 100);
-    //        // 랜덤 값이 60 보다 작으면
-    //        if (rand < 60)
-    //        {
-    //            // 구체 날리기 함수 실행
-    //            ReadyThrowSphere();
-    //        }
-    //        // 랜덤 값이 60 보다 크거나 같으면
-    //        else if (rand >= 60)
-    //        {
-    //            // 졸개 능력치 증가 버프 함수 실행
-    //            ReadySoldierPowerUp();
-    //        }
-
-    //        Debug.LogFormat("랜덤값 생성됨 : {0}", rand);
-    //    }
-    //}     // ThrowSphereOrPowerUp()
+    }
 
     // 중간 보스 사망을 준비하는 함수
     private void ReadyMidBossDeath()
