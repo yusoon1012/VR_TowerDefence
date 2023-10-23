@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 376375656987082245}
   m_LocalRotation: {x: 0, y: 0.9063079, z: 0, w: 0.42261827}
   m_LocalPosition: {x: 0, y: -0.5, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1324405404174093642}
@@ -68,6 +68,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stonePrefab: {fileID: 4015693668653479043, guid: 609e092a61c51db4880193d1446cacff,
     type: 3}
+  stones: []
+  shootBossDamage: 0
   shootBossHP: 0
 --- !u!65 &458866576697356808
 BoxCollider:
