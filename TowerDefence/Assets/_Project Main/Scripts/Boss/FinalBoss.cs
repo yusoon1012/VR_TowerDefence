@@ -12,7 +12,7 @@ public class FinalBoss : MonoBehaviour
     // { 변수 설정
     // 보스 HP 량
     public float finalBossHp;
-    private float finalBossMaxhp = 100;
+    private float finalBossMaxhp = 4000;
     // 보스 페이즈
     public int finalBossPhase = default;
     // 졸개 소환 쿨타임
@@ -74,7 +74,7 @@ public class FinalBoss : MonoBehaviour
         //rand = 0;
         spawnRand = 0;
         isSpawn = 0;
-        bossHp.value = finalBossHp / 100;
+        bossHp.value = finalBossHp / finalBossMaxhp;
         // } 초기 변수값 설정
     }     // Awake()
 

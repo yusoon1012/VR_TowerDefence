@@ -73,6 +73,8 @@ public class MonsterInfo : MonsterData
         {
             if (!isClear)
             {
+                nav.speed = 0.0f;
+
                 StartCoroutine(Clear());
             }
 
@@ -87,6 +89,8 @@ public class MonsterInfo : MonsterData
             {
                 if (this.hp <= 0)
                 {
+                    nav.speed = 0.0f;
+
                     StartCoroutine(Death(false));
                 }
                 else
@@ -208,10 +212,11 @@ public class MonsterInfo : MonsterData
     private IEnumerator Death(bool _isClear)
     {
         isDeath = true;
-        
-                
-        GoldManager.instance.EnemyDropGold();
-                
+
+        if (!isClear)
+        {
+            GoldManager.instance.EnemyDropGold();
+        }
 
         animator.SetTrigger("Death");
 

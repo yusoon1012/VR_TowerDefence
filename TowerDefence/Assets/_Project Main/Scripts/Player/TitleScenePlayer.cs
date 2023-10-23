@@ -21,7 +21,7 @@ public class TitleScenePlayer : MonoBehaviour
 
         Ray ray = new Ray(ARAVRInput.RHandPosition, ARAVRInput.RHandDirection);
         RaycastHit hit;
-        if(Physics.Raycast(ray, out hit,100f, layerMask))
+        if(Physics.Raycast(ray, out hit,500f, layerMask))
         {
                 lineRenderer.enabled = true;
                 lineRenderer.SetPosition(1, hit.point);
