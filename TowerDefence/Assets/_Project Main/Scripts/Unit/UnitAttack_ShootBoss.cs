@@ -33,6 +33,8 @@ public class UnitAttack_ShootBoss : MonoBehaviour
 
     private event EventHandler throwSphere;
 
+    Shop_Unit shop_Unit = new Shop_Unit();
+
     private void Awake()
     {
         UnitBuildSystem.units.Add(transform.gameObject);
@@ -55,6 +57,8 @@ public class UnitAttack_ShootBoss : MonoBehaviour
         }
 
         throwSphere += PivotRotate;
+
+        shop_Unit = GameObject.Find("Shop_").GetComponent<Shop_Unit>();
     }
 
     private void Start()
@@ -66,21 +70,15 @@ public class UnitAttack_ShootBoss : MonoBehaviour
         {
             stones[i].GetComponent<Bullet_HitBoss>().damage = shootBossDamage;
         }
-
-        Invoke("TestStart", 1.5f); // 테스트용
     }
-
-    private void TestStart() { StartCoroutine(ReadyFire()); } // 테스트용
 
     private void Update()
     {
-        if (Distance < 1000f) // 반경 150 내 보스 존재 (임시값: 1000)
+        // 반경 150 내 보스 존재 && 유닛 설치 활성화 상태에서 유닛 설치를 클릭했을때
+        if (Distance < 1000f && shop_Unit.buildShootBoss && 
+            ARAVRInput.GetDown(ARAVRInput.Button.IndexTrigger, ARAVRInput.Controller.RTouch))
         {
             FindBoss();
-        }
-
-        if (ARAVRInput.GetDown(ARAVRInput.Button.IndexTrigger, ARAVRInput.Controller.RTouch))
-        {
             StartCoroutine(ReadyFire());
         }
 
@@ -167,9 +165,6 @@ public class UnitAttack_ShootBoss : MonoBehaviour
         Vector3 direction = (bossPos - unitPos).normalized; // 유닛 방향값 계산
         Quaternion unitRotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Slerp(transform.rotation, unitRotation, rotationSpeed * Time.deltaTime);
-
-        Debug.Log("회전 완료");
-
     }
 
     /// 연사 시간 조정
