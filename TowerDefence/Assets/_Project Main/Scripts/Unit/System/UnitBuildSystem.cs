@@ -26,10 +26,14 @@ public class UnitBuildSystem : MonoBehaviour
     [SerializeField] private GameObject selectBombPrefab, selectBladePrefab, selectShootBossPrefab = default;
     // 선택 시의 유닛 오브젝트 
     private GameObject selectBombUnit, selectBladeUnit, selectShootBossUnit = default;
-    // 선택 허용 시 빛기둥
-    [SerializeField] GameObject permitLight = default;
-    // 선택 중복 시 빛기둥
-    [SerializeField] GameObject disclaimLight = default;
+    // 선택 허용 시 빛기둥 프리팹
+    [SerializeField] GameObject blueLightPrefab = default;
+    // 선택 중복 시 빛기둥 프리팹
+    [SerializeField] GameObject redLightPrefab = default;
+    // 빛기둥
+    private GameObject blueLight = default;
+    private GameObject redLight = default;
+    private GameObject lightEffect = default;
     // 플레이어
     [SerializeField]private GameObject player;
     #endregion
@@ -90,27 +94,47 @@ public class UnitBuildSystem : MonoBehaviour
         green = Resources.Load<Material>("Material/Green");
         red = Resources.Load<Material>("Material/Red");
 
+        // 선택 시 빛기둥 오브젝트 생성
+        blueLight = Instantiate(blueLightPrefab, poolPos, blueLightPrefab.transform.rotation);
+        redLight = Instantiate(redLightPrefab, poolPos, redLightPrefab.transform.rotation);
+
         shop_Unit = GameObject.Find("Shop").GetComponent<Shop_Unit>(); // 유닛 구매 여부를 알기 위함
     }
 
     private void Update()
     {
-        #region 유닛 공격력 증가
-        //if (Shop_Buff.instance.isDamageUp)
-        //{
-        //    foreach(GameObject unit in units)
-        //    {
-        //        unit.GetComponent<AttackUnitProperty>().damage *= 2; // 공격력 * 2
-        //    }
-        //}
-        //else
-        //{
-        //    foreach (GameObject unit in units)
-        //    {
-        //        unit.GetComponent<AttackUnitProperty>().damage /= 2; // 공격력 / 2 (원상태 복귀)
-        //    }
-        //}
-        
+        #region 유닛 공격력 상승
+        if (Shop_Buff.instance.buffIcon[0])
+        {
+            foreach (GameObject unit in units)
+            {
+                unit.GetComponent<AttackUnitProperty>().damage *= 1.5f; // 공격력 * 1.5f (50% 상승)
+            }
+        }
+        else if (!Shop_Buff.instance.buffIcon[0])
+        {
+            foreach (GameObject unit in units)
+            {
+                unit.GetComponent<AttackUnitProperty>().damage /= 1.5f; // 공격력 / 2.0f (원상태 복귀)
+            }
+        }
+        #endregion
+
+        #region 유닛 공격속도 상승
+        if (Shop_Buff.instance.buffIcon[1])
+        {
+            foreach (GameObject unit in units)
+            {
+                unit.GetComponent<AttackUnitProperty>().speed *= 1.5f; // 공격속도 * 1.5f (50% 상승)
+            }
+        }
+        else if (!Shop_Buff.instance.buffIcon[1])
+        {
+            foreach (GameObject unit in units)
+            {
+                unit.GetComponent<AttackUnitProperty>().speed /= 1.5f; // 공격속도 / 1.5f (원상태 복귀)
+            }
+        }
         #endregion
 
         #region 유닛 지속시간 증가
@@ -123,22 +147,32 @@ public class UnitBuildSystem : MonoBehaviour
 
         if (shop_Unit.buildBomb) // 폭발 유닛 설치 (3개까지)
         {
+            if (bombCount >= 3)
+            {
+                bombCount = 0;
+            }
+
             unit = bombUnit[bombCount];
             selectUnit = selectBombUnit;
             Unit_Range();
         }
 
-        if (shop_Unit.buildBlade) // 근거리 타격 유닛 설치 (2개까지)
+        if (shop_Unit.buildShootBoss) // 보스 타격 유닛 (2개만)
         {
-            unit = bladeUnit[bladeCount];
-            selectUnit = selectBladeUnit;
+            if (shootBossCount >= 2)
+            {
+                shootBossCount = 0;
+            }
+
+            unit = shootBossUnit[shootBossCount];
+            selectUnit = selectShootBossUnit;
             Unit_Range();
         }
 
-        if (shop_Unit.buildShootBoss) // 보스 타격 유닛 (1개만)
+        if (shop_Unit.buildBlade) // 근거리 타격 유닛 설치 (1개까지)
         {
-            unit = shootBossUnit[shootBossCount];
-            selectUnit = selectShootBossUnit;
+            unit = bladeUnit[0];
+            selectUnit = selectBladeUnit;
             Unit_Range();
         }
     }
@@ -163,10 +197,10 @@ public class UnitBuildSystem : MonoBehaviour
                 selectPos = hitInfo.point;
             }
 
-            targetPos = new Vector3(Mathf.Floor(selectPos.x / gridSize) * gridSize, 0f,
+            targetPos = new Vector3(Mathf.Floor(selectPos.x / gridSize) * gridSize, 0.5f,
             Mathf.Floor(selectPos.z / gridSize) * gridSize);
 
-            return selectPos; // 이후 셀포지션을 return 하도록 수정
+            return targetPos; // 이후 셀포지션을 return 하도록 수정
         }
     }
 
@@ -187,7 +221,8 @@ public class UnitBuildSystem : MonoBehaviour
             {
                 Transform obj = selectUnit.transform.GetChild(0);  // 실오브젝트
                 MeshRenderer[] children = obj.GetComponentsInChildren<MeshRenderer>(); // 구성 요소 Material 배열
-                
+                lightEffect = redLight;
+
                 for (int i = 0; i < children.Length; i++)
                 {
                     children[i].material = red;
@@ -199,6 +234,7 @@ public class UnitBuildSystem : MonoBehaviour
             {
                 Transform obj= selectUnit.transform.GetChild(0);  // 실오브젝트
                 MeshRenderer[] children = obj.GetComponentsInChildren<MeshRenderer>(); // 구성 요소 Material 배열
+                lightEffect = blueLight;
 
                 for (int i = 0; i < children.Length; i++)
                 {
@@ -216,49 +252,68 @@ public class UnitBuildSystem : MonoBehaviour
 
         if (Vector3.Distance(playerPos, selectpos) < 30) // 설치형 유닛 PC 기준 직선거리 30m 설치 제한 기준, 중복X
         {
+            if (overlap)
+            {
+                redLight.transform.position = buildPos;
+                blueLight.transform.position = poolPos;
+            }
+            else if (!overlap)
+            {
+                blueLight.transform.position = buildPos;
+                redLight.transform.position = poolPos;
+            }
+
             selectUnit.transform.position = buildPos;
 
             // 설치 키를 입력했으며 중복 설치 시도가 아니라면
             if (ARAVRInput.GetDown(ARAVRInput.Button.IndexTrigger, ARAVRInput.Controller.RTouch) && !overlap)
             {
+                blueLight.transform.position = poolPos;
+                redLight.transform.position = poolPos;
+
+                selectUnit.transform.position = poolPos; // 위치 표시 유닛은 풀로 복귀
+
                 Unit_Build(); // 타워 설치
             }
         }
     }
 
-    private void CalculateUnitCount()
-    {
-        if (shop_Unit.buildBomb)
-        {
-            bombCount++;
-            shop_Unit.buildBomb = false;
-
-            // TODO: 제한 개수를 넘었다면...
-        }
-        else if (shop_Unit.buildBlade)
-        {
-            bladeCount++;
-            shop_Unit.buildBlade = false;
-        }
-        else if (shop_Unit.buildShootBoss)
-        {
-            shootBossCount++;
-            shop_Unit.buildShootBoss = false;
-        }
-    }
 
     /// <summary>
     /// 유닛을 배치
     /// </summary>
     private void Unit_Build()
     {
-        selectUnit.transform.position = poolPos; // 위치 표시 유닛은 풀로 복귀 
         // 타워 설치 
         unit.transform.position = buildPos;
         unitBuildPos.Add(unit.transform.position); // 유닛 설치 위치 등록
 
+        CalculateUnitCount();
+
         // 임시 유지시간 20초. 폭발 유닛 빼고 
         //Invoke("Unit_TimeOver", unitLifeTime); // 유닛 유지시간 동안 대기 후 오브젝트 풀로 유닛 이동  
+    }
+
+    /// <summary>
+    /// 설치 유닛 수 계산
+    /// </summary>
+    private void CalculateUnitCount()
+    {
+        if (shop_Unit.buildBomb) // 3개까지
+        {
+            bombCount++;
+            shop_Unit.buildBomb = false;
+        }
+        else if (shop_Unit.buildShootBoss) // 2개까지
+        {
+            shootBossCount++;
+            shop_Unit.buildShootBoss = false;
+        }
+        else if (shop_Unit.buildBlade) // 1개까지
+        {
+            // 0번 인덱스만 사용하므로 추가 동작X
+            shop_Unit.buildBlade = false;
+        }
     }
 
     private void Unit_TimeOver() 

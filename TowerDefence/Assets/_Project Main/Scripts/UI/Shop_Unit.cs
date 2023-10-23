@@ -11,7 +11,7 @@ public class Shop_Unit : MonoBehaviour
 
     private float bombCooltime = 0f;
     private float bladeCooltime = 0f;
-    private float shootBossCoolTime = 15f;
+    private float shootBossCoolTime = 0f;
     // 네 번째 아이콘은 무엇?
     private float unitCoolTimeRate = 15f; // 유닛 기본 쿨타임
     public GameObject[] unitIcon; // 쿨타임 슬라이더 보유 오브젝트
@@ -101,12 +101,16 @@ public class Shop_Unit : MonoBehaviour
     #region 보스 타격 유닛
     public void UnitShootBoss()
     {
+        Debug.Log("돌았나");
+
         mainShop.ExitShop(); // 상점창을 닫은 후 바로 배치 
         buildShootBoss = true; // 설치 단계로 넘어감
 
         // 폭발 유닛 버튼호출 함수
         if (shootBossCoolTime == 0)
         {
+            Debug.Log("쿨타임 코루틴 작동 시도");
+
             // TODO: 구매 버튼 클릭 시 해당 메서드로 연결 되도록
             shootBossCoolTime = unitCoolTimeRate;
             StartCoroutine(UnitShootBossRoutine());
@@ -115,6 +119,8 @@ public class Shop_Unit : MonoBehaviour
 
     private IEnumerator UnitShootBossRoutine()
     {
+        Debug.Log("쿨타임 코루틴 작동 시도");
+
         unitIcon[SHOOT_BOSS].SetActive(true); // 슬라이더 오브젝트 활성화
         unitBuy[SHOOT_BOSS].interactable = false; // 구매 버튼 비활성화
 

@@ -11,7 +11,7 @@ using UnityEngine;
 public class UnitAttack_Bomb : MonoBehaviour
 {
     UnitBuildSystem buildSystem;
-    [SerializeField] private int damage = default; // (CSV) 폭발 유닛의 공격력
+    [SerializeField] private float damage = default; // (CSV) 폭발 유닛의 공격력
     [SerializeField] private int explosionRange = default; // (CSV) 폭발 범위
     [SerializeField] private int bombHP = default; // (CSV) 폭발 유닛 HP
 
