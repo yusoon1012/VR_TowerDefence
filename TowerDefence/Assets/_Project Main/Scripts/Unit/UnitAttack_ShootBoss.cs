@@ -8,16 +8,19 @@ using UnityEngine.EventSystems;
 public class UnitAttack_ShootBoss : MonoBehaviour
 {
     public GameObject stonePrefab = default; // 투창 프리팹 
-    //GameObject[] spheres = default; // 투창
-    GameObject stone = default; // 테스트
+    public GameObject[] stones = default; // 투석용 
+    private int stoneNumber = 0; // 사용한 돌의 개수
     private Transform firePosition; // 발사 위치
     private Vector3 poolPos = new Vector3(0f, -10f, 0f); // 풀 포지션
     private Vector3 bossPosition = default; // 타겟 포지션 (보스)
-
+    // 유닛 데미지
+    public int shootBossDamage = default;
     // 유닛 HP
     public int shootBossHP = default; //(CSV) 보스 타격 유닛HP
     private bool hit = false; // 피격 상태 체크
     float time = 0f; // 피격 타임
+
+    FinalBoss finalBoss = default; // 파이널 보스 스크립트
 
     Transform pivot = default; // 투석 시 회전
     float initialSpeed = 10f; // 초기 회전 속도
@@ -25,29 +28,49 @@ public class UnitAttack_ShootBoss : MonoBehaviour
     bool fire = false; // 투척 중
     bool pivotRotate = false; // 회전
 
+    GameObject boss = default;
+    GameObject midBoss = default;
+
     private event EventHandler throwSphere;
 
     private void Awake()
     {
         UnitBuildSystem.units.Add(transform.gameObject);
-        GameObject boss = GameObject.FindWithTag("Boss");
+        boss = GameObject.FindWithTag("Boss");
         Debug.Assert(boss != null);
+        midBoss = GameObject.FindWithTag("MidBoss");
+        Debug.Assert(midBoss != null);
+        finalBoss = boss.GetComponent<FinalBoss>(); 
+
         bossPosition = boss.transform.position;
         bossPosition.y = boss.GetComponent<Collider>().bounds.size.y * 0.55f; // 보스 키의 55% 지점 타격
 
         firePosition = transform.GetChild(1);
         pivot = transform.GetChild(0).transform.GetChild(1);
 
+        stones = new GameObject[10];
+        for (int i = 0; i < 10; i++)
+        {
+            stones[i] = Instantiate(stonePrefab, poolPos, Quaternion.identity);
+        }
+
         throwSphere += PivotRotate;
     }
 
     private void Start()
     {
+        shootBossDamage = transform.GetComponent<AttackUnitProperty>().damage;
         shootBossHP = transform.GetComponent<AttackUnitProperty>().HP;
-        //Invoke("TestStart", 3f); // 테스트용
+
+        for (int i = 0; i < 10; i++)
+        {
+            stones[i].GetComponent<Bullet_HitBoss>().damage = shootBossDamage;
+        }
+
+        Invoke("TestStart", 1.5f); // 테스트용
     }
 
-    //private void TestStart() { StartCoroutine(ReadyFire()); } // 테스트용
+    private void TestStart() { StartCoroutine(ReadyFire()); } // 테스트용
 
     private void Update()
     {
@@ -82,6 +105,18 @@ public class UnitAttack_ShootBoss : MonoBehaviour
             }
         }
         #endregion
+
+        // 보스 무적 시간, 중간 보스 등장
+        if (finalBoss.bossImmotalForm) 
+        {
+            bossPosition = midBoss.transform.position;
+            
+        }
+        else if (!finalBoss.bossImmotalForm) // 보스 무적 시간이 아니라면 
+        {
+            bossPosition = boss.transform.position;
+            bossPosition.y = boss.GetComponent<Collider>().bounds.size.y * 0.55f; // 보스 키의 55% 지점 타격
+        }
     }
 
     /// <summary>
@@ -164,8 +199,14 @@ public class UnitAttack_ShootBoss : MonoBehaviour
 
         Rigidbody sphereRigid = default; // 테스트
 
-        stone = Instantiate(stonePrefab, firePosition.position, Quaternion.identity);
-        sphereRigid = stone.GetComponent<Rigidbody>();
+        if (stoneNumber == 10) // 9번 돌까지 소모
+        {
+            stoneNumber = 0; // 초기화
+        }
+
+        stones[stoneNumber].transform.position = firePosition.position; // 0~9
+        sphereRigid = stones[stoneNumber].GetComponent<Rigidbody>();
+        stoneNumber++;
 
         sphereRigid.velocity = velocity;
 
@@ -183,18 +224,15 @@ public class UnitAttack_ShootBoss : MonoBehaviour
 
             if (currentYRotation < 75)
             {
-                Debug.Log("이동 시도");
                 pivot.transform.Rotate(-Vector3.up * Time.fixedDeltaTime * degree);
             }
             else if (currentYRotation >= 75) // 75가 회전각도
             {
-                Debug.Log("정지 시도");
                 pivot.transform.rotation = pivot.transform.rotation; // 회전 정지
             }
         }
         else if (fire && !pivotRotate) // 재투척 준비
         {
-            Debug.Log("재투척 준비");
         }
     }
 
@@ -230,7 +268,7 @@ public class UnitAttack_ShootBoss : MonoBehaviour
     /// </summary>
     private void Path(Vector3 velocity)
     {
-        Vector3 previousPoint = firePosition.position; // TODO: 에셋 추가 후 총구 위치로 변경 
+        Vector3 previousPoint = firePosition.position;
         int resolution = 30; // 궤적 내 경유 포인트
 
         for (int i = 0; i < resolution; i++)
