@@ -1901,7 +1901,7 @@ PrefabInstance:
     - target: {fileID: 3772171472793506256, guid: 3581ffd551a4a4e49a93fb4f7bcefeac,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7525055715723708378, guid: 3581ffd551a4a4e49a93fb4f7bcefeac,
         type: 3}
@@ -2054,6 +2054,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LifeFX
       objectReference: {fileID: 0}
+    - target: {fileID: 2137384901072926266, guid: 5500cee490c52954f868bf7943819876,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2137384901218073657, guid: 5500cee490c52954f868bf7943819876,
         type: 3}
       propertyPath: m_Materials.Array.size
@@ -2089,6 +2094,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Clear
+      objectReference: {fileID: 0}
+    - target: {fileID: 4565982992445762270, guid: a7dd1d21da973154385f91c4ae4983ea,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4565982992445762271, guid: a7dd1d21da973154385f91c4ae4983ea,
         type: 3}
