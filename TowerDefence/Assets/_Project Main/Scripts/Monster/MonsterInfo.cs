@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using Unity.VisualScripting;
@@ -29,6 +30,9 @@ public class MonsterInfo : MonsterData
     private GameObject attackFX;
     [SerializeField]
     private GameObject lifeFX;
+    private AudioSource audioSource;
+    [SerializeField]
+    private List<AudioClip> clip;
 
     private bool isReady = false;
 
@@ -49,6 +53,7 @@ public class MonsterInfo : MonsterData
         attackFX.SetActive(false);
         lifeFX.SetActive(false);
 
+        audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
     }
@@ -67,7 +72,6 @@ public class MonsterInfo : MonsterData
 
         if (isReady)
         {
-
             if (this.hp <= 0)
             {
                 StartCoroutine(Death());
@@ -159,6 +163,8 @@ public class MonsterInfo : MonsterData
             }       // loop: 에니메이션이 JumpStart에 들어올때까지 대기
         }       // if: 에니메이션이 잘 들어왔을 경우 패스
 
+        SoundManager(true);
+
         float duration = AniCheckLength();
 
         yield return new WaitForSeconds(duration / 2);
@@ -169,7 +175,7 @@ public class MonsterInfo : MonsterData
         }
 
         yield return new WaitForSeconds(duration / 2);
-        
+
         isAttack = false;
     }       // AttackPlayer()       // 사운드 추가 예정
 
@@ -190,7 +196,7 @@ public class MonsterInfo : MonsterData
 
         float duration = AniCheckLength();
 
-        // TODO: 사운드
+        SoundManager(false);
 
         if (monsterName == "NormalUpgradeMonster")
         {
@@ -207,7 +213,30 @@ public class MonsterInfo : MonsterData
         yield return new WaitForSeconds(duration);
 
         this.gameObject.SetActive(false);
-    }       // Death()      // 사운드 추가 예정
+    }       // Death()
+    #endregion
+
+    #region 사운드
+    private void SoundManager(bool _isAttack)
+    {
+        switch (_isAttack)
+        {
+            case true:
+
+                if (clip.Count == 0) { break; }
+                else { audioSource.clip = clip[0]; }
+
+                break;
+            case false:
+
+                if (clip.Count == 1) { break; }
+                else { audioSource.clip = clip[1]; }
+
+                break;
+        }
+
+        audioSource.Play();
+    }
     #endregion
 
     #region 초기화
