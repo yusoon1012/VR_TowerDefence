@@ -2,6 +2,7 @@
 #define Oculus
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 /// <summary>
@@ -25,8 +26,10 @@ public class UnitBuildSystem : MonoBehaviour
     [SerializeField] private GameObject selectBombPrefab, selectBladePrefab, selectShootBossPrefab = default;
     // 선택 시의 유닛 오브젝트 
     private GameObject selectBombUnit, selectBladeUnit, selectShootBossUnit = default;
-    // 그리드
-    [SerializeField] private Grid grid;
+    // 선택 허용 시 빛기둥
+    [SerializeField] GameObject permitLight = default;
+    // 선택 중복 시 빛기둥
+    [SerializeField] GameObject disclaimLight = default;
     // 플레이어
     [SerializeField]private GameObject player;
     #endregion
@@ -46,6 +49,8 @@ public class UnitBuildSystem : MonoBehaviour
     private GameObject unit = default;
     // 설치될 유닛의 목표 위치
     private GameObject selectUnit = default;
+    // 그리드 셀의 크기
+    private float gridSize = 1.0f; // 그리드 셀의 크기
     // 설치된 유닛 개수 (종류별)
     int bombCount = 0;
     int shootBossCount = 0;
@@ -86,18 +91,10 @@ public class UnitBuildSystem : MonoBehaviour
         red = Resources.Load<Material>("Material/Red");
 
         shop_Unit = GameObject.Find("Shop").GetComponent<Shop_Unit>(); // 유닛 구매 여부를 알기 위함
-
-        //shootBossUnit.GetComponent<UnitAttack_ShootBoss>().enabled = true; // Issue: 비활성화 문제로 넣은 코드 
     }
 
     private void Update()
     {
-        // TODO: unit 배분 
-        // 폭발 유닛은 3개까지
-        // 보스 타격 유닛은 2개까지
-        // 근거리 타격 유닛은 1개만 
-        // 상점에서 구매 버튼을 누른다면 위 int 값을 수정하는 것으로 개수 조절. 
-
         #region 유닛 공격력 증가
         //if (Shop_Buff.instance.isDamageUp)
         //{
@@ -124,25 +121,25 @@ public class UnitBuildSystem : MonoBehaviour
         //else unitLifeTime = 10f; // 초기화
         #endregion
 
-        if (shop_Unit.buildBomb) // 폭발 유닛 설치
+        if (shop_Unit.buildBomb) // 폭발 유닛 설치 (3개까지)
         {
-            unit = bombUnit[0];
+            unit = bombUnit[bombCount];
             selectUnit = selectBombUnit;
             Unit_Range();
         }
 
-        if (shop_Unit.buildBlade) // 근거리 타격 유닛 설치
+        if (shop_Unit.buildBlade) // 근거리 타격 유닛 설치 (2개까지)
         {
-            unit = bladeUnit[0];
+            unit = bladeUnit[bladeCount];
             selectUnit = selectBladeUnit;
             Unit_Range();
         }
 
-        if (shop_Unit.buildShootBoss) // 보스 타격 유닛
+        if (shop_Unit.buildShootBoss) // 보스 타격 유닛 (1개만)
         {
-            unit = shootBossUnit[0];
+            unit = shootBossUnit[shootBossCount];
             selectUnit = selectShootBossUnit;
-            Unit_Range() ;
+            Unit_Range();
         }
     }
 
@@ -153,7 +150,9 @@ public class UnitBuildSystem : MonoBehaviour
     {
         get
         {
-            Vector3 selectPos = default;
+            Vector3 selectPos = default; // 컨트롤러 커서 위치
+            Vector3 targetPos = default; // 실 설치 위치
+
             int floorLayer = 1 << LayerMask.NameToLayer("Ground");
             // Ray를 카메라의 위치로부터 나가도록 한다.
             Ray ray = new Ray(ARAVRInput.RHandPosition, ARAVRInput.RHandDirection);
@@ -164,10 +163,10 @@ public class UnitBuildSystem : MonoBehaviour
                 selectPos = hitInfo.point;
             }
 
-            Vector3Int gridPos = grid.WorldToCell(selectPos);
-            Debug.LogFormat("그리드 Pos; {0}", gridPos);
+            targetPos = new Vector3(Mathf.Floor(selectPos.x / gridSize) * gridSize, 0f,
+            Mathf.Floor(selectPos.z / gridSize) * gridSize);
 
-            return gridPos; // 이후 셀포지션을 return 하도록 수정
+            return selectPos; // 이후 셀포지션을 return 하도록 수정
         }
     }
 
@@ -222,12 +221,29 @@ public class UnitBuildSystem : MonoBehaviour
             // 설치 키를 입력했으며 중복 설치 시도가 아니라면
             if (ARAVRInput.GetDown(ARAVRInput.Button.IndexTrigger, ARAVRInput.Controller.RTouch) && !overlap)
             {
-                shop_Unit.buildBomb = false;
-                shop_Unit.buildBlade = false;
-                shop_Unit.buildShootBoss = false;
-
                 Unit_Build(); // 타워 설치
             }
+        }
+    }
+
+    private void CalculateUnitCount()
+    {
+        if (shop_Unit.buildBomb)
+        {
+            bombCount++;
+            shop_Unit.buildBomb = false;
+
+            // TODO: 제한 개수를 넘었다면...
+        }
+        else if (shop_Unit.buildBlade)
+        {
+            bladeCount++;
+            shop_Unit.buildBlade = false;
+        }
+        else if (shop_Unit.buildShootBoss)
+        {
+            shootBossCount++;
+            shop_Unit.buildShootBoss = false;
         }
     }
 
