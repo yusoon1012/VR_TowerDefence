@@ -1,10 +1,5 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -30,6 +25,8 @@ public class MonsterInfo : MonsterData
     private GameObject attackFX;
     [SerializeField]
     private GameObject lifeFX;
+    [SerializeField]
+    private GameObject clearFX;
     private AudioSource audioSource;
     [SerializeField]
     private List<AudioClip> clip;
@@ -38,10 +35,13 @@ public class MonsterInfo : MonsterData
 
     private bool isAttack = false;
     private bool isDeath = false;
+    private bool isClear = false;
 
     private float splitStartValue = -0.1f;
     private float splitEndValue = 1.1f;
     private float lifeDuration = 6.0f;
+
+    private List<ParticleSystem> particleSystems = new List<ParticleSystem>();
 
     private void Awake()
     {
@@ -51,10 +51,14 @@ public class MonsterInfo : MonsterData
 
         attackFX.SetActive(false);
         lifeFX.SetActive(false);
+        clearFX.SetActive(false);
 
-        audioSource = GetComponent<AudioSource>();
-        animator = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+
+        SetComponet(clearFX.transform);
+        SetParticleColor();
     }
 
     private void OnEnable()
@@ -65,29 +69,40 @@ public class MonsterInfo : MonsterData
 
     private void Update()
     {
-        // TODO: 플레이어 체력 0초과인지 체크하는 if문 작성 -------------------------------------------
-        // 플레이어와 몬스터간의 거리 계산
-        distance = Vector3.Distance(transform.position, player.transform.position);
-
-        if (isReady)
+        if (!isClear)   // 게임매니저의 클리어 조건 넣기
         {
-            if (this.hp <= 0)
+            if (!isClear)
             {
-                StartCoroutine(Death());
+                StartCoroutine(Clear());
             }
-            else
+
+            return;
+        }
+        else
+        {
+            // 플레이어와 몬스터간의 거리 계산
+            distance = Vector3.Distance(transform.position, player.transform.position);
+
+            if (isReady)
             {
-                if (distance <= this.attackRange && isAttack == false)
+                if (this.hp <= 0)
                 {
-                    nav.speed = 0.0f;
-
-                    StartCoroutine(Attack());
+                    StartCoroutine(Death(false));
                 }
-                else if (isAttack == false)
+                else
                 {
-                    nav.speed = this.speed;
+                    if (distance <= this.attackRange && isAttack == false)
+                    {
+                        nav.speed = 0.0f;
 
-                    TargetPlayer();
+                        StartCoroutine(Attack());
+                    }
+                    else if (isAttack == false)
+                    {
+                        nav.speed = this.speed;
+
+                        TargetPlayer();
+                    }
                 }
             }
         }
@@ -139,6 +154,18 @@ public class MonsterInfo : MonsterData
         }
     }
 
+    //! ParticleSystem 컴포넌트를 설정하는 재귀함수
+    private void SetComponet(Transform _parent)
+    {
+        for (int i = 0; i < _parent.childCount; i++)
+        {
+            if (_parent.GetChild(i).GetComponent<ParticleSystem>())
+            {
+                particleSystems.Add(_parent.GetChild(i).GetComponent<ParticleSystem>());
+            }
+        }
+    }
+
     //! 몬스터 체력을 깍기
     public void MonsterDamaged(int _damage)
     {
@@ -178,7 +205,7 @@ public class MonsterInfo : MonsterData
     }       // AttackPlayer()
 
     //! 몬스터의 죽어을 때 에니메이션 재생
-    private IEnumerator Death()
+    private IEnumerator Death(bool _isClear)
     {
         isDeath = true;
 
@@ -196,7 +223,7 @@ public class MonsterInfo : MonsterData
 
         SoundManager(false);
 
-        if (monsterName == "NormalUpgradeMonster")
+        if (monsterName == "NormalUpgradeMonster" && !isClear)
         {
             if (Vector3.Distance(transform.position, player.transform.position) <= explosionRange)
             {
@@ -315,6 +342,76 @@ public class MonsterInfo : MonsterData
     protected virtual (int, int, int, int, int, int) FastMonster()
     {
         return base.FastMonster(hp, power, speed, recognitionRange, attackRange, explosionRange);
+    }
+    #endregion
+
+    #region 게임 종료 Event 관련
+    //! 파티클 색상 선정
+    private void SetParticleColor()
+    {
+        Color color = default;
+
+        int randColor = Random.Range(0, 7);
+
+        Debug.Log(randColor);
+
+        switch (randColor)
+        {
+            case 0:
+
+                color = new Color(1.0f, 0.0f, 0.0f);
+
+                break;
+            case 1:
+
+                color = new Color(0.0f, 1.0f, 0.0f);
+
+                break;
+            case 2:
+
+                color = new Color(0.0f, 0.0f, 1.0f);
+
+                break;
+            case 3:
+
+                color = new Color(1.0f, 1.0f, 0.0f);
+
+                break;
+            case 4:
+
+                color = new Color(1.0f, 0.0f, 1.0f);
+
+                break;
+            case 5:
+
+                color = new Color(0.0f, 1.0f, 1.0f);
+
+                break;
+            case 6:
+
+                color = new Color(1.0f, 1.0f, 1.0f);
+
+                break;
+
+        }
+
+        for (int i = 0; i < particleSystems.Count; i++)
+        {
+            particleSystems[i].startColor = color;
+        }
+    }
+
+    private IEnumerator Clear()
+    {
+        isClear = true;
+
+        float randWait = Random.Range(0, 5);
+
+        yield return new WaitForSeconds(randWait);
+
+        clearFX.SetActive(true);
+
+        StartCoroutine(Death(true));
     }
     #endregion
 }
