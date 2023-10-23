@@ -47,5 +47,7 @@ public class Magic_Normal : MonoBehaviour
             }
 
         }
+        
+        
     }
 }

@@ -70,6 +70,10 @@ public class MonsterInfo : MonsterData
 
             if (this.hp <= 0)
             {
+                if (isDeath == false)
+                {
+                    GoldManager.instance.EnemyDropGold();
+                }
                 StartCoroutine(Death());
             }
             else

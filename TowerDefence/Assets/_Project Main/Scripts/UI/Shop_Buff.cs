@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class Shop_Buff : MonoBehaviour
 {
+    public AudioClip buyClip;
     public static Shop_Buff instance;
     public Sprite[] healImages;
     public GameObject[] buffIcon;
@@ -24,9 +25,14 @@ public class Shop_Buff : MonoBehaviour
     private float attackSpeedUpCooltime = 0f;
     private float buffCoolTimeRate = 15f;
 
+    private int healPrice;
+    private int attackSpeedPrice;
+    private int damageUpPrice;
+    private AudioSource audioSource;
+
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -38,6 +44,7 @@ public class Shop_Buff : MonoBehaviour
         {
             buffIcon[i].SetActive(false);
         }
+        audioSource= GetComponent<AudioSource>();   
     }
 
     // Update is called once per frame
@@ -46,11 +53,34 @@ public class Shop_Buff : MonoBehaviour
 
     }
 
-    public void UnitDamageUp()
+    public void UnitDamageUp(int level)
     {
-        //유닛 공격력 상승시키는 버튼호출 함수
-        if(damageUpCooltime==0)
+        switch (level)
         {
+            case 1:
+                damageUpPrice = 250;
+                break;
+            case 2:
+                damageUpPrice = 500;
+
+                break;
+            case 3:
+                damageUpPrice = 750;
+
+                break;
+            default:
+                break;
+        }
+        if(GoldManager.instance.currentGold<damageUpPrice)
+        {
+            return;
+        }
+        //유닛 공격력 상승시키는 버튼호출 함수
+        if (damageUpCooltime == 0)
+        {
+            audioSource.clip=buyClip;
+            audioSource.Play();
+            GoldManager.instance.BuyThings(damageUpPrice);
             damageUpCooltime = buffCoolTimeRate;
             buffIcon[POWER_UP].SetActive(true);
             StartCoroutine(UnitDamageRoutine());
@@ -58,12 +88,35 @@ public class Shop_Buff : MonoBehaviour
 
     }
 
-    public void UnitAttackSpeedUp()
+    public void UnitAttackSpeedUp(int level)
     {
-        //유닛 공격속도 상승시키는 버튼호출 함수
-        if(attackSpeedUpCooltime==0)
+        switch (level)
         {
-            attackSpeedUpCooltime= buffCoolTimeRate;
+            case 1:
+                attackSpeedPrice = 250;
+                break;
+            case 2:
+                attackSpeedPrice = 500;
+
+                break;
+            case 3:
+                attackSpeedPrice = 750;
+
+                break;
+            default:
+                break;
+        }
+        if (GoldManager.instance.currentGold < attackSpeedPrice)
+        {
+            return;
+        }
+        //유닛 공격속도 상승시키는 버튼호출 함수
+        if (attackSpeedUpCooltime == 0)
+        {
+            audioSource.clip = buyClip;
+            audioSource.Play();
+            GoldManager.instance.BuyThings(attackSpeedPrice);
+            attackSpeedUpCooltime = buffCoolTimeRate;
             buffIcon[ATTACK_SPEED].SetActive(true);
             StartCoroutine(UnitAttackSpeedUpRoutine());
 
@@ -73,33 +126,66 @@ public class Shop_Buff : MonoBehaviour
 
     public void PlayerHeal(int level)
     {
+        switch (level)
+        {
+            case 1:
+                healPrice = 300;
+                break;
+            case 2:
+                healPrice = 400;
+
+                break;
+            case 3:
+                healPrice = 500;
+
+                break;
+            default:
+                break;
+        }
+
+        if(GoldManager.instance.currentGold<healPrice)
+        {
+            return;
+        }
         if (isHealing == false)
         {
-            isHealing=true;
-         Image img= buffSlider[HEAL].GetComponentInChildren<Image>(); 
-        if(img != null )
-        {
-            img.sprite = healImages[level - 1];
-        }
-        buffIcon[HEAL].SetActive(true);
-        StartCoroutine(HealRoutine(level));
+            audioSource.clip = buyClip;
+            audioSource.Play();
+            GoldManager.instance.BuyThings(healPrice);
+            AudioSource audio=gameObject.GetComponent<AudioSource>();
+            if(audio != null)
+            {
+            audio.Play();
+            }
+            isHealing = true;
+            Image img = buffSlider[HEAL].GetComponentInChildren<Image>();
+            if (img != null)
+            {
+                img.sprite = healImages[level - 1];
+            }
+            switch (level)
+            {
+
+            }
+            buffIcon[HEAL].SetActive(true);
+            StartCoroutine(HealRoutine(level));
         }
     }
 
     private IEnumerator UnitAttackSpeedUpRoutine()
     {
-        while(attackSpeedUpCooltime>0)
+        while (attackSpeedUpCooltime > 0)
         {
             attackSpeedUpCooltime -= 1;
             yield return new WaitForSeconds(1);
-            buffSlider[ATTACK_SPEED].value = attackSpeedUpCooltime/buffCoolTimeRate;
+            buffSlider[ATTACK_SPEED].value = attackSpeedUpCooltime / buffCoolTimeRate;
         }
         buffIcon[ATTACK_SPEED].SetActive(false);
     }
     private IEnumerator UnitDamageRoutine()
     {
         //TODO : 유닛 데미지 업 함수 호출
-        while (damageUpCooltime>0)
+        while (damageUpCooltime > 0)
         {
             damageUpCooltime -= 1;
             yield return new WaitForSeconds(1);
@@ -112,27 +198,27 @@ public class Shop_Buff : MonoBehaviour
     {
         float healTime = 5;
         float lastTime;
-        while( healTime > 0 ) 
+        while (healTime > 0)
         {
             yield return new WaitForSeconds(1);
             lastTime = healTime;
             healTime -= 1;
-            buffSlider[HEAL].value=healTime/5;
-            switch(level)
+            buffSlider[HEAL].value = healTime / 5;
+            switch (level)
             {
                 case 1:
-                    if(Player_Status.Instance.playerCurrentHp+20>=Player_Status.Instance.playerMaxHp)
+                    if (Player_Status.Instance.playerCurrentHp + 20 >= Player_Status.Instance.playerMaxHp)
                     {
                         Player_Status.Instance.playerCurrentHp = Player_Status.Instance.playerMaxHp;
                     }
                     else
                     {
 
-                    Player_Status.Instance.playerCurrentHp += 20;
+                        Player_Status.Instance.playerCurrentHp += 20;
                     }
 
                     break;
-                    case 2:
+                case 2:
                     if (Player_Status.Instance.playerCurrentHp + 30 >= Player_Status.Instance.playerMaxHp)
                     {
                         Player_Status.Instance.playerCurrentHp = Player_Status.Instance.playerMaxHp;
@@ -143,7 +229,7 @@ public class Shop_Buff : MonoBehaviour
                         Player_Status.Instance.playerCurrentHp += 30;
                     }
                     break;
-                    case 3:
+                case 3:
                     if (Player_Status.Instance.playerCurrentHp + 40 >= Player_Status.Instance.playerMaxHp)
                     {
                         Player_Status.Instance.playerCurrentHp = Player_Status.Instance.playerMaxHp;
@@ -155,7 +241,7 @@ public class Shop_Buff : MonoBehaviour
                     }
 
                     break;
-                    default: break;
+                default: break;
             }
         }
         //buffSlider[HEAL].value = healTime / 5;

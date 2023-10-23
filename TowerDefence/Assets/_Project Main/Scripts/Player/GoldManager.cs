@@ -13,7 +13,7 @@ public class GoldManager : MonoBehaviour
     private int timeGold = 15;
     private int monsterGold = 20;
     public static GoldManager instance = null;
-
+    AudioSource audio;
     private void Awake()
     {
         if (instance == null)
@@ -28,6 +28,7 @@ public class GoldManager : MonoBehaviour
     {
         currentGold = startGold;
         goldText.text = string.Format("{0}", currentGold);
+        audio=GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -52,6 +53,13 @@ public class GoldManager : MonoBehaviour
         int targetGold = currentGold + (damage_/2) ;
         StartCoroutine(GoldRoutine(targetGold));
     }
+    public void BuyThings(int gold)
+    {
+        currentGold -= gold;
+        goldText.text = string.Format("{0}", currentGold);
+
+    }
+
     private IEnumerator GoldRoutine(int targetGold_)
     {
         while(currentGold<targetGold_)
