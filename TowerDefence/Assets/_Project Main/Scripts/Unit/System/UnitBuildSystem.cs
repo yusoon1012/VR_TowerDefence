@@ -30,9 +30,9 @@ public class UnitBuildSystem : MonoBehaviour
     [SerializeField] GameObject blueLightPrefab = default;
     // 선택 중복 시 빛기둥 프리팹
     [SerializeField] GameObject redLightPrefab = default;
+    // 빛기둥
     private GameObject blueLight = default;
     private GameObject redLight = default;
-    // 빛기둥
     private GameObject lightEffect = default;
     // 플레이어
     [SerializeField]private GameObject player;
@@ -103,22 +103,38 @@ public class UnitBuildSystem : MonoBehaviour
 
     private void Update()
     {
-        #region 유닛 공격력 증가
-        //if (Shop_Buff.instance.isDamageUp)
-        //{
-        //    foreach(GameObject unit in units)
-        //    {
-        //        unit.GetComponent<AttackUnitProperty>().damage *= 2; // 공격력 * 2
-        //    }
-        //}
-        //else
-        //{
-        //    foreach (GameObject unit in units)
-        //    {
-        //        unit.GetComponent<AttackUnitProperty>().damage /= 2; // 공격력 / 2 (원상태 복귀)
-        //    }
-        //}
-        
+        #region 유닛 공격력 상승
+        if (Shop_Buff.instance.buffIcon[0])
+        {
+            foreach (GameObject unit in units)
+            {
+                unit.GetComponent<AttackUnitProperty>().damage *= 1.5f; // 공격력 * 1.5f (50% 상승)
+            }
+        }
+        else if (!Shop_Buff.instance.buffIcon[0])
+        {
+            foreach (GameObject unit in units)
+            {
+                unit.GetComponent<AttackUnitProperty>().damage /= 1.5f; // 공격력 / 2.0f (원상태 복귀)
+            }
+        }
+        #endregion
+
+        #region 유닛 공격속도 상승
+        if (Shop_Buff.instance.buffIcon[1])
+        {
+            foreach (GameObject unit in units)
+            {
+                unit.GetComponent<AttackUnitProperty>().speed *= 1.5f; // 공격속도 * 1.5f (50% 상승)
+            }
+        }
+        else if (!Shop_Buff.instance.buffIcon[1])
+        {
+            foreach (GameObject unit in units)
+            {
+                unit.GetComponent<AttackUnitProperty>().speed /= 1.5f; // 공격속도 / 1.5f (원상태 복귀)
+            }
+        }
         #endregion
 
         #region 유닛 지속시간 증가
@@ -181,7 +197,7 @@ public class UnitBuildSystem : MonoBehaviour
                 selectPos = hitInfo.point;
             }
 
-            targetPos = new Vector3(Mathf.Floor(selectPos.x / gridSize) * gridSize, 0f,
+            targetPos = new Vector3(Mathf.Floor(selectPos.x / gridSize) * gridSize, 0.5f,
             Mathf.Floor(selectPos.z / gridSize) * gridSize);
 
             return targetPos; // 이후 셀포지션을 return 하도록 수정
@@ -205,10 +221,10 @@ public class UnitBuildSystem : MonoBehaviour
             {
                 Transform obj = selectUnit.transform.GetChild(0);  // 실오브젝트
                 MeshRenderer[] children = obj.GetComponentsInChildren<MeshRenderer>(); // 구성 요소 Material 배열
-                
+                lightEffect = redLight;
+
                 for (int i = 0; i < children.Length; i++)
                 {
-                    lightEffect = redLight;
                     children[i].material = red;
                 }
 
@@ -218,10 +234,10 @@ public class UnitBuildSystem : MonoBehaviour
             {
                 Transform obj= selectUnit.transform.GetChild(0);  // 실오브젝트
                 MeshRenderer[] children = obj.GetComponentsInChildren<MeshRenderer>(); // 구성 요소 Material 배열
+                lightEffect = blueLight;
 
                 for (int i = 0; i < children.Length; i++)
                 {
-                    lightEffect = blueLight;
                     children[i].material = green;
                 }
 
@@ -236,16 +252,24 @@ public class UnitBuildSystem : MonoBehaviour
 
         if (Vector3.Distance(playerPos, selectpos) < 30) // 설치형 유닛 PC 기준 직선거리 30m 설치 제한 기준, 중복X
         {
-            //lightEffect.transform.position = buildPos;
-            blueLight.transform.position = buildPos; // 테스트
+            if (overlap)
+            {
+                redLight.transform.position = buildPos;
+                blueLight.transform.position = poolPos;
+            }
+            else if (!overlap)
+            {
+                blueLight.transform.position = buildPos;
+                redLight.transform.position = poolPos;
+            }
 
             selectUnit.transform.position = buildPos;
 
             // 설치 키를 입력했으며 중복 설치 시도가 아니라면
             if (ARAVRInput.GetDown(ARAVRInput.Button.IndexTrigger, ARAVRInput.Controller.RTouch) && !overlap)
             {
-                //lightEffect.transform.position = poolPos;
-                blueLight.transform.position = poolPos; // 테스트
+                blueLight.transform.position = poolPos;
+                redLight.transform.position = poolPos;
 
                 selectUnit.transform.position = poolPos; // 위치 표시 유닛은 풀로 복귀
 

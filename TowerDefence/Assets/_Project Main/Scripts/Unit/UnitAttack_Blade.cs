@@ -12,7 +12,7 @@ public class UnitAttack_Blade : MonoBehaviour
     // (CSV) 근거리 타격 유닛 공격속도
     [SerializeField] private float bladeSpeed = default;
     // (CSV) 근거리 타격 유닛 공격력
-    [SerializeField] private int bladeDamage = default;
+    [SerializeField] private float bladeDamage = default;
     // (CSV) 근거리 타격 유닛 회전속도
     [SerializeField] private int bladeRotateSpeed = default;
 

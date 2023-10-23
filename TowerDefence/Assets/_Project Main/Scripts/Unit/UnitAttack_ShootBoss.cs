@@ -14,7 +14,7 @@ public class UnitAttack_ShootBoss : MonoBehaviour
     private Vector3 poolPos = new Vector3(0f, -10f, 0f); // 풀 포지션
     private Vector3 bossPosition = default; // 타겟 포지션 (보스)
     // 유닛 데미지
-    public int shootBossDamage = default;
+    public float shootBossDamage = default;
     // 유닛 HP
     public int shootBossHP = default; //(CSV) 보스 타격 유닛HP
     private bool hit = false; // 피격 상태 체크
