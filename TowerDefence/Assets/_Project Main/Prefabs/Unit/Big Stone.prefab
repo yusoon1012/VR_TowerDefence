@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 4015693668653479055}
   - component: {fileID: -5738419670928010729}
   - component: {fileID: 2609864935050672473}
+  - component: {fileID: -522710199583077522}
   m_Layer: 0
   m_Name: Big Stone
   m_TagString: Untagged
@@ -174,6 +175,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54e2571ff1d66a444b77807e666b8e76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+--- !u!136 &-522710199583077522
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4015693668653479043}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7225076237002190410
 GameObject:
   m_ObjectHideFlags: 0

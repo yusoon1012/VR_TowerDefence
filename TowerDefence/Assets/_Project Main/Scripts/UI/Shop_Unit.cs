@@ -101,8 +101,6 @@ public class Shop_Unit : MonoBehaviour
     #region 보스 타격 유닛
     public void UnitShootBoss()
     {
-        Debug.Log("돌았나");
-
         mainShop.ExitShop(); // 상점창을 닫은 후 바로 배치 
         buildShootBoss = true; // 설치 단계로 넘어감
 

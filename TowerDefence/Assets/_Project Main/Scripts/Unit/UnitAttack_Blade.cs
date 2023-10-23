@@ -8,7 +8,7 @@ using UnityEngine;
 public class UnitAttack_Blade : MonoBehaviour
 {
     // (CSV) 근거리 타격 유닛 HP
-    [SerializeField] private int bladeHP = default;
+    public int bladeHP = default;
     // (CSV) 근거리 타격 유닛 공격속도
     [SerializeField] private float bladeSpeed = default;
     // (CSV) 근거리 타격 유닛 공격력
@@ -20,6 +20,8 @@ public class UnitAttack_Blade : MonoBehaviour
     private Transform blade = default;
     // 칼날 회전 여부
     private bool rotateBlade = false;
+
+    float damageTimer = 0; // 데미지 타이머
 
     private void Awake()
     {
@@ -91,6 +93,8 @@ public class UnitAttack_Blade : MonoBehaviour
             else if (time >= bladeSpeed)
             {
                 AttackDamage(other.gameObject); // 데미지 호출
+                Damaged(); // 유닛이 피해를 입는다. 
+
                 time = 0f;
             }
         }
@@ -124,7 +128,27 @@ public class UnitAttack_Blade : MonoBehaviour
     // MonsterInfo의 MonsterDamaged(임시값)
     private void AttackDamage(GameObject enemy)
     {
-        // TODO: 졸개에 대한 데미지 처리 
-        Debug.Log("데미지 처리");
+        Debug.Log("근접형 유닛: 적을 공격");
+
+        int realDamage = (int)bladeDamage;
+        enemy.transform.GetComponent<MonsterInfo>().MonsterDamaged(realDamage);
+    }
+
+    private void Damaged()
+    {
+        if (damageTimer < 3)
+        {
+            damageTimer += Time.deltaTime;
+        }
+        else if (damageTimer >= 3)
+        {
+            bladeHP--;
+            damageTimer = 0;
+        }
+
+        if (bladeHP <= 0) // 체력이 다하면 
+        {
+            bladeHP = transform.GetComponent<AttackUnitProperty>().HP; 
+        }
     }
 }

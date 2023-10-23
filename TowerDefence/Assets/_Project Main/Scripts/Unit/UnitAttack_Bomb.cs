@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO.IsolatedStorage;
 //using System.Numerics;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
@@ -14,6 +15,8 @@ public class UnitAttack_Bomb : MonoBehaviour
     [SerializeField] private float damage = default; // (CSV) 폭발 유닛의 공격력
     [SerializeField] private int explosionRange = default; // (CSV) 폭발 범위
     [SerializeField] private int bombHP = default; // (CSV) 폭발 유닛 HP
+
+    int enemiesCount = default; // 감지된 적의 수 
 
     private void Awake()
     {
@@ -32,6 +35,7 @@ public class UnitAttack_Bomb : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy")) // 충돌한 것이 졸개 태그라면
         {
+            Debug.Log("폭발 유닛: 적을 공격");
             Explosion();
         }
     }
@@ -40,27 +44,24 @@ public class UnitAttack_Bomb : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy")) // 충돌한 것이 졸개 태그라면
         {
+            Debug.Log("폭발 유닛: 적을 공격");
             Explosion();
         }
     }
 
-    private GameObject[] Enemies
+    private void AttackEnemies()
     {
-        get
+        float radius = explosionRange / 2f; // 폭발 반경
+        int realDamage = (int)damage; // 폭발 데미지
+
+        Collider[] colliders = Physics.OverlapSphere(transform.position, radius); // 검출 배열
+
+        foreach (Collider collider in colliders)
         {
-            float radius = explosionRange / 2f; // 폭발 반경
-
-            Collider[] colliders = Physics.OverlapSphere(transform.position, radius); // 검출 배열
-            GameObject[] enemies = new GameObject[colliders.Length]; // 검출 적 배열
-
-            for (int i = 0; i < colliders.Length; i++)
+            if (collider.CompareTag("Enemy"))
             {
-                if (colliders[i].gameObject.CompareTag("Enemy")) // 졸개 태그면
-                {
-                    enemies[i] = colliders[i].gameObject; // 추가
-                }
+                collider.gameObject.GetComponent<MonsterInfo>().MonsterDamaged(realDamage);
             }
-            return enemies;
         }
     }
 
@@ -69,18 +70,14 @@ public class UnitAttack_Bomb : MonoBehaviour
         Transform effectList = transform.GetChild(1);
         ParticleSystem[] effects = effectList.GetComponentsInChildren<ParticleSystem>();
 
-        foreach (ParticleSystem effect in effects) 
+        AttackEnemies();
+
+        foreach (ParticleSystem effect in effects)
         {
             Debug.Assert(effect);
             effect.Play(); // 파티클 시스템 플레이
 
             Invoke("BackPool", 0.3f); // 폭발 유닛 풀로 복귀 
-        }
- 
-        for (int i = 0; i < Enemies.Length; i++)
-        {
-            Debug.LogFormat("{0}에게 데미지 처리", Enemies.Length);
-            //Enemies[i].transform.GetComponent<MonsterInfo>().MonsterDamaged(damage); // TODO: 졸개 나오면 주석 해제
         }
     }
 

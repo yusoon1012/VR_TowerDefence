@@ -12,7 +12,7 @@ public class UnitCSVReader : MonoBehaviour
     [Header("CSV File")]
     public TextAsset attackUnitCSV, buffUnitCSV = default;
 
-    private void Awake()
+    private void Start()
     {
         ReadCSV();
     }
