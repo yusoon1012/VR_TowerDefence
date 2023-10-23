@@ -69,12 +69,10 @@ public class MonsterInfo : MonsterData
 
     private void Update()
     {
-        if (!isClear)   // 게임매니저의 클리어 조건 넣기
+        if (GameManager.instance.isGameOver)   // 게임매니저의 클리어 조건 넣기
         {
             if (!isClear)
             {
-               
-               
                 StartCoroutine(Clear());
             }
 

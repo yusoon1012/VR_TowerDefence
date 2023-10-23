@@ -42,8 +42,7 @@ public class GameManager : MonoBehaviour
 
     // { 박준오
     public Dictionary<string, List<string>> monsterData = new Dictionary<string, List<string>>();
-    // 이경민 CSV 파일 Read
-    public Dictionary<string, List<string>> bossData = new Dictionary<string, List<string>>();
+   
 
     private void Start()
     {

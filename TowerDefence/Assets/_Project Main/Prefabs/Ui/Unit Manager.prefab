@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1029140598822505403
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1029140598822505401}
+  - component: {fileID: 1029140598822505400}
+  - component: {fileID: 1029140598822505350}
+  m_Layer: 0
+  m_Name: Unit Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1029140598822505401
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029140598822505403}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1029140598822505400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029140598822505403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7ba1ae161009a543936863daaaaa1c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bombUnitPrefab: {fileID: 1049715279783911337, guid: c484f70879d9c214db2d1cf49130a259,
+    type: 3}
+  bladeUnitPrefab: {fileID: 4084792336850673797, guid: 4fe575472f4694a42a4b5127856d3594,
+    type: 3}
+  bossShootUnitPrefab: {fileID: 376375656987082245, guid: 2f50d5756c750844082ce110d6fe4a1e,
+    type: 3}
+  selectBombPrefab: {fileID: 9192678423180484152, guid: 78c3cb6e2a81a16418eaae8a3ef4a12b,
+    type: 3}
+  selectBladePrefab: {fileID: 7560790499674720630, guid: 3ebbd4adbe38d044d802f4cd403fa636,
+    type: 3}
+  selectShootBossPrefab: {fileID: 4812867189848469808, guid: 044b80befe9e92b448582e5e968acc36,
+    type: 3}
+  blueLightPrefab: {fileID: 3822953770846949535, guid: 88fc44ac0dd82014b8c95c3bfbaf45d2,
+    type: 3}
+  redLightPrefab: {fileID: 3584861146500652247, guid: 8c5145c1addef684caf685d8592de5dc,
+    type: 3}
+  player: {fileID: 0}
+  unitLifeTime: 10
+--- !u!114 &1029140598822505350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029140598822505403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05c468b6a9efe0a43befbbeb95479e3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackUnitCSV: {fileID: 4900000, guid: f71c590e8b3343d4ca148f816319d097, type: 3}
+  buffUnitCSV: {fileID: 4900000, guid: 100e2799330d1c746af18e4e943808e1, type: 3}
