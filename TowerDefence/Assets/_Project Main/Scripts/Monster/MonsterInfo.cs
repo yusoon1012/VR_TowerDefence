@@ -37,7 +37,6 @@ public class MonsterInfo : MonsterData
     private bool isReady = false;
 
     private bool isAttack = false;
-    private bool isBuffer = false;
     private bool isDeath = false;
 
     private float splitStartValue = -0.1f;
@@ -80,7 +79,6 @@ public class MonsterInfo : MonsterData
             {
                 if (distance <= this.attackRange && isAttack == false)
                 {
-
                     nav.speed = 0.0f;
 
                     StartCoroutine(Attack());
@@ -177,7 +175,7 @@ public class MonsterInfo : MonsterData
         yield return new WaitForSeconds(duration / 2);
 
         isAttack = false;
-    }       // AttackPlayer()       // 사운드 추가 예정
+    }       // AttackPlayer()
 
     //! 몬스터의 죽어을 때 에니메이션 재생
     private IEnumerator Death()
@@ -245,7 +243,6 @@ public class MonsterInfo : MonsterData
     {
         isReady = false;
         isAttack = false;
-        isBuffer = false;
         isDeath = false;
 
         material.SetFloat("_SplitValue", splitStartValue);
