@@ -9,7 +9,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 197962, guid: a2595f31d848a4b45949d2faf4360980, type: 3}
       propertyPath: m_Name
-      value: LifeMissileMega
+      value: PoisonMissile
+      objectReference: {fileID: 0}
+    - target: {fileID: 197962, guid: a2595f31d848a4b45949d2faf4360980, type: 3}
+      propertyPath: m_TagString
+      value: Meteor
       objectReference: {fileID: 0}
     - target: {fileID: 472774, guid: a2595f31d848a4b45949d2faf4360980, type: 3}
       propertyPath: m_RootOrder

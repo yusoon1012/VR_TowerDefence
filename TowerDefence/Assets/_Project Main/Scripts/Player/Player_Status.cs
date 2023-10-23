@@ -20,8 +20,6 @@ public class Player_Status : MonoBehaviour
         get { return _instance; }
     }
 
-
-    // Start is called before the first frame update
     void Start()
     {
         // 만약 인스턴스가 이미 설정되어 있다면, 현재 인스턴스를 파괴한다.
@@ -38,16 +36,19 @@ public class Player_Status : MonoBehaviour
         hpBar.value = playerCurrentHp / playerMaxHp;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-       
-    }
-
     public void PlayerDamaged(int damage)
     {
+        if (GameManager.instance.isGameOver == true) { return; }
+
         playerCurrentHp -= damage;
         hpBar.value=playerCurrentHp/playerMaxHp;
-    }
+
+        // 플레이어의 남은 HP 가 0 보다 작거나 같으면
+        if (playerCurrentHp <= 0)
+        {
+            // 게임 매니저의 GameOver 함수를 실행시킨다
+            GameManager.instance.GameOver();
+        }
+    }     // PlayerDamaged()
 
 }

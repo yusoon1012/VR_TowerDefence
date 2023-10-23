@@ -9,7 +9,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 104516, guid: 62de476edefb27d4fa2d5681775e8586, type: 3}
       propertyPath: m_Name
-      value: ArcaneMissileMega
+      value: DarkMissile
+      objectReference: {fileID: 0}
+    - target: {fileID: 104516, guid: 62de476edefb27d4fa2d5681775e8586, type: 3}
+      propertyPath: m_TagString
+      value: Meteor
       objectReference: {fileID: 0}
     - target: {fileID: 400168, guid: 62de476edefb27d4fa2d5681775e8586, type: 3}
       propertyPath: m_RootOrder

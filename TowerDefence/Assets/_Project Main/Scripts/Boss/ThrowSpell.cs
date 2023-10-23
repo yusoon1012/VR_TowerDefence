@@ -19,6 +19,8 @@ public class ThrowSpell : MonoBehaviour
     private Transform playerTransform = default;
     // 발사체가 날아가는 방향이 어디쪽인지 확인
     public bool shootFlip;
+    // 보스 발사체 공격 타입 구분
+    public MissileType missileType;
 
     void Start()
     {
@@ -35,15 +37,15 @@ public class ThrowSpell : MonoBehaviour
         //Vector3 dir = (playerTransform.position - initPosition).normalized;
         //spellRigidbody.velocity = dir * speed;
     }     // Start()
-    private void OnEnable()
+
+    void OnEnable()
     {
         spellRigidbody = GetComponent<Rigidbody>();
 
         initPosition = transform.position;
         Vector3 dir = (playerTransform.position - initPosition).normalized;
         spellRigidbody.velocity = dir * speed;
-    }
-
+    }     // OnEnable()
 
     void Update()
     {
@@ -107,5 +109,43 @@ public class ThrowSpell : MonoBehaviour
         // 반대 방향으로 체크
         shootFlip = true;
     }     // Reverse()
+
+    // 보스 발사체가 날아갈 때 지정되는 공격 타입
+    public void MissileTypeCheck(int type)
+    {
+        // 발사체의 타입을 구분
+        switch (type)
+        {
+            // 체크된 타입이 파이어 구체면
+            case 0:
+                missileType = MissileType.DOT;
+                speed = 10f;
+                break;
+            // 체크된 타입이 라이트닝 구체면
+            case 1:
+                missileType = MissileType.DOT;
+                speed = 10f;
+                break;
+            // 체크된 타입이 포이즌 구체면
+            case 2:
+                missileType = MissileType.DOT;
+                speed = 10f;
+                break;
+            // 체크된 타입이 쉐도우 구체면
+            case 3:
+                missileType = MissileType.BLIND;
+                speed = 10f;
+                break;
+        }
+    }     // MissileTypeCheck()
+
+    // enum : 보스 발사체 공격 타입
+    public enum MissileType
+    {
+        // 도트 데미지 타입
+        DOT,
+        // 실명 타입
+        BLIND
+    }     // MissileType
 }
 

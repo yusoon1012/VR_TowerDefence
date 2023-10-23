@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ObjectPooling : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class ObjectPooling : MonoBehaviour
     public Transform midBossShootPosition;
     // 최종 보스의 구체 발사 초기 위치값
     public Transform finalBossShootPosition;
+    // 구체 발사, 패링 안내문
+    public Text parringInfo;
 
     // 구체 중복 발사를 방지하기 위해 이전에 발사한 구체 타입을 저장함
     private int beforeBallCheck = default;
@@ -31,6 +34,8 @@ public class ObjectPooling : MonoBehaviour
     private int rand = default;
     // 구체를 발사할 보스 종류 확인 (1 : 중간 보스, 2 : 최종 보스)
     private int bossType = default;
+
+    private bool firstShootCheck = false;
 
     #endregion 변수 설정
 
@@ -115,11 +120,22 @@ public class ObjectPooling : MonoBehaviour
     // 구체를 발사하는 함수
     private void Launch()
     {
+        // 보스가 처음 구체를 발사하면
+        if (firstShootCheck == false)
+        {
+            // 처음 출력 이후에 더이상 출력이 안되게 한다
+            firstShootCheck = true;
+            // 구체 발사와 패링 안내문을 출력한다
+            parringInfo.gameObject.SetActive(true);
+            // 구체 발사와 패링 안내문 종료 전 딜레이
+            StartCoroutine(FirstShootCheckDelay());
+        }
+
         // 보스 타입이 1 이면 중간 보스에서 구체를 발사
         if (bossType == 1)
         {
             // 랜덤 값으로 지정받은 구체 타입을 활성화
-           bossThrowSpell[rand].transform.position = midBossShootPosition.position;
+            bossThrowSpell[rand].transform.position = midBossShootPosition.position;
             Rigidbody rb = bossThrowSpell[rand].GetComponent<Rigidbody>();
             rb.velocity = Vector3.zero;
             bossThrowSpell[rand].gameObject.SetActive(true);
@@ -135,5 +151,16 @@ public class ObjectPooling : MonoBehaviour
             bossThrowSpell[rand].gameObject.SetActive(true);
             // 활성화 된 구체를 보스에서 발사 할 지역으로 이동시킨다.
         }
+
+        // 보스 발사체가 날아갈 때 발사체 타입 정보를 보내 enum 타입을 결정하는 함수로 보낸다
+        bossThrowSpell[rand].GetComponent<ThrowSpell>().MissileTypeCheck(rand);
     }     // Launch()
+
+    // 딜레이 이후 구체 발사와 패링 안내문을 끈다
+    private IEnumerator FirstShootCheckDelay()
+    {
+        yield return new WaitForSeconds(5f);
+
+        parringInfo.gameObject.SetActive(false);
+    }
 }
