@@ -174,7 +174,7 @@ public class FinalBoss : MonoBehaviour
 
         // 최종 보스의 HP 를 받은 데미지만큼 감소
         finalBossHp -= damage;
-        bossHp.value = finalBossHp / 100;
+        bossHp.value = finalBossHp / finalBossMaxhp;
 
         if (finalBossHp <= 0)
         {

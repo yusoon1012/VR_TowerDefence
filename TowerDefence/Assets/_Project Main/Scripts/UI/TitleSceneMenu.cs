@@ -22,6 +22,11 @@ public class TitleSceneMenu : MonoBehaviour
     {
         SceneManager.LoadScene("PlayScene");
     }
+    public void TitleMenu()
+    {
+        SceneManager.LoadScene("TitleScene");
+
+    }
     public void QuitGame()
     {
         Application.Quit();

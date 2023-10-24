@@ -211,12 +211,14 @@ public class MonsterInfo : MonsterData
     //! 몬스터의 죽어을 때 에니메이션 재생
     private IEnumerator Death(bool _isClear)
     {
-        isDeath = true;
-
-        if (!isClear)
+       if(isDeath==false)
         {
+
             GoldManager.instance.EnemyDropGold();
         }
+        isDeath = true;
+
+        
 
         animator.SetTrigger("Death");
 
