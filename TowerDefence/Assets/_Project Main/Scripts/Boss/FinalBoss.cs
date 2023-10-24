@@ -264,6 +264,7 @@ public class FinalBoss : MonoBehaviour
     // 졸개 소환을 준비하는 함수 (애니메이션 실행)
     private void ReadySpawnSoldier()
     {
+        if (GameManager.instance.isGameOver == true) { return; }
         // 1 ~ 2 랜덤 값 생성
         spawnRand = Random.Range(1, 3);
         // 랜덤 값을 애니메이터 값으로 지정
@@ -275,6 +276,7 @@ public class FinalBoss : MonoBehaviour
     // 졸개를 소환하는 기능의 함수
     private void SpawnSoldier()
     {
+        if (GameManager.instance.isGameOver == true) { return; }
         // 졸개 소환 애니메이션을 종료함
         isSpawn = 0;
         // 보스 졸개 소환 애니메이션 값 변경

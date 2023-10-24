@@ -124,12 +124,12 @@ public class ThrowSpell : MonoBehaviour
             // 체크된 타입이 라이트닝 구체면
             case 1:
                 missileType = MissileType.DOT;
-                speed = 10f;
+                speed = 15f;
                 break;
             // 체크된 타입이 포이즌 구체면
             case 2:
                 missileType = MissileType.DOT;
-                speed = 10f;
+                speed = 8f;
                 break;
             // 체크된 타입이 쉐도우 구체면
             case 3:
@@ -137,6 +137,8 @@ public class ThrowSpell : MonoBehaviour
                 speed = 10f;
                 break;
         }
+
+        Debug.Log(speed);
     }     // MissileTypeCheck()
 
     // enum : 보스 발사체 공격 타입
