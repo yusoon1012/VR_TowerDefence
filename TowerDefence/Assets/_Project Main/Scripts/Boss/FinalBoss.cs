@@ -12,7 +12,7 @@ public class FinalBoss : MonoBehaviour
     // { 변수 설정
     // 보스 HP 량
     public float finalBossHp;
-    private float finalBossMaxhp = 4000;
+    private float finalBossMaxhp = 2500f;
     // 보스 페이즈
     public int finalBossPhase = default;
     // 졸개 소환 쿨타임
@@ -83,6 +83,7 @@ public class FinalBoss : MonoBehaviour
         // { CSV 파일 정보 읽기
         // CSV 에서 최종 보스 HP 값을 불러옴
         float.TryParse(GameManager.instance.bossData["Hp"][1], out finalBossHp);
+        
         // CSV 에서 최종 보스 구체 발사 쿨타임 값을 불러옴
         float.TryParse(GameManager.instance.bossData["Attack_Cooltime"][1], out throwSphereTime);
         // CSV 에서 최종 보스의 졸개 소환 쿨타임 값을 불러옴

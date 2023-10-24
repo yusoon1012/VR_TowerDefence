@@ -7,7 +7,7 @@ using static UnityEngine.GraphicsBuffer;
 public class ThrowSpell : MonoBehaviour
 {
     // 보스의 날아가는 스펠의 속도
-    public float speed = 10f;
+    public float speed = 60f;
     // 보스 구체의 데미지 값
     public int power = default;
 
@@ -41,11 +41,12 @@ public class ThrowSpell : MonoBehaviour
     void OnEnable()
     {
         spellRigidbody = GetComponent<Rigidbody>();
-
+        shootFlip = false;
         initPosition = transform.position;
         Vector3 dir = (playerTransform.position - initPosition).normalized;
         spellRigidbody.velocity = dir * speed;
     }     // OnEnable()
+
 
     void Update()
     {
@@ -76,14 +77,10 @@ public class ThrowSpell : MonoBehaviour
             spellRigidbody.velocity = Vector3.zero;
             // 콜라이더에 부딛힌 오브젝트의 MidBoss 스크립트 참조
             MidBoss midBoss = collision.gameObject.GetComponent<MidBoss>();
-            // midBoss 오브젝트가 null 값이 아니면 실행
-            if (midBoss != null)
-            {
-                // 발사체 오브젝트를 비활성화 시킨다
-                gameObject.SetActive(false);
-                // 중간 보스에게 데미지를 입힌다
-                midBoss.HitDamage(10);
-            }
+            // 발사체 오브젝트를 비활성화 시킨다
+            this.gameObject.SetActive(false);
+            // 중간 보스에게 데미지를 입힌다
+            midBoss.HitDamage(10);
         }
         // 콜라이더에 부딛힌 오브젝트 태그가 Boss 이고, 반대방향으로 날아가고 있으면 실행
         else if (collision.tag == "Boss" && shootFlip == true)
@@ -92,14 +89,10 @@ public class ThrowSpell : MonoBehaviour
             spellRigidbody.velocity = Vector3.zero;
             // 콜라이더에 부딛힌 오브젝트의 FinalBoss 스크립트 참조
             FinalBoss finalBoss = collision.gameObject.GetComponent<FinalBoss>();
-            // finalBoss 오브젝트가 null 값이 아니면 실행
-            if (finalBoss != null)
-            {
-                // 발사체 오브젝트를 비활성화 시킨다
-                gameObject.SetActive(false);
-                // 최종 보스에게 데미지를 입힌다
-                finalBoss.HitDamage(10);
-            }
+            // 발사체 오브젝트를 비활성화 시킨다
+            this.gameObject.SetActive(false);
+            // 최종 보스에게 데미지를 입힌다
+            finalBoss.HitDamage(10);
         }
     }     // OnTriggerEnter()
 
@@ -119,22 +112,22 @@ public class ThrowSpell : MonoBehaviour
             // 체크된 타입이 파이어 구체면
             case 0:
                 missileType = MissileType.DOT;
-                speed = 10f;
+                speed = 60f;
                 break;
             // 체크된 타입이 라이트닝 구체면
             case 1:
                 missileType = MissileType.DOT;
-                speed = 15f;
+                speed = 70f;
                 break;
             // 체크된 타입이 포이즌 구체면
             case 2:
                 missileType = MissileType.DOT;
-                speed = 8f;
+                speed = 50f;
                 break;
             // 체크된 타입이 쉐도우 구체면
             case 3:
                 missileType = MissileType.BLIND;
-                speed = 10f;
+                speed = 60f;
                 break;
         }
 

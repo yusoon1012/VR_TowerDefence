@@ -10,7 +10,7 @@ public class Player_Shoot : MonoBehaviour
     public GameObject magicPrefab;
     public GameObject strongMagicPrefab;
     private float shootingCoolTime = 0;
-    private float shootRate = 1.1f;
+    private float shootRate =0.6f;
     private int attackEnforceCount = 0;
     public AudioClip[] shootClip;
     public AudioClip impactClip;

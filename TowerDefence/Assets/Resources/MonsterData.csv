@@ -1,5 +1,5 @@
 Type,Hp,Power,Speed,Recognition_Range,Attack_Range,Explosion_Range,Null
-Normal,20,10,5,1000,10,0,
-Fast,10,10,10,1000,10,0,
+Normal,20,10,2.5,1000,10,0,
+Fast,10,10,5,1000,10,0,
 NormalUpgrade,20,10,5,1000,10,10,
 FastUpgrade,10,10,15,1000,10,0,

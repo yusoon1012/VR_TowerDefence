@@ -163,10 +163,7 @@ public class Shop_Buff : MonoBehaviour
             {
                 img.sprite = healImages[level - 1];
             }
-            switch (level)
-            {
-
-            }
+            
             buffIcon[HEAL].SetActive(true);
             StartCoroutine(HealRoutine(level));
         }

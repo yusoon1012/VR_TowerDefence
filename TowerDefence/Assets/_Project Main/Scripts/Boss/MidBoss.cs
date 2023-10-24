@@ -137,7 +137,7 @@ public class MidBoss : MonoBehaviour
         // 중간 보스를 활성화 상태로 바꿔준다
         activeBoss = true;
         // 중간 보스의 Hp 를 초기화 시켜준다
-        midBossHp = 50;
+        int.TryParse(GameManager.instance.bossData["Hp"][0], out midBossHp);
     }     // OnEnable()
 
     public void TestHitDamage()
