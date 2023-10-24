@@ -42,48 +42,39 @@ public class GameManager : MonoBehaviour
 
     // { 박준오
     public Dictionary<string, List<string>> monsterData = new Dictionary<string, List<string>>();
-   
-
+    
     private void Start()
     {
         //StartCoroutine(Late());
-        
     }
+
     private void Update()
     {
-       //second += Time.deltaTime;
-        currentTime += Time.deltaTime;
-        minute = (int)currentTime / 60;
-        second = currentTime% 60;
-       
+        ////second += Time.deltaTime;
+        //currentTime += Time.deltaTime;
+        //minute = (int)currentTime / 60;
+        //second = currentTime% 60;
         
-        if(second<9.5f)
-        {
-
-        timerText.text=string.Format("{0:N0} : 0{1:N0}",minute,second);
-        }
-        else if(second>59.5)
-        {
-            timerText.text = string.Format("{0:N0} : 00", minute, second);
-
-        }
-        else
-        {
-            timerText.text = string.Format("{0:N0} : {1:N0}", minute, second);
-
-        }
-        goldTimer += Time.deltaTime;
-        if(goldTimer>=goldRate)
-        {
-            GoldManager.instance.TimeAddGold();
-            goldTimer = 0;
-        }
-        
-
-
+        //if(second<9.5f)
+        //{
+        //    timerText.text=string.Format("{0:N0} : 0{1:N0}",minute,second);
+        //}
+        //else if(second>59.5)
+        //{
+        //    timerText.text = string.Format("{0:N0} : 00", minute, second);
+        //}
+        //else
+        //{
+        //    timerText.text = string.Format("{0:N0} : {1:N0}", minute, second);
+        //}
+        //goldTimer += Time.deltaTime;
+        //if(goldTimer>=goldRate)
+        //{
+        //    GoldManager.instance.TimeAddGold();
+        //    goldTimer = 0;
+        //}
     }
-   
-
+    
     private IEnumerator Late()
     {
         yield return new WaitForSeconds(5);

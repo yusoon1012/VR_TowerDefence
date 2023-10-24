@@ -120,7 +120,8 @@ public class UnitBuildSystem : MonoBehaviour
         }
         #endregion
 
-        #region 유닛 공격속도 상승
+        
+#region 유닛 공격속도 상승
         if (Shop_Buff.instance.buffIcon[1])
         {
             foreach (GameObject unit in units)
@@ -136,7 +137,6 @@ public class UnitBuildSystem : MonoBehaviour
             }
         }
         #endregion
-
         #region 유닛 지속시간 증가
         //if (Shop_Buff.instance.isUnitDuration)
         //{
