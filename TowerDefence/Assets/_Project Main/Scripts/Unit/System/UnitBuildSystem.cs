@@ -98,7 +98,7 @@ public class UnitBuildSystem : MonoBehaviour
         blueLight = Instantiate(blueLightPrefab, poolPos, blueLightPrefab.transform.rotation);
         redLight = Instantiate(redLightPrefab, poolPos, redLightPrefab.transform.rotation);
 
-        shop_Unit = GameObject.Find("Shop").GetComponent<Shop_Unit>(); // 유닛 구매 여부를 알기 위함
+        shop_Unit = GameObject.Find("Shop_").GetComponent<Shop_Unit>(); // 유닛 구매 여부를 알기 위함
     }
 
     private void Update()
@@ -145,6 +145,7 @@ public class UnitBuildSystem : MonoBehaviour
         //else unitLifeTime = 10f; // 초기화
         #endregion
 
+        #region 유닛 설치
         if (shop_Unit.buildBomb) // 폭발 유닛 설치 (3개까지)
         {
             if (bombCount >= 3)
@@ -165,6 +166,7 @@ public class UnitBuildSystem : MonoBehaviour
             }
 
             unit = shootBossUnit[shootBossCount];
+            //shootBossUnit[shootBossCount].GetComponent<UnitAttack_ShootBoss>().enabled = true;
             selectUnit = selectShootBossUnit;
             Unit_Range();
         }
@@ -175,6 +177,7 @@ public class UnitBuildSystem : MonoBehaviour
             selectUnit = selectBladeUnit;
             Unit_Range();
         }
+        #endregion
     }
 
     /// <summary>
@@ -194,6 +197,7 @@ public class UnitBuildSystem : MonoBehaviour
 
             if (Physics.Raycast(ray, out hitInfo, 200f, floorLayer))
             {
+                Debug.Log("땅을 감지!");
                 selectPos = hitInfo.point;
             }
 
@@ -329,5 +333,13 @@ public class UnitBuildSystem : MonoBehaviour
     public void ReturnPool(GameObject unit)
     {
         unit.transform.position = poolPos;
+    }
+
+    /// <summary>
+    /// HP 0인 유닛을 회수
+    /// </summary>
+    private void UnitReturn()
+    {
+
     }
 }

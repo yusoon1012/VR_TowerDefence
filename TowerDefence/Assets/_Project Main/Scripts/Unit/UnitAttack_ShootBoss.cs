@@ -74,13 +74,11 @@ public class UnitAttack_ShootBoss : MonoBehaviour
 
     private void Update()
     {
-        // TODO: 유닛 구매 여부 추가 
         if (Distance < 1000f) // 반경 150 내 보스 존재 (임시값: 1000)
         {
             FindBoss();
         }
 
-        // TODO: 유닛 구매 & 배치 상태에서 작동하도록 변경 
         if (ARAVRInput.GetDown(ARAVRInput.Button.IndexTrigger, ARAVRInput.Controller.RTouch))
         {
             StartCoroutine(ReadyFire());
