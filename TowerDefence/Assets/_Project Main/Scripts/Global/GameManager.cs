@@ -127,7 +127,7 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         isGameOver = false;
-        SceneManager.LoadScene("Boss_Test");
+        SceneManager.LoadScene("PlayScene");
     }     // Restart()
 
     // 게임 종료 실행

@@ -36,7 +36,14 @@ public class Shop_Buff : MonoBehaviour
         {
             instance = this;
         }
+
+        isAttackEnforce = false;
+        isDamageUp = false;
+        isUnitDuration = false;
+        isHealing = false;
+
     }
+
     // Start is called before the first frame update
     void Start()
     {

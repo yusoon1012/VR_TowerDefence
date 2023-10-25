@@ -46,7 +46,7 @@ public class Bullet_HitBoss : MonoBehaviour
         {
             GameObject finalBoss = other.gameObject;
 
-            int realDamage = (int)damage;
+            int realDamage = 50; // 기획팀: 50으로 조정 요청
             finalBoss.GetComponent<FinalBoss>().HitDamage(realDamage); // 보스에 데미지를 입힘. 
 
             ReturnPool();
@@ -55,7 +55,7 @@ public class Bullet_HitBoss : MonoBehaviour
         {
             GameObject finalBoss = other.gameObject;
 
-            int realDamage = (int)damage;
+            int realDamage = 50; // 기획팀: 50으로 조정 요청 
             finalBoss.GetComponent<MidBoss>().HitDamage(realDamage); // 보스에 데미지를 입힘. 
 
             ReturnPool();

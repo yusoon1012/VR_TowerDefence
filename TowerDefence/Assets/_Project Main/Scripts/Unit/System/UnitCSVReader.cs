@@ -87,6 +87,7 @@ public class UnitCSVReader : MonoBehaviour
             for (int i = 0; i < UnitBuildSystem.units.Count; i++) // 유닛 리스트 전체 검색
             {
                 GameObject unit = UnitBuildSystem.units[i];
+                Debug.LogFormat("유닛 개수: {0}", UnitBuildSystem.units.Count);
                 AttackUnitProperty attackComponent = unit.GetComponent<AttackUnitProperty>(); // 설치/공격형 유닛 확인
 
                 if (attackComponent != null)

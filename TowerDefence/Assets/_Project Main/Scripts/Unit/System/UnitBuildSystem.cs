@@ -64,6 +64,11 @@ public class UnitBuildSystem : MonoBehaviour
 
     private void Awake()
     {
+        units.Clear();
+        unitBuildPos.Clear();
+
+        buildBombUnit = false;
+
         // 플레이어
         player = GameObject.Find("Player");
 

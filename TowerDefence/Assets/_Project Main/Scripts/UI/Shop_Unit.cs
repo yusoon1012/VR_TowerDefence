@@ -26,10 +26,14 @@ public class Shop_Unit : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
+        //if (instance == null)
+        //{
+        //    instance = this;
+        //}
+
+     buildBomb = false;
+     buildBlade = false;
+     buildShootBoss = false;
     }
 
     private void Start()
