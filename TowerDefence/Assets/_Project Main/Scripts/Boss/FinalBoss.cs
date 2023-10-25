@@ -154,8 +154,8 @@ public class FinalBoss : MonoBehaviour
         {
             if (bossImmotalForm == false)
             {
-                Debug.LogFormat("최종 보스에게 1 공격. HP : {0}", finalBossHp - 1);
-                HitDamage(1);
+                Debug.LogFormat("최종 보스에게 1 공격. HP : {0}", finalBossHp - 100);
+                HitDamage(100);
             }
             else
             {

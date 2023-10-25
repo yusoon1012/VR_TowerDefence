@@ -41,6 +41,7 @@ public class ThrowSpell : MonoBehaviour
     void OnEnable()
     {
         spellRigidbody = GetComponent<Rigidbody>();
+        transform.LookAt(playerTransform);
         shootFlip = false;
         initPosition = transform.position;
         Vector3 dir = (playerTransform.position - initPosition).normalized;
@@ -50,10 +51,7 @@ public class ThrowSpell : MonoBehaviour
 
     void Update()
     {
-        //// 보스의 구체가 플레이어를 바라보게 한다
-        //transform.LookAt(playerTransform);
-        //// 보스의 구체가 플레이어의 위치로 서서히 다가가게 한다
-        //transform.position = Vector3.Lerp(transform.position, playerTransform.position, speed * 0.05f * Time.deltaTime);
+        /* Empty */
     }     // Update()
 
     // 보스의 구체가 플레이어 콜라이더에 닿으면
@@ -64,11 +62,8 @@ public class ThrowSpell : MonoBehaviour
         {
             spellRigidbody.velocity = Vector3.zero;
             Player_Status player = collision.gameObject.GetComponent<Player_Status>();
-            if (player != null)
-            {
-                gameObject.SetActive(false);
-                player.PlayerDamaged(5);
-            }
+            this.gameObject.SetActive(false);
+            player.PlayerDamaged(5);
         }
         // 콜라이더에 부딛힌 오브젝트 태그가 MidBoss 이고, 반대방향으로 날아가고 있으면 실행
         else if (collision.tag == "MidBoss" && shootFlip == true)

@@ -55,7 +55,7 @@ public class MidBoss : MonoBehaviour
         // 중간 보스 등장 시 최종적으로 이동할 위치 값 지정
         groundMidBossPosition = new Vector3(720f,5f , 265f);
         // 중간 보스의 초기 위치 값
-        midBossOriginPosition = new Vector3(0f, 500f, 165f);
+        midBossOriginPosition = new Vector3(719.5f, 1000f, 283.2f);
         throwSphereTimepass = 0f;
         //rand = 0;
         rb=GetComponent<Rigidbody>();
@@ -142,8 +142,8 @@ public class MidBoss : MonoBehaviour
 
     public void TestHitDamage()
     {
-        Debug.LogFormat("중간 보스에게 1 공격. HP : {0}", midBossHp - 1);
-        HitDamage(1);
+        Debug.LogFormat("중간 보스에게 1 공격. HP : {0}", midBossHp - 100);
+        HitDamage(100);
     }
 
     // 보스가 데미지를 받는 함수

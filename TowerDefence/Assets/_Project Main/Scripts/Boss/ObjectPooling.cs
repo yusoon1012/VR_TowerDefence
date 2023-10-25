@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ObjectPooling : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class ObjectPooling : MonoBehaviour
     // 최종 보스의 구체 발사 초기 위치값
     public Transform finalBossShootPosition;
     // 구체 발사, 패링 안내문
-    public Text parringInfo;
+    public TMP_Text parringInfoText;
 
     // 구체 중복 발사를 방지하기 위해 이전에 발사한 구체 타입을 저장함
     private int beforeBallCheck = default;
@@ -73,14 +74,6 @@ public class ObjectPooling : MonoBehaviour
     // 보스 구체 발사 전 연산하는 함수
     public void ReadyLaunch(int bossType_)
     {
-        // 이전에 발사한 구체가 존재할 경우
-        if (beforeBallCheck != 4)
-        {
-            // 이전에 발사한 구체를 비활성화 시킨다
-            bossThrowSpell[rand].gameObject.SetActive(false);
-            bossThrowSpell[rand].transform.position = midBossShootPosition.position;
-        }
-
         // 구체를 발사 할 보스 타입을 구분하여 저장한다
         bossType = bossType_;
         
@@ -126,7 +119,7 @@ public class ObjectPooling : MonoBehaviour
             // 처음 출력 이후에 더이상 출력이 안되게 한다
             firstShootCheck = true;
             // 구체 발사와 패링 안내문을 출력한다
-            parringInfo.gameObject.SetActive(true);
+            parringInfoText.gameObject.SetActive(true);
             // 구체 발사와 패링 안내문 종료 전 딜레이
             StartCoroutine(FirstShootCheckDelay());
         }
@@ -136,8 +129,6 @@ public class ObjectPooling : MonoBehaviour
         {
             // 랜덤 값으로 지정받은 구체 타입을 활성화
             bossThrowSpell[rand].transform.position = midBossShootPosition.position;
-            Rigidbody rb = bossThrowSpell[rand].GetComponent<Rigidbody>();
-            rb.velocity = Vector3.zero;
             bossThrowSpell[rand].gameObject.SetActive(true);
             // 활성화 된 구체를 보스에서 발사 할 지역으로 이동시킨다
         }
@@ -146,8 +137,6 @@ public class ObjectPooling : MonoBehaviour
         {
             // 랜덤 값으로 지정받은 구체 타입을 활성화
             bossThrowSpell[rand].transform.position = finalBossShootPosition.position;
-            Rigidbody rb = bossThrowSpell[rand].GetComponent<Rigidbody>();
-            rb.velocity = Vector3.zero;
             bossThrowSpell[rand].gameObject.SetActive(true);
             // 활성화 된 구체를 보스에서 발사 할 지역으로 이동시킨다.
         }
@@ -159,8 +148,8 @@ public class ObjectPooling : MonoBehaviour
     // 딜레이 이후 구체 발사와 패링 안내문을 끈다
     private IEnumerator FirstShootCheckDelay()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
 
-        parringInfo.gameObject.SetActive(false);
+        parringInfoText.gameObject.SetActive(false);
     }
 }
