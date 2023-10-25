@@ -16,8 +16,6 @@ public class UnitAttack_Bomb : MonoBehaviour
     [SerializeField] private int explosionRange = default; // (CSV) 폭발 범위
     [SerializeField] private int bombHP = default; // (CSV) 폭발 유닛 HP
 
-    int enemiesCount = default; // 감지된 적의 수 
-
     private void Awake()
     {
         UnitBuildSystem.units.Add(transform.gameObject);
@@ -31,11 +29,11 @@ public class UnitAttack_Bomb : MonoBehaviour
         bombHP = transform.GetComponent<AttackUnitProperty>().HP;
     }
 
+    #region 졸개 검출
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy")) // 충돌한 것이 졸개 태그라면
         {
-            Debug.Log("폭발 유닛: 적을 공격");
             Explosion();
         }
     }
@@ -44,11 +42,12 @@ public class UnitAttack_Bomb : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy")) // 충돌한 것이 졸개 태그라면
         {
-            Debug.Log("폭발 유닛: 적을 공격");
             Explosion();
         }
     }
+    #endregion
 
+    #region 졸개 공격, 풀 복귀
     private void AttackEnemies()
     {
         float radius = explosionRange / 2f; // 폭발 반경
@@ -82,4 +81,6 @@ public class UnitAttack_Bomb : MonoBehaviour
     }
 
     private void BackPool() { buildSystem.ReturnPool(gameObject); }
+
+    #endregion
 }

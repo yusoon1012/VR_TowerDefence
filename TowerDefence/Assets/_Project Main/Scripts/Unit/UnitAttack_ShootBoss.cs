@@ -2,6 +2,7 @@ using Meta.WitAi;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -21,12 +22,14 @@ public class UnitAttack_ShootBoss : MonoBehaviour
     float time = 0f; // 피격 타임
 
     FinalBoss finalBoss = default; // 파이널 보스 스크립트
+    MidBoss middleBoss = default; // 미드보스 스크립트
 
     Transform pivot = default; // 투석 시 회전
     float initialSpeed = 10f; // 초기 회전 속도
     float decelaration = 0.5f; // 감속도
     bool fire = false; // 투척 중
     bool pivotRotate = false; // 회전
+    bool startFire = false; // 투척 대기 중
 
     GameObject boss = default;
     GameObject midBoss = default;
@@ -38,14 +41,6 @@ public class UnitAttack_ShootBoss : MonoBehaviour
     private void Awake()
     {
         UnitBuildSystem.units.Add(transform.gameObject);
-        boss = GameObject.FindWithTag("Boss");
-        Debug.Assert(boss != null);
-        midBoss = GameObject.FindWithTag("MidBoss");
-        Debug.Assert(midBoss != null);
-        finalBoss = boss.GetComponent<FinalBoss>(); 
-
-        bossPosition = boss.transform.position;
-        bossPosition.y = boss.GetComponent<Collider>().bounds.size.y * 0.55f; // 보스 키의 55% 지점 타격
 
         firePosition = transform.GetChild(1);
         pivot = transform.GetChild(0).transform.GetChild(1);
@@ -58,11 +53,21 @@ public class UnitAttack_ShootBoss : MonoBehaviour
 
         throwSphere += PivotRotate;
 
-        shop_Unit = GameObject.Find("Shop_").GetComponent<Shop_Unit>();
+        shop_Unit = GameObject.Find("Shop").GetComponent<Shop_Unit>();
     }
 
     private void Start()
     {
+        boss = GameObject.FindWithTag("Boss");
+        Debug.Assert(boss != null);
+        midBoss = GameObject.FindWithTag("MidBoss");
+        Debug.Assert(midBoss != null);
+        finalBoss = boss.GetComponent<FinalBoss>();
+        middleBoss = midBoss.GetComponent<MidBoss>();
+
+        bossPosition = boss.transform.localPosition;
+        bossPosition.y = boss.GetComponent<Collider>().bounds.size.y * 0.55f; // 보스 키의 55% 지점 타격
+
         shootBossDamage = transform.GetComponent<AttackUnitProperty>().damage;
         shootBossHP = transform.GetComponent<AttackUnitProperty>().HP;
 
@@ -74,12 +79,13 @@ public class UnitAttack_ShootBoss : MonoBehaviour
 
     private void Update()
     {
+        FindBoss();
+
         // 반경 150 내 보스 존재 && 유닛 설치 활성화 상태에서 유닛 설치를 클릭했을때
         if (Distance < 1000f && shop_Unit.buildShootBoss && 
             ARAVRInput.GetDown(ARAVRInput.Button.IndexTrigger, ARAVRInput.Controller.RTouch))
         {
-            FindBoss();
-            StartCoroutine(ReadyFire());
+            startFire = true;
         }
 
         #region 유닛이 피격 당함
@@ -87,7 +93,7 @@ public class UnitAttack_ShootBoss : MonoBehaviour
 
         if (hit) // 피격 상태라면
         {
-            int delayHit = 5; // 5초에 한 번씩 피격
+            int delayHit = 5; // 데미지 타이머 
 
             if (time < delayHit)
             {
@@ -97,8 +103,14 @@ public class UnitAttack_ShootBoss : MonoBehaviour
             {
                 time = 0f; // 타임 초기화
                 shootBossHP -= 5; // 피격 처리 (TODO: 졸개 공격력에서 가져오는 것으로 처리?)
-                Debug.LogFormat("HP: {0}", shootBossHP);
             }
+        }
+
+        if (shootBossHP <= 0)
+        {
+            // TODO: 유닛 파괴
+            fire = false;
+            shootBossHP = shootBossHP = transform.GetComponent<AttackUnitProperty>().HP;
         }
         #endregion
 
@@ -106,14 +118,18 @@ public class UnitAttack_ShootBoss : MonoBehaviour
         if (finalBoss.bossImmotalForm) 
         {
             bossPosition = midBoss.transform.position;
+            bossPosition.y = midBoss.GetComponent<Collider>().bounds.size.y * 0.55f;
             
         }
         else if (!finalBoss.bossImmotalForm) // 보스 무적 시간이 아니라면 
         {
-            bossPosition = boss.transform.position;
+            bossPosition = boss.transform.localPosition;
             bossPosition.y = boss.GetComponent<Collider>().bounds.size.y * 0.55f; // 보스 키의 55% 지점 타격
         }
     }
+
+    public void StartFire() { StartCoroutine(ReadyFire()); } // 발사 시작
+
 
     /// <summary>
     /// 근처에 졸개가 있는지 검색하는 메서드 
@@ -124,10 +140,13 @@ public class UnitAttack_ShootBoss : MonoBehaviour
 
         for (int i = 0; i < enemies.Length; i++) // 모든 적 검사
         {
-            // TODO: 유닛과의 거리 계산, 만약 일정 거리 내 있다면 유닛은 피격됨. 
             if (Vector3.Distance(transform.position, enemies[i].transform.position) <= 10f) // 거리 1 안쪽으로 적이 존재
             {
                 hit = true;
+            }
+            else
+            {
+                hit = false;
             }
         }
     }
@@ -155,7 +174,7 @@ public class UnitAttack_ShootBoss : MonoBehaviour
     /// </summary>
     private void FindBoss()
     {
-        float rotationSpeed = 10f; // 회전속도 (TODO: 이후 수정 필요)
+        float rotationSpeed = 10f;
 
         Vector3 unitPos = transform.position;
         unitPos.y = 0.5f;
@@ -164,7 +183,10 @@ public class UnitAttack_ShootBoss : MonoBehaviour
 
         Vector3 direction = (bossPos - unitPos).normalized; // 유닛 방향값 계산
         Quaternion unitRotation = Quaternion.LookRotation(direction);
-        transform.rotation = Quaternion.Slerp(transform.rotation, unitRotation, rotationSpeed * Time.deltaTime);
+        Debug.Log(direction);
+        Debug.Log(unitRotation);
+        transform.rotation =
+            Quaternion.Slerp(transform.rotation, unitRotation, rotationSpeed * Time.deltaTime);
     }
 
     /// 연사 시간 조정

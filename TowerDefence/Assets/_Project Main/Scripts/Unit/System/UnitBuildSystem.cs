@@ -61,6 +61,7 @@ public class UnitBuildSystem : MonoBehaviour
     int bladeCount = 0;
     #endregion
 
+
     private void Awake()
     {
         // 플레이어
@@ -98,7 +99,7 @@ public class UnitBuildSystem : MonoBehaviour
         blueLight = Instantiate(blueLightPrefab, poolPos, blueLightPrefab.transform.rotation);
         redLight = Instantiate(redLightPrefab, poolPos, redLightPrefab.transform.rotation);
 
-        shop_Unit = GameObject.Find("Shop_").GetComponent<Shop_Unit>(); // 유닛 구매 여부를 알기 위함
+        shop_Unit = GameObject.Find("Shop").GetComponent<Shop_Unit>(); // 유닛 구매 여부를 알기 위함
     }
 
     private void Update()
@@ -119,9 +120,8 @@ public class UnitBuildSystem : MonoBehaviour
             }
         }
         #endregion
-
-        
-#region 유닛 공격속도 상승
+ 
+        #region 유닛 공격속도 상승
         if (Shop_Buff.instance.buffIcon[1])
         {
             foreach (GameObject unit in units)
@@ -137,6 +137,7 @@ public class UnitBuildSystem : MonoBehaviour
             }
         }
         #endregion
+
         #region 유닛 지속시간 증가
         //if (Shop_Buff.instance.isUnitDuration)
         //{
@@ -272,6 +273,11 @@ public class UnitBuildSystem : MonoBehaviour
             // 설치 키를 입력했으며 중복 설치 시도가 아니라면
             if (ARAVRInput.GetDown(ARAVRInput.Button.IndexTrigger, ARAVRInput.Controller.RTouch) && !overlap)
             {
+                if (selectUnit == selectShootBossUnit) // 보스 타격 유닛일때
+                {
+                    unit.GetComponent<UnitAttack_ShootBoss>().StartFire(); // 투석 시작
+                }
+
                 blueLight.transform.position = poolPos;
                 redLight.transform.position = poolPos;
 
@@ -333,13 +339,5 @@ public class UnitBuildSystem : MonoBehaviour
     public void ReturnPool(GameObject unit)
     {
         unit.transform.position = poolPos;
-    }
-
-    /// <summary>
-    /// HP 0인 유닛을 회수
-    /// </summary>
-    private void UnitReturn()
-    {
-
     }
 }

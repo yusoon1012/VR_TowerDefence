@@ -20,8 +20,12 @@ public class UnitAttack_Blade : MonoBehaviour
     private Transform blade = default;
     // 칼날 회전 여부
     private bool rotateBlade = false;
+    // 공격 타임
+    float time = 0;
+    // 데미지 타임
+    float timer = 0;
 
-    float damageTimer = 0; // 데미지 타이머
+    UnitBuildSystem unitBuildSystem;
 
     private void Awake()
     {
@@ -35,6 +39,8 @@ public class UnitAttack_Blade : MonoBehaviour
         bladeSpeed = transform.GetComponent<AttackUnitProperty>().speed;
         bladeDamage = transform.GetComponent<AttackUnitProperty>().damage;
         bladeRotateSpeed = transform.GetComponent<AttackUnitProperty>().rotateSpeed;
+
+        unitBuildSystem = GameObject.Find("Unit Manager").GetComponent<UnitBuildSystem>();
     }
 
     #region 졸개 감지
@@ -84,13 +90,11 @@ public class UnitAttack_Blade : MonoBehaviour
     {
         if (other.CompareTag("Enemy")) // 졸개 태그면
         {
-            float time = 0f;
-
-            if (time < bladeSpeed)
+            if (time < bladeSpeed) 
             {
                 time += Time.deltaTime;
             }
-            else if (time >= bladeSpeed)
+            else if (time >= bladeSpeed) // 공격속도 달성 시 공격 & 유닛 피해
             {
                 AttackDamage(other.gameObject); // 데미지 호출
                 Damaged(); // 유닛이 피해를 입는다. 
@@ -125,30 +129,37 @@ public class UnitAttack_Blade : MonoBehaviour
         }
     }
 
-    // MonsterInfo의 MonsterDamaged(임시값)
+    /// <summary>
+    /// 졸개 공격
+    /// </summary>
+    /// <param name="enemy"></param>
     private void AttackDamage(GameObject enemy)
     {
-        Debug.Log("근접형 유닛: 적을 공격");
-
         int realDamage = (int)bladeDamage;
         enemy.transform.GetComponent<MonsterInfo>().MonsterDamaged(realDamage);
     }
 
+    /// <summary>
+    /// 유닛 피해
+    /// </summary>
     private void Damaged()
     {
-        if (damageTimer < 3)
+        int damageTimer = 3; // 데미지 타이머
+
+        if (timer < damageTimer)
         {
-            damageTimer += Time.deltaTime;
+            timer += Time.deltaTime;
         }
-        else if (damageTimer >= 3)
+        else if (timer >= damageTimer)
         {
             bladeHP--;
-            damageTimer = 0;
+            timer = 0;
         }
 
         if (bladeHP <= 0) // 체력이 다하면 
         {
-            bladeHP = transform.GetComponent<AttackUnitProperty>().HP; 
+            unitBuildSystem.ReturnPool(this.gameObject); // 풀로 복귀
+            bladeHP = transform.GetComponent<AttackUnitProperty>().HP; // 체력 회복
         }
     }
 }
