@@ -24,6 +24,7 @@ public class UnitAttack_ShootBoss : MonoBehaviour
     FinalBoss finalBoss = default; // 파이널 보스 스크립트
     MidBoss middleBoss = default; // 미드보스 스크립트
 
+    Transform column = default; // 투석 부분
     Transform pivot = default; // 투석 시 회전
     float initialSpeed = 10f; // 초기 회전 속도
     float decelaration = 0.5f; // 감속도
@@ -34,10 +35,13 @@ public class UnitAttack_ShootBoss : MonoBehaviour
     GameObject boss = default;
     GameObject midBoss = default;
 
-    private event EventHandler throwSphere;
-
     Shop_Unit shop_Unit = new Shop_Unit();
 
+    float columnRotationSpeed = 80f; // 열 회전 속도
+    float columnRotation = 0f; // 현재 열 회전 각도
+
+
+    #region 시작 부분
     private void Awake()
     {
         UnitBuildSystem.units.Add(transform.gameObject);
@@ -50,8 +54,6 @@ public class UnitAttack_ShootBoss : MonoBehaviour
         {
             stones[i] = Instantiate(stonePrefab, poolPos, Quaternion.identity);
         }
-
-        throwSphere += PivotRotate;
 
         shop_Unit = GameObject.Find("Shop").GetComponent<Shop_Unit>();
     }
@@ -71,11 +73,14 @@ public class UnitAttack_ShootBoss : MonoBehaviour
         shootBossDamage = transform.GetComponent<AttackUnitProperty>().damage;
         shootBossHP = transform.GetComponent<AttackUnitProperty>().HP;
 
+        column = transform.GetChild(0).transform.GetChild(1); // 회전해야 하는 투석 부분
+
         for (int i = 0; i < 10; i++)
         {
             stones[i].GetComponent<Bullet_HitBoss>().damage = shootBossDamage;
         }
     }
+    #endregion
 
     private void Update()
     {
@@ -114,6 +119,7 @@ public class UnitAttack_ShootBoss : MonoBehaviour
         }
         #endregion
 
+        #region 공격 대상 설정
         // 보스 무적 시간, 중간 보스 등장
         if (finalBoss.bossImmotalForm) 
         {
@@ -126,6 +132,24 @@ public class UnitAttack_ShootBoss : MonoBehaviour
             bossPosition = boss.transform.localPosition;
             bossPosition.y = boss.GetComponent<Collider>().bounds.size.y * 0.55f; // 보스 키의 55% 지점 타격
         }
+        #endregion
+
+        #region 투석 부분 회전
+        if (pivotRotate)
+        {
+            // 투석 동작
+            columnRotation -= columnRotationSpeed * Time.deltaTime;
+            columnRotation = Mathf.Clamp(columnRotation, 0f, -80f); // 0도에서 80도 사이로 제한
+            column.transform.localRotation = Quaternion.Euler(0f, columnRotation, 0f);
+        }
+        else
+        {
+            // 복귀 동작
+            columnRotation += columnRotationSpeed * Time.deltaTime;
+            columnRotation = Mathf.Clamp(columnRotation, -80f, 0f); // 0도에서 80도 사이로 제한
+            column.transform.localRotation = Quaternion.Euler(0f, columnRotation, 0f);
+        }
+        #endregion
     }
 
     public void StartFire() { StartCoroutine(ReadyFire()); } // 발사 시작
@@ -198,7 +222,6 @@ public class UnitAttack_ShootBoss : MonoBehaviour
 
         while (fire)
         {
-            throwSphere?.Invoke(this, EventArgs.Empty);
             Fire();
 
             yield return new WaitForSeconds(2.5f); // 연사 대기 시간
@@ -226,29 +249,6 @@ public class UnitAttack_ShootBoss : MonoBehaviour
         sphereRigid.velocity = velocity;
 
         Path(velocity); // CaculateVelocity()의 계산값을 궤적을 그리는데 이용
-    }
-
-    void PivotRotate(object sender, EventArgs e) { pivotRotate = true; } // 투척 시 이벤트 발생
-
-    private void FixedUpdate()
-    {
-        if (fire && pivotRotate) // 앞으로 투척 
-        {
-            float degree = 200f;
-            float currentYRotation = pivot.transform.rotation.eulerAngles.y;
-
-            if (currentYRotation < 75)
-            {
-                pivot.transform.Rotate(-Vector3.up * Time.fixedDeltaTime * degree);
-            }
-            else if (currentYRotation >= 75) // 75가 회전각도
-            {
-                pivot.transform.rotation = pivot.transform.rotation; // 회전 정지
-            }
-        }
-        else if (fire && !pivotRotate) // 재투척 준비
-        {
-        }
     }
 
     /// <summary>
