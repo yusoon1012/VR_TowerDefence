@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player_Parry : MonoBehaviour
 {
+    public AudioSource sweepAudio;
+    public TrailRenderer trailRenderer;
     public ParticleSystem particle;
     FinalBoss boss;
     public Transform playerTransform;
@@ -23,11 +25,27 @@ public class Player_Parry : MonoBehaviour
         if (speed >= 1f)
         {
             Debug.Log("1보다 빠르다");
+            
             isParriable = true;
+            if (sweepAudio.isPlaying == false)
+            {
+
+                sweepAudio.Play();
+            }
         }
         else
         {
             isParriable = false;
+        }
+        if (speed >= 0.3f)
+        {
+                trailRenderer.enabled = true;
+            
+        }
+        else
+        {
+            trailRenderer.enabled = false;
+
         }
     }
 
