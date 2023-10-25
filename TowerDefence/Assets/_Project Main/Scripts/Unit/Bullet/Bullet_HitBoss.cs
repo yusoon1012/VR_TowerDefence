@@ -18,9 +18,8 @@ public class Bullet_HitBoss : MonoBehaviour
     #region Legacy
     private void OnCollisionEnter(Collision collision) // TODO: 데미지를 한 번만 입히도록
     {
-        if (collision.gameObject.CompareTag("Boss") || collision.gameObject.CompareTag("MidBoss"))
+        if (collision.gameObject.CompareTag("Boss"))
         {
-            Debug.Log("보스 유닛: 적을 공격");
             GameObject finalBoss = collision.gameObject;
 
             int realDamage = (int)damage;
@@ -28,18 +27,36 @@ public class Bullet_HitBoss : MonoBehaviour
             
             ReturnPool();
         }
+        else if (collision.gameObject.CompareTag("MidBoss"))
+        {
+            GameObject finalBoss = collision.gameObject;
+
+            int realDamage = (int)damage;
+            finalBoss.GetComponent<MidBoss>().HitDamage(realDamage); // 중간 보스에 데미지를 입힘. 
+
+            ReturnPool();
+        }
+
     }
     #endregion
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Boss") || other.gameObject.CompareTag("MidBoss"))
+        if (other.gameObject.CompareTag("Boss"))
         {
-            Debug.Log("보스 유닛: 적을 공격");
             GameObject finalBoss = other.gameObject;
 
             int realDamage = (int)damage;
             finalBoss.GetComponent<FinalBoss>().HitDamage(realDamage); // 보스에 데미지를 입힘. 
+
+            ReturnPool();
+        }
+        else if (other.gameObject.CompareTag("MidBoss"))
+        {
+            GameObject finalBoss = other.gameObject;
+
+            int realDamage = (int)damage;
+            finalBoss.GetComponent<MidBoss>().HitDamage(realDamage); // 보스에 데미지를 입힘. 
 
             ReturnPool();
         }

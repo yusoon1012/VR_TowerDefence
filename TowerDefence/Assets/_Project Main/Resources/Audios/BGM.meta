@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:TowerDefence/Assets/_Project Main/Resources/Audios/BGM.meta
 guid: 0378c2decbc376244b27fde49561d236
 folderAsset: yes
+========
+guid: 3c3cbf0696f92444a8df973b58ded27e
+>>>>>>>> origin/Solbin:TowerDefence/Assets/_Project Main/Scenes/PlayScene_Unit.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

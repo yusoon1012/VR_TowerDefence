@@ -30,7 +30,10 @@ public class Shop_Unit : MonoBehaviour
         {
             instance = this;
         }
+    }
 
+    private void Start()
+    {
         mainShop = transform.GetComponent<Shop_Main>();
     }
 
