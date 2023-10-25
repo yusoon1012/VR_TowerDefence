@@ -20,10 +20,6 @@ public class MusicPlayer : MonoBehaviour
     {
         if (audioSource.isPlaying==false)
         {
-           
-        }
-        if(Input.GetKeyDown(KeyCode.D))
-        {
             if (musicIndex + 1 < musicClip.Length)
             {
                 musicIndex += 1;
@@ -40,5 +36,6 @@ public class MusicPlayer : MonoBehaviour
 
             }
         }
+       
     }
 }

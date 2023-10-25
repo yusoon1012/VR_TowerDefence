@@ -10,7 +10,7 @@ public class Player_Status : MonoBehaviour
     // 싱글톤 패턴을 적용할 클래스의 인스턴스를 저장하는 변수
     private static Player_Status _instance;
     public float playerCurrentHp;
-    public float playerMaxHp=50;
+    public float playerMaxHp = 50;
     public int playerDamage = 1;
     public Slider hpBar;
 
@@ -35,13 +35,53 @@ public class Player_Status : MonoBehaviour
         playerCurrentHp = playerMaxHp;
         hpBar.value = playerCurrentHp / playerMaxHp;
     }
+    public void PlayerHeal(int level)
+    {
+        switch (level)
+        {
+            case 1: 
+                if(playerCurrentHp+20>playerMaxHp)
+                {
+                    playerCurrentHp=playerMaxHp;
+                }
+                else
+                {
+                    playerCurrentHp += 20;
+                }
+                break;
+            case 2:
+                if (playerCurrentHp + 30 > playerMaxHp)
+                {
+                    playerCurrentHp = playerMaxHp;
+                }
+                else
+                {
+                    playerCurrentHp += 30;
+                }
+                break;
+            case 3:
+                if (playerCurrentHp + 40 > playerMaxHp)
+                {
+                    playerCurrentHp = playerMaxHp;
+                }
+                else
+                {
+                    playerCurrentHp += 40;
+                }
+                break;
+            default:
+                break;
+        }
+        hpBar.value = playerCurrentHp / playerMaxHp;
+
+    }
 
     public void PlayerDamaged(int damage)
     {
         if (GameManager.instance.isGameOver == true) { return; }
 
         playerCurrentHp -= damage;
-        hpBar.value=playerCurrentHp/playerMaxHp;
+        hpBar.value = playerCurrentHp / playerMaxHp;
 
         // 플레이어의 남은 HP 가 0 보다 작거나 같으면
         if (playerCurrentHp <= 0)
