@@ -76,8 +76,8 @@ public class ObjectPooling : MonoBehaviour
     {
         // 구체를 발사 할 보스 타입을 구분하여 저장한다
         bossType = bossType_;
-        
-        // 랜덤 값 중복 체크를 위해 while 문 실행
+
+        //랜덤 값 중복 체크를 위해 while 문 실행
         while (true)
         {
             // 랜덤 값을 받는다

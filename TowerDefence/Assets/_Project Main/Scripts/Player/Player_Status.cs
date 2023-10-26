@@ -5,11 +5,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Rendering;
+using Oculus.Interaction;
 
 public class Player_Status : MonoBehaviour
 {
     // 싱글톤 패턴을 적용할 클래스의 인스턴스를 저장하는 변수
     private static Player_Status _instance;
+    private Player_Parry parry;
     public float playerCurrentHp;
     public float playerMaxHp = 50;
     public int playerDamage = 1;
@@ -36,9 +38,9 @@ public class Player_Status : MonoBehaviour
         }
         playerCurrentHp = playerMaxHp;
         hpBar.value = playerCurrentHp / playerMaxHp;
-        DotDamaged(10);
+        parry=GetComponentInChildren<Player_Parry>();
     }
-   
+    
     public void PlayerHeal(int level)
     {
         switch (level)
@@ -77,7 +79,6 @@ public class Player_Status : MonoBehaviour
                 break;
         }
         hpBar.value = playerCurrentHp / playerMaxHp;
-
     }
 
     public void PlayerDamaged(int damage)
@@ -95,16 +96,16 @@ public class Player_Status : MonoBehaviour
         }
     }     // PlayerDamaged()
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if(collision.gameObject.CompareTag("Meteor"))
+        if (other.CompareTag("Meteor"))
         {
-            ThrowSpell throwSpell=collision.gameObject.GetComponent<ThrowSpell>();
-            if(throwSpell != null)
+            
+            ThrowSpell throwSpell = other.gameObject.GetComponent<ThrowSpell>();
+            if (throwSpell != null)
             {
-                if(throwSpell.missileType==ThrowSpell.MissileType.BLIND) 
+                if (throwSpell.missileType == ThrowSpell.MissileType.BLIND&& parry.isParriable==false)
                 {
-
                     postProcess.SetActive(true);
                     StartCoroutine(BlindRoutine());
                 }
@@ -112,29 +113,37 @@ public class Player_Status : MonoBehaviour
         }
     }
 
+
+
     private IEnumerator BlindRoutine()
     {
-        yield return new WaitForSeconds(5);
-        postProcess.SetActive(true);
+        yield return new WaitForSeconds(5f);
+        postProcess.SetActive(false);
     }
 
 
     public void DotDamaged(int damage)
     {
         StartCoroutine(DotRoutine(damage));
-        
     }
     private IEnumerator DotRoutine(int damage_)
     {
-        float lastHp= playerCurrentHp;
-        while (lastHp - damage_ < playerCurrentHp)
+        for (int i = 0; i < 5; i++)
         {
-            yield return new WaitForSeconds(1);
-            playerCurrentHp -= 1;
+            playerCurrentHp -= damage_;
             hpBar.value = playerCurrentHp / playerMaxHp;
 
-        }
-        hpBar.value = playerCurrentHp / playerMaxHp;
+            Debug.Log("도트 데미지 1");
 
+            // 플레이어의 남은 HP 가 0 보다 작거나 같으면
+            if (playerCurrentHp <= 0)
+            {
+                // 게임 매니저의 GameOver 함수를 실행시킨다
+                GameManager.instance.GameOver();
+                break;
+            }
+
+            yield return new WaitForSeconds(1f);
+        }
     }
 }

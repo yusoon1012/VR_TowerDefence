@@ -43,6 +43,7 @@ public class ThrowSpell : MonoBehaviour
         spellRigidbody = GetComponent<Rigidbody>();
         transform.LookAt(playerTransform);
         shootFlip = false;
+        spellRigidbody.velocity=Vector3.zero;
         initPosition = transform.position;
         Vector3 dir = (playerTransform.position - initPosition).normalized;
         spellRigidbody.velocity = dir * speed;
@@ -63,7 +64,7 @@ public class ThrowSpell : MonoBehaviour
             spellRigidbody.velocity = Vector3.zero;
             Player_Status player = collision.gameObject.GetComponent<Player_Status>();
             this.gameObject.SetActive(false);
-            player.DotDamaged(5);
+            player.DotDamaged(2);
         }
         // 콜라이더에 부딛힌 오브젝트 태그가 MidBoss 이고, 반대방향으로 날아가고 있으면 실행
         else if (collision.tag == "MidBoss" && shootFlip == true)
@@ -106,22 +107,18 @@ public class ThrowSpell : MonoBehaviour
         {
             // 체크된 타입이 파이어 구체면
             case 0:
-                missileType = MissileType.DOT;
                 speed = 60f;
                 break;
             // 체크된 타입이 라이트닝 구체면
             case 1:
-                missileType = MissileType.DOT;
                 speed = 70f;
                 break;
             // 체크된 타입이 포이즌 구체면
             case 2:
-                missileType = MissileType.DOT;
                 speed = 50f;
                 break;
             // 체크된 타입이 쉐도우 구체면
             case 3:
-                missileType = MissileType.BLIND;
                 speed = 60f;
                 break;
         }

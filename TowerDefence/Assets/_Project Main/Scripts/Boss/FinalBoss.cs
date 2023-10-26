@@ -12,7 +12,7 @@ public class FinalBoss : MonoBehaviour
     // { 변수 설정
     // 보스 HP 량
     public float finalBossHp;
-    private float finalBossMaxhp = 2500f;
+    private float finalBossMaxhp = 5000f;
     // 보스 페이즈
     public int finalBossPhase = default;
     // 졸개 소환 쿨타임
@@ -36,21 +36,21 @@ public class FinalBoss : MonoBehaviour
     // 보스가 패턴을 실행하기까지 걸리는 시간 최대값
     private float actionMaxTime = default;
     // 보스 HP 가 80% 남을 때 수치 체크
-    private float boss80Hp = default;
+    [SerializeField] private float boss80Hp = default;
     // 보스 HP 가 40% 남을 때 수치 체크
-    private float boss40Hp = default;
+    [SerializeField] private float boss40Hp = default;
     // 졸개 소환 쿨타임 까지의 중첩 값
-    private float spawnSoldierTimepass = default;
+    [SerializeField] private float spawnSoldierTimepass = default;
     // 스펠 발사 쿨타임 까지의 중첩 값
     private float throwSphereTimepass = default;
     // 최종 보스가 구체 발사를 위해 날고 있는지 동작 확인 (Animator)
-    private bool isFly = false;
+    [SerializeField] private bool isFly = false;
     // 최종 보스가 졸개 능력치 업 스펠을 시전중인지 동작 확인 (Animator)
-    private bool isRoar = false;
+    [SerializeField] private bool isRoar = false;
     // 최종 보스가 졸개 소환을 시전중인지 동작 확인 (Animator)
-    private int isSpawn = default;
+    [SerializeField] private int isSpawn = default;
     // 졸개 소환 애니메이션중 랜덤 재생 값
-    private int spawnRand = default;
+    [SerializeField] private int spawnRand = default;
     // } 변수 설정
 
     #endregion 변수 설정
@@ -102,6 +102,8 @@ public class FinalBoss : MonoBehaviour
         boss80Hp = finalBossHp * 0.8f;
         // 보스 HP 에서 40% 수치 값 저장
         boss40Hp = finalBossHp * 0.4f;
+
+        ReadySpawnSoldier();
     }     // Start()
 
     #region Update()

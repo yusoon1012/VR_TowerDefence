@@ -211,14 +211,14 @@ public class MonsterInfo : MonsterData
     //! 몬스터의 죽어을 때 에니메이션 재생
     private IEnumerator Death(bool _isClear)
     {
-       if(isDeath==false)
+        if (isDeath == false)
         {
 
             GoldManager.instance.EnemyDropGold();
         }
         isDeath = true;
 
-        
+
 
         animator.SetTrigger("Death");
 
@@ -236,10 +236,10 @@ public class MonsterInfo : MonsterData
 
         if (monsterName == "NormalUpgradeMonster" && !isClear)
         {
+            attackFX.SetActive(true);
+
             if (Vector3.Distance(transform.position, player.transform.position) <= explosionRange)
             {
-                attackFX.SetActive(true);
-
                 Player_Status.Instance.PlayerDamaged(power);
             }
         }
@@ -342,6 +342,16 @@ public class MonsterInfo : MonsterData
                 (hp, power, speed, recognitionRange, attackRange, explosionRange) = FastMonster();
 
                 break;
+            case "NormalUpgradeMonster":
+
+                (hp, power, speed, recognitionRange, attackRange, explosionRange) = NormalUpgradeMonster();
+
+                break;
+            case "FastUpgradeMonster":
+
+                (hp, power, speed, recognitionRange, attackRange, explosionRange) = FastUpgradeMonster();
+
+                break;
         }
     }       // SetMonster()
 
@@ -353,6 +363,16 @@ public class MonsterInfo : MonsterData
     protected virtual (int, int, int, int, int, int) FastMonster()
     {
         return base.FastMonster(hp, power, speed, recognitionRange, attackRange, explosionRange);
+    }
+
+    protected virtual (int, int, int, int, int, int) NormalUpgradeMonster()
+    {
+        return base.NormalMonster(hp, power, speed, recognitionRange, attackRange, explosionRange);
+    }
+
+    protected virtual (int, int, int, int, int, int) FastUpgradeMonster()
+    {
+        return base.NormalMonster(hp, power, speed, recognitionRange, attackRange, explosionRange);
     }
     #endregion
 

@@ -8,7 +8,8 @@ public class Shop_Unit : MonoBehaviour
     public static Shop_Unit instance;
 
     Shop_Main mainShop; // 상점창을 닫기 위함
-
+    public AudioClip buyClip;
+    private AudioSource audioSource;
     private float bombCooltime = 0f;
     private float bladeCooltime = 0f;
     private float shootBossCoolTime = 0f;
@@ -23,6 +24,12 @@ public class Shop_Unit : MonoBehaviour
     public bool buildBomb = false;
     public bool buildBlade = false;
     public bool buildShootBoss = false;
+
+    private const int BOMBUNITPRICE=250;
+    private const int MEELEUNITPRICE = 500;
+    private const int RANGERUNITPRICE = 750;
+
+    
 
     private void Awake()
     {
@@ -39,11 +46,17 @@ public class Shop_Unit : MonoBehaviour
     private void Start()
     {
         mainShop = transform.GetComponent<Shop_Main>();
+        audioSource=GetComponent<AudioSource>();
     }
 
     #region 폭탄 유닛 구매 시 
     public void UnitBomb()
     {
+        if(GoldManager.instance.currentGold<BOMBUNITPRICE)
+        { return; }
+        GoldManager.instance.BuyThings(BOMBUNITPRICE);
+        audioSource.clip = buyClip; 
+        audioSource.Play();
         mainShop.ExitShop(); // 상점창을 닫은 후 바로 배치 
         buildBomb = true; // 설치 단계로 넘어감
 
@@ -76,6 +89,11 @@ public class Shop_Unit : MonoBehaviour
     #region 근거리 타격 유닛
     public void UnitBlade()
     {
+        if (GoldManager.instance.currentGold < MEELEUNITPRICE)
+        { return; }
+        GoldManager.instance.BuyThings(MEELEUNITPRICE);
+        audioSource.clip = buyClip;
+        audioSource.Play();
         mainShop.ExitShop(); // 상점창을 닫은 후 바로 배치 
         buildBlade = true; // 설치 단계로 넘어감
 
@@ -108,6 +126,11 @@ public class Shop_Unit : MonoBehaviour
     #region 보스 타격 유닛
     public void UnitShootBoss()
     {
+        if (GoldManager.instance.currentGold < RANGERUNITPRICE)
+        { return; }
+        GoldManager.instance.BuyThings(RANGERUNITPRICE);
+        audioSource.clip = buyClip;
+        audioSource.Play();
         mainShop.ExitShop(); // 상점창을 닫은 후 바로 배치 
         buildShootBoss = true; // 설치 단계로 넘어감
 

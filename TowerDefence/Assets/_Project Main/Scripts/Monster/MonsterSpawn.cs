@@ -78,6 +78,8 @@ public class MonsterSpawn : MonoBehaviour
     //! 스폰 시작 다른 스크립트에서 스폰할때 SetWave()함수 사용
     public void SetWave()
     {
+        Debug.Log("SetWave");
+
         if (!isSpawn)
         {
             StartCoroutine(StartSpawn());
@@ -87,6 +89,8 @@ public class MonsterSpawn : MonoBehaviour
     //! 몬스터 소환
     private IEnumerator StartSpawn()
     {
+        Debug.Log("StartSpawn");
+
         isSpawn = true;
 
         while (currentCount < maxMonsterCount)
@@ -115,6 +119,8 @@ public class MonsterSpawn : MonoBehaviour
 
     private void ResetSpawn()
     {
+        Debug.Log("ResetSpawn");
+
         currentCount = 0;
 
         for (int i = 0; i < indexSpawnChecks.Length; i++)
@@ -126,6 +132,8 @@ public class MonsterSpawn : MonoBehaviour
     //! 스폰 몬스터 지정해 주기
     private void SelectIndex()
     {
+        Debug.Log("SelectIndex");
+
         while (true)
         {
             int randNumber = Random.Range(0, indexSpawnChecks.Length);
@@ -156,7 +164,7 @@ public class MonsterSpawn : MonoBehaviour
             }
             else
             {
-                if (indexSpawnChecks[randNumber] == 5) { continue; }
+                if (indexSpawnChecks[randNumber] == indexMonsterCount) { continue; }
                 else
                 {
                     if (randNumber == 2)
@@ -183,6 +191,8 @@ public class MonsterSpawn : MonoBehaviour
     //! 오브젝트 풀링을 위한 몬스터 이름과 같은 부모 오브젝트 찾기
     private void FindMonster(GameObject _monster, int _index)
     {
+        Debug.Log("FindMonster");
+
         // 스폰될 몬스터 위치 선정해주기
         Vector3 spawnPosition = SpawnPos(_index);
 
@@ -228,6 +238,8 @@ public class MonsterSpawn : MonoBehaviour
     //! 스폰하기
     private void Spawn(GameObject _monster, Vector3 _position, int _num)
     {
+        Debug.Log("Spawn");
+
         // 새로운 몬스터 생성
         GameObject newMonster = Instantiate(_monster, _position, Quaternion.identity, parent.GetChild(_num));
 
