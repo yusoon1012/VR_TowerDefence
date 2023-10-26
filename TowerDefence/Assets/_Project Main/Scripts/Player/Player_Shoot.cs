@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player_Shoot : MonoBehaviour
 {
+    public Slider crosshairSlider;
     public Transform crossHair;
     public Transform staffTop;
     public Transform staffRoot;
@@ -18,6 +20,7 @@ public class Player_Shoot : MonoBehaviour
     public AudioSource shootAudio;
     private AudioSource countingAudio; 
     Player_Shop shop;
+    float sliderValue;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,10 +57,14 @@ public class Player_Shoot : MonoBehaviour
             
 
                 attackEnforceCount += 1;
-            if( attackEnforceCount==5)
+            sliderValue = (float)attackEnforceCount / 4f;
+            crosshairSlider.value = sliderValue;
+            if ( attackEnforceCount==5)
             {
                 GameObject strongMagic = Instantiate(strongMagicPrefab, staffTop.position, staffRotation);
                 attackEnforceCount = 0;
+                sliderValue = (float)attackEnforceCount / 4f;
+                crosshairSlider.value = sliderValue;
                 shootAudio.clip = impactClip;
                 shootAudio.Play();
 

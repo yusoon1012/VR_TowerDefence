@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +16,9 @@ public class Shop_Buff : MonoBehaviour
     public bool isAttackEnforce = false;
     public bool isDamageUp = false;
     public bool isUnitDuration = false;
+    public TMP_Text[] healTextInfo=new TMP_Text[3];
+  
+
     private bool isHealing = false;
     private const int POWER_UP = 0;
     private const int ATTACK_SPEED = 1;
@@ -239,6 +242,9 @@ public class Shop_Buff : MonoBehaviour
         {
             return;
         }
+        healTextInfo[level - 1].text = "0/1";
+        healTextInfo[level - 1].color = Color.red;
+
         if (isHealing == false)
         {
             audioSource.clip = buyClip;

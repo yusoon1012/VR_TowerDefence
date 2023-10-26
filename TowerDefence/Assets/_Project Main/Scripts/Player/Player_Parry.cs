@@ -12,10 +12,12 @@ public class Player_Parry : MonoBehaviour
     public Transform bossTransform;
     float speed;
     public bool isParriable = false;
+    private AudioSource parrySound;
     // Start is called before the first frame update
     void Start()
     {
         boss = FindAnyObjectByType<FinalBoss>();
+        parrySound=GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -67,6 +69,7 @@ public class Player_Parry : MonoBehaviour
                     rb.velocity = Vector3.zero;
                     rb.AddForce(dir * 100f, ForceMode.Impulse);
                     particle.Play();
+                    parrySound.Play();
                 }
             }
         }     // OnTriggerStay()

@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.Rendering;
 
 public class Player_Status : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class Player_Status : MonoBehaviour
     public float playerMaxHp = 50;
     public int playerDamage = 1;
     public Slider hpBar;
+    public GameObject postProcess;
 
     // 다른 스크립트에서 이 클래스의 인스턴스에 액세스할 수 있는 프로퍼티
     public static Player_Status Instance
@@ -34,7 +36,9 @@ public class Player_Status : MonoBehaviour
         }
         playerCurrentHp = playerMaxHp;
         hpBar.value = playerCurrentHp / playerMaxHp;
+        DotDamaged(10);
     }
+   
     public void PlayerHeal(int level)
     {
         switch (level)
@@ -91,4 +95,46 @@ public class Player_Status : MonoBehaviour
         }
     }     // PlayerDamaged()
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Meteor"))
+        {
+            ThrowSpell throwSpell=collision.gameObject.GetComponent<ThrowSpell>();
+            if(throwSpell != null)
+            {
+                if(throwSpell.missileType==ThrowSpell.MissileType.BLIND) 
+                {
+
+                    postProcess.SetActive(true);
+                    StartCoroutine(BlindRoutine());
+                }
+            }
+        }
+    }
+
+    private IEnumerator BlindRoutine()
+    {
+        yield return new WaitForSeconds(5);
+        postProcess.SetActive(true);
+    }
+
+
+    public void DotDamaged(int damage)
+    {
+        StartCoroutine(DotRoutine(damage));
+        
+    }
+    private IEnumerator DotRoutine(int damage_)
+    {
+        float lastHp= playerCurrentHp;
+        while (lastHp - damage_ < playerCurrentHp)
+        {
+            yield return new WaitForSeconds(1);
+            playerCurrentHp -= 1;
+            hpBar.value = playerCurrentHp / playerMaxHp;
+
+        }
+        hpBar.value = playerCurrentHp / playerMaxHp;
+
+    }
 }
