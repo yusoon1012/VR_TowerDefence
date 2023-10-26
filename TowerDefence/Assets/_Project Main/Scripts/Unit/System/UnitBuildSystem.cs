@@ -109,40 +109,6 @@ public class UnitBuildSystem : MonoBehaviour
 
     private void Update()
     {
-        #region 유닛 공격력 상승
-        if (Shop_Buff.instance.buffIcon[0])
-        {
-            foreach (GameObject unit in units)
-            {
-                unit.GetComponent<AttackUnitProperty>().damage *= 1.5f; // 공격력 * 1.5f (50% 상승)
-            }
-        }
-        else if (!Shop_Buff.instance.buffIcon[0])
-        {
-            foreach (GameObject unit in units)
-            {
-                unit.GetComponent<AttackUnitProperty>().damage /= 1.5f; // 공격력 / 2.0f (원상태 복귀)
-            }
-        }
-        #endregion
- 
-        #region 유닛 공격속도 상승
-        if (Shop_Buff.instance.buffIcon[1])
-        {
-            foreach (GameObject unit in units)
-            {
-                unit.GetComponent<AttackUnitProperty>().speed *= 1.5f; // 공격속도 * 1.5f (50% 상승)
-            }
-        }
-        else if (!Shop_Buff.instance.buffIcon[1])
-        {
-            foreach (GameObject unit in units)
-            {
-                unit.GetComponent<AttackUnitProperty>().speed /= 1.5f; // 공격속도 / 1.5f (원상태 복귀)
-            }
-        }
-        #endregion
-
         #region 유닛 지속시간 증가
         //if (Shop_Buff.instance.isUnitDuration)
         //{
@@ -186,6 +152,8 @@ public class UnitBuildSystem : MonoBehaviour
         #endregion
     }
 
+
+    #region 유닛 설치 
     /// <summary>
     /// 유닛 설치를 위한 좌표를 구함
     /// </summary>
@@ -214,7 +182,6 @@ public class UnitBuildSystem : MonoBehaviour
         }
     }
 
-    #region 유닛 설치 
     /// <summary>
     /// 유닛 배치 범위를 표시
     /// </summary>
@@ -345,4 +312,144 @@ public class UnitBuildSystem : MonoBehaviour
     {
         unit.transform.position = poolPos;
     }
+
+    #region 유닛 공격력 증가 버프
+    /// <summary>
+    /// 유닛 공격력 증가 버프 
+    /// </summary>
+    /// <param name="level"></param>
+    public void UnitDamageUp(int level)
+    {
+        int _level = level; // 레벨
+
+        switch(_level)
+        {
+            case 1:
+                foreach (GameObject unit in units)
+                {
+                    unit.GetComponent<AttackUnitProperty>().damage *= 1.5f; // 공격력 * 1.5f (50% 상승)
+                }
+                break;
+            case 2:
+                foreach (GameObject unit in units)
+                {
+                    unit.GetComponent<AttackUnitProperty>().damage *= 1.75f; // 공격력 * 1.75f (75% 상승)
+                }
+                break;
+            case 3:
+                foreach (GameObject unit in units)
+                {
+                    unit.GetComponent<AttackUnitProperty>().damage *= 2.0f; // 공격력 * 2.0f (100% 상승)
+                }
+                break;
+            default:
+                break;
+
+        }
+    }
+
+    /// <summary>
+    /// 유닛 공격력 증가 버프 복귀
+    /// </summary>
+    /// <param name="level"></param>
+    public void RestoreDamageUp(int level)
+    {
+        int _level = level; // 레벨
+
+        switch (_level)
+        {
+            case 1:
+                foreach (GameObject unit in units)
+                {
+                    unit.GetComponent<AttackUnitProperty>().damage /= 1.5f; // 공격력 / 1.5f (복귀)
+                }
+                break;
+            case 2:
+                foreach (GameObject unit in units)
+                {
+                    unit.GetComponent<AttackUnitProperty>().damage /= 1.75f; // 공격력 / 1.75f (복귀)
+                }
+                break;
+            case 3:
+                foreach (GameObject unit in units)
+                {
+                    unit.GetComponent<AttackUnitProperty>().damage /= 2.0f; // 공격력 / 2.0f (복귀)
+                }
+                break;
+            default:
+                break;
+
+        }
+    }
+    #endregion
+
+    #region 유닛 공격속도 버프
+    /// <summary>
+    /// 유닛 공격속도 버프
+    /// </summary>
+    /// <param name="level"></param>
+    public void UnitAttackSpeedUp(int level)
+    {
+        int _level = level; // 레벨
+
+        switch (_level)
+        {
+            case 1:
+                foreach (GameObject unit in units)
+                {
+                    unit.GetComponent<AttackUnitProperty>().speed *= 1.5f; // 공속 * 1.5f (50% 상승)
+                }
+                break;
+            case 2:
+                foreach (GameObject unit in units)
+                {
+                    unit.GetComponent<AttackUnitProperty>().speed *= 1.75f; // 공속 * 1.75f (75% 상승)
+                }                                           
+                break;                                      
+            case 3:                                         
+                foreach (GameObject unit in units)          
+                {                                           
+                    unit.GetComponent<AttackUnitProperty>().speed *= 2.0f; // 공속 * 2.0f (100% 상승)
+                }
+                break;
+            default:
+                break;
+
+        }
+    }
+
+    /// <summary>
+    /// 유닛 공격속도 버프 복귀 
+    /// </summary>
+    /// <param name="level"></param>
+    public void RestoreSpeedUp(int level)
+    {
+        int _level = level; // 레벨
+
+        switch (_level)
+        {
+            case 1:
+                foreach (GameObject unit in units)
+                {
+                    unit.GetComponent<AttackUnitProperty>().damage /= 1.5f; // 공속 / 1.5f (복귀)
+                }
+                break;
+            case 2:
+                foreach (GameObject unit in units)
+                {
+                    unit.GetComponent<AttackUnitProperty>().damage /= 1.75f; // 공속 / 1.75f (복귀)
+                }
+                break;
+            case 3:
+                foreach (GameObject unit in units)
+                {
+                    unit.GetComponent<AttackUnitProperty>().damage /= 2.0f; // 공속 / 2.0f (복귀)
+                }
+                break;
+            default:
+                break;
+
+        }
+    }
+    #endregion
 }
