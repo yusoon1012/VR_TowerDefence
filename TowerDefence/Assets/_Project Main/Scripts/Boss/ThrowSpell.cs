@@ -63,7 +63,7 @@ public class ThrowSpell : MonoBehaviour
             spellRigidbody.velocity = Vector3.zero;
             Player_Status player = collision.gameObject.GetComponent<Player_Status>();
             this.gameObject.SetActive(false);
-            player.PlayerDamaged(5);
+            //player.DotDamaged(5);
         }
         // 콜라이더에 부딛힌 오브젝트 태그가 MidBoss 이고, 반대방향으로 날아가고 있으면 실행
         else if (collision.tag == "MidBoss" && shootFlip == true)
@@ -125,8 +125,6 @@ public class ThrowSpell : MonoBehaviour
                 speed = 60f;
                 break;
         }
-
-        Debug.Log(speed);
     }     // MissileTypeCheck()
 
     // enum : 보스 발사체 공격 타입
