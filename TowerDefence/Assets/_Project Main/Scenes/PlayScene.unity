@@ -1447,7 +1447,7 @@ GameObject:
   m_Component:
   - component: {fileID: 146275969}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: DropPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14066,6 +14066,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a9bdcb4e14a0b54b8ba1f1b362880fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitBuildSystem: {fileID: 1414626568}
   buyClip: {fileID: 8300000, guid: 9c7c2033a895d7a468344fd37e2f9e8c, type: 3}
   healImages:
   - {fileID: 21300000, guid: 41f765b960395416192f6fba79ab2dfe, type: 3}
@@ -21301,6 +21302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a9bdcb4e14a0b54b8ba1f1b362880fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitBuildSystem: {fileID: 0}
   buyClip: {fileID: 8300000, guid: 9c7c2033a895d7a468344fd37e2f9e8c, type: 3}
   healImages:
   - {fileID: 21300000, guid: 41f765b960395416192f6fba79ab2dfe, type: 3}

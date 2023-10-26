@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class Shop_Buff : MonoBehaviour
 {
+    public UnitBuildSystem unitBuildSystem;
     public AudioClip buyClip;
     public static Shop_Buff instance;
     public Sprite[] healImages;
@@ -17,7 +18,7 @@ public class Shop_Buff : MonoBehaviour
     public bool isDamageUp = false;
     public bool isUnitDuration = false;
     public TMP_Text[] healTextInfo=new TMP_Text[3];
-  
+    
 
     private bool isHealing = false;
     private const int POWER_UP = 0;
@@ -82,6 +83,7 @@ public class Shop_Buff : MonoBehaviour
                 damageUpTimeRate = 10f;
                 if (isDamageUpBuy[LV_1]==true)
                 {
+                    
                     return;
                 }
                 else
@@ -121,10 +123,11 @@ public class Shop_Buff : MonoBehaviour
         {
             return;
         }
+
         //유닛 공격력 상승시키는 버튼호출 함수
         if (damageUpCooltime == 0)
         {
-
+            unitBuildSystem.UnitDamageUp(level);
             audioSource.clip=buyClip;
             audioSource.Play();
             GoldManager.instance.BuyThings(damageUpPrice);
@@ -183,9 +186,11 @@ public class Shop_Buff : MonoBehaviour
         {
             return;
         }
+
         //유닛 공격속도 상승시키는 버튼호출 함수
         if (attackSpeedUpCooltime == 0)
         {
+            unitBuildSystem.UnitAttackSpeedUp(level);
             audioSource.clip = buyClip;
             audioSource.Play();
             GoldManager.instance.BuyThings(attackSpeedPrice);
@@ -292,6 +297,7 @@ public class Shop_Buff : MonoBehaviour
                 break;
         }
         buffIcon[ATTACK_SPEED].SetActive(false);
+        unitBuildSystem.RestoreSpeedUp(level_);
     }
     private IEnumerator UnitDamageRoutine(int level_)
     {
@@ -319,6 +325,7 @@ public class Shop_Buff : MonoBehaviour
                 break;
         }
         buffIcon[POWER_UP].SetActive(false);
+        unitBuildSystem.RestoreDamageUp(level_);
 
     }
     private IEnumerator HealRoutine(int level)
