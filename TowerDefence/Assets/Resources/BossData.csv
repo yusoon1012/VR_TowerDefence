@@ -1,3 +1,3 @@
 Type,Hp,Power,Recognition_Range,Attack_Range,Attack_Cooltime,Spawn_Cooltime,Null
 midBoss,2000,10,0,0,15,0,
-FinalBoss,5000,10,0,0,15,40,
+FinalBoss,4000,10,0,0,15,40,

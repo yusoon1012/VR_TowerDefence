@@ -50,7 +50,7 @@ public class GoldManager : MonoBehaviour
     }
     public void BossDamageGold(int damage_)
     {
-        int targetGold = currentGold + (damage_/2) ;
+        int targetGold = currentGold + (damage_) ;
         StartCoroutine(GoldRoutine(targetGold));
     }
     public void BuyThings(int gold)

@@ -32,6 +32,7 @@ public class Magic_Normal : MonoBehaviour
             MidBoss midboss=collision.gameObject.GetComponent<MidBoss>();
             if(midboss!=null)
             {
+                GoldManager.instance.BossDamageGold(damage);
                 midboss.HitDamage(damage);
                 Destroy(gameObject);
             }
